@@ -45,16 +45,13 @@ export default function Slotmachine(props) {
                 () => {
                     const p = document.getElementById("recipe-header")
                     if (state.filterSauce === false && state.filterNoSauce === false) {
-                        return p.innerHTML = (threeRandIngredients(allIngredients, rNum(allIngredients))), 
-                        console.log(state)
+                        return p.innerHTML = (threeRandIngredients(allIngredients, rNum(allIngredients)))
                     }
                     else if (state.filterSauce === true && state.filterNoSauce === false) {
-                        return p.innerHTML = (threeRandIngredients(filterBySauce, rNum(filterBySauce))), 
-                        console.log(state)
+                        return p.innerHTML = (threeRandIngredients(filterBySauce, rNum(filterBySauce)))
                     }
                     else if (state.filterSauce === false && state.filterNoSauce === true) {
-                        return p.innerHTML = (threeRandIngredients(filterNoSauce, rNum(filterNoSauce))), 
-                        console.log(state)
+                        return p.innerHTML = (threeRandIngredients(filterNoSauce, rNum(filterNoSauce)))
                     }
                     else {
                         return p.innerHTML = 'No available recipes with those parameters'
