@@ -52,13 +52,14 @@ export default function Slotmachine(props) {
                     if (state.filterSauce === false && state.filterNoSauce === false) {
                         // First header roulette
                         return setTimeout(() => {h1.innerHTML = allIngredients[0]}, 0),
+                        h1.style.animationPlayState = 'running',
                         setTimeout(() => {h1.innerHTML = allIngredients[1]}, 100),
-                        setTimeout(() => {h1.innerHTML = allIngredients[2]}, 200),
                         setTimeout(() => {h1.innerHTML = allIngredients[3]}, 400),
                         setTimeout(() => {h1.innerHTML = allIngredients[4]}, 600),
                         setTimeout(() => {h1.innerHTML = allIngredients[2]}, 850),
                         setTimeout(() => {h1.innerHTML = allIngredients[5]}, 1100),
                         setTimeout(() => {h1.innerHTML = randomAllIngredients[0]}, 1500),
+                        setTimeout(() => {h1.style.animationPlayState = 'paused'}, 1500),
                         // Second header roulette
                         setTimeout(() => {h2.innerHTML = allIngredients[4]}, 150),
                         setTimeout(() => {h2.innerHTML = allIngredients[3]}, 200),
@@ -97,17 +98,17 @@ export default function Slotmachine(props) {
             }> Switch </button>
             <h2>Recipe:</h2>
             <div class="column">
-                <h3 id="recipe-header1">&nbsp;</h3>
+                <h3 id="recipe-header1" className="animation">&nbsp;</h3>
             </div>
             <div class="column">
                 <h3 id="recipe-header2">&nbsp;</h3>
             </div>
             <div class="column">
                 <h3 id="recipe-header3">&nbsp;</h3>
-            </div>
-
-
-            <p id="filter-sauce">Sauce filter: OFF{state.filterSauce}</p>
+            </div> 
+            {/* Space break */}
+            <p></p>&nbsp;<br />
+            <p id="filter-sauce">Sauce filter: OFF{state.filterSauce}</p> <br/>
             <p id="filter-no-sauce">No sauce filter: OFF{state.filterNoSauce}</p>
 
 
