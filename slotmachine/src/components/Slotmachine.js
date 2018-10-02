@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 // All ingredients, no filter
-const allIngredients = ['Gebakken uitjes', 'Augurk', 'Zuurkool', 'Komkommer', 'Paprika', 'Avocado', 'Ketchup', 'Mayonaisse', 'Curry']
+const allIngredients = ['Gebakken uitjes', 'Augurk', 'Zuurkool', 'Komkommer', 'Paprika', 'Avocado', 'Ketchup', 'Mayonaisse', 'Curry', 'Bacon', 'Zeewier']
 
 // Choose by sauce
 const filterBySauce = allIngredients.filter(ingredient => {
@@ -52,14 +52,12 @@ export default function Slotmachine(props) {
                     if (state.filterSauce === false && state.filterNoSauce === false) {
                         // First header roulette
                         return setTimeout(() => {h1.innerHTML = allIngredients[0]}, 0),
-                        h1.style.animationPlayState = 'running',
                         setTimeout(() => {h1.innerHTML = allIngredients[1]}, 100),
                         setTimeout(() => {h1.innerHTML = allIngredients[3]}, 400),
                         setTimeout(() => {h1.innerHTML = allIngredients[4]}, 600),
                         setTimeout(() => {h1.innerHTML = allIngredients[2]}, 850),
                         setTimeout(() => {h1.innerHTML = allIngredients[5]}, 1100),
                         setTimeout(() => {h1.innerHTML = randomAllIngredients[0]}, 1500),
-                        setTimeout(() => {h1.style.animationPlayState = 'paused'}, 1500),
                         // Second header roulette
                         setTimeout(() => {h2.innerHTML = allIngredients[4]}, 150),
                         setTimeout(() => {h2.innerHTML = allIngredients[3]}, 200),

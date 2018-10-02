@@ -6,23 +6,6 @@
   color: white;
 }
 
-.animation {
-  animation-name: slidein;
-  animation-duration: 0.5s;
-  animation-play-state: paused;
-  animation-iteration-count: infinite;
-}
-
-@keyframes slidein {
-  from {
-    margin-top: 5%;
-  }
-
-  to {
-    margin-top: 7%;
-  }
-}
-
 .column {
   background-color: purple;
   float: left;
