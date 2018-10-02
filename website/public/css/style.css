@@ -1,5 +1,19 @@
+body {
+  margin: 0;
+}
+
 .navbar {
   width: 100%;
   height: 40px;
   background-color: #d0d0d0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 160px;
+  width: 100vw;
+  background-color: #F6813A;
+	background-image: url("http://www.knakwortel.nl/images/knakwortel-logo-plantaardig-vegan-snack-04.png");
+	background-repeat: repeat;
 }

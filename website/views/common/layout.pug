@@ -4,23 +4,19 @@ html
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1")
     title Knakwortel - #{title}
-    link(rel="stylesheet" href="../css/style.css")
+    link(rel="stylesheet" href="/css/style.css")
 
   body
     nav.navbar(role="navigation" aria-label="main navigation")
       .navbar-brand
         a.navbar-item(href="/")
           img(src="https://knakwortel.nl/images/knakwortel-logo.svg" alt="Knakwortel" height="28")
-        a.navbar-item(href="/")  Home Knakwortel
+        a.navbar-item(href="/")  Home
 
     block content
 
     footer.footer
-      .container
-        .content.has-text-centered
-          p
-            strong Security Labs
-            |  Do NOT try this at home... :)
-          p
-            | Source code:
-            a(href="https://github.com/Codaisseur/security-demos")  Github
+      .footer-container
+        ul
+          li test
+          li test 2

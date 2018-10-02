@@ -4,4 +4,7 @@ block content
   section.section
     .container
       h1.title.is-1 Knakwortel test
-      p.subtitle.is-1 Yesyes PUGJS website
+      p.subtitle.is-1 Starwars people:
+      ul
+        each person in people.results
+          li=person.name

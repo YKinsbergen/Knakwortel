@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-pug": "^3.0.0-2",
