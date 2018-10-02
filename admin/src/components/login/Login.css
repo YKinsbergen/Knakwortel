@@ -1,0 +1,66 @@
+
+.login-wrapper {
+  height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.text-center {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.knakwortel-logo {
+  height: 50%;
+  width: 50%;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn {
+  border-color: #F6813A;
+  color: #F6813A;
+  background-color: white;
+}
+
+.btn:hover, 
+.btn-success:active:focus {
+  background: #F6813A;
+  color: white;
+  border-color: #F6813A;
+}
+
