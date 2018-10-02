@@ -1,16 +1,21 @@
-import { JsonController, Post, Param, Get, Body, Put, NotFoundError } from 'routing-controllers'
+import { JsonController, Post, BodyParam, Param, Get, Body, Put, NotFoundError, BadRequestError } from 'routing-controllers'
 import Admin from './entity';
 
 @JsonController()
 export default class AdminController {
 
+  // Wellicht een optie om een nieuw password aan te vragen. 
   //@Authorized()
   @Post('/admins')
   async signup(
-    @Body() data: Admin
+    @BodyParam('email') email: string,
+    @BodyParam('password') password: string
+
   ) {
-    const {password, ...rest} = data
-    const entity = Admin.create(rest)
+
+    const emailExistst = await Admin.count({where: {email}})
+    if (emailExistst > 0) { throw new BadRequestError('Email already in use') }
+    const entity = Admin.create({email})
     await entity.setPassword(password)
 
     const admin = await entity.save()

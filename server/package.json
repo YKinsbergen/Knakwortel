@@ -21,6 +21,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-multer": "^1.0.2",
     "koa-router": "^7.4.0",
+    "nodemon": "^1.18.4",
     "pg": "^7.4.3",
     "routing-controllers": "^0.7.7",
     "ts-node": "^7.0.1",

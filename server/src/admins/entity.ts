@@ -12,7 +12,7 @@ export default class Admin extends BaseEntity {
 
     @IsEmail()
     @Column ('text', {nullable:false})
-    title: string
+    email: string
 
     @IsString()
     @MinLength(1)
