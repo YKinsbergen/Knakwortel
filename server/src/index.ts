@@ -2,14 +2,14 @@
 import 'reflect-metadata'
 import {createKoaServer} from "routing-controllers"
 import setupDb from './db'
-import { PlaceholderController } from './placeholders/controller';
+import AdminController from './admins/controller';
 
 const port = process.env.PORT || 4000
 
 const app = createKoaServer({
   cors: true,
   controllers: [
-    PlaceholderController
+    AdminController
     ]
 })
 
