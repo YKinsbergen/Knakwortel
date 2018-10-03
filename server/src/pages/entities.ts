@@ -2,26 +2,91 @@
 
 // src/pages/entities.ts
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Timestamp, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import Image from '../images/entity'
+
 
 @Entity()
-export default class Page extends BaseEntity { 
+export class PageTitle extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('timestamp', {nullable:false})
-    publishedAt: Date
+    @Column('text', {nullable: false})
+    locale: string
 
-    @Column('timestamp')
-    unpublishedAt: Date
+    @Column('text', {nullable: false})
+    content: string
 
-    //pagetitle relation
+    // @OneToOne(_ => Page)
+    // page: Page
 }
 
+
+@Entity()
+export class Page extends BaseEntity {
+    
+    @PrimaryGeneratedColumn()
+    id?: number
+
+    @Column('timestamptz', {nullable:true})
+    published_at: Timestamp
+
+    @Column('timestamptz', {nullable:true})
+    unpublished_at: Timestamp
+
+    @OneToOne(_ => PageTitle)
+    @JoinColumn()
+    pageTitle: PageTitle
+
+    @OneToMany(_ => PageContent, pageContent => pageContent.page)
+    pageContents: PageContent[]
+
+}
+
+
+@Entity()
 export class PageContent extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('text', {nullable:false})
-    title: string
+    @Column('text', {nullable: false})
+    headline: string
+
+    @Column('text', {nullable: false})
+    body: string
+
+    @Column('text', {nullable: false})
+    locale: string
+
+    @Column('integer', {nullable: true})
+    order: number
+
+    @Column('text', {nullable: true})
+    iframeUrl: string
+
+    @ManyToOne(_ => Image, image => image.pageContents)
+    image: Image
+
+    @ManyToOne(_ => Page, page => page.pageContents)
+    page: Page
+
 }
+
+// @Entity()
+// export class Slug extends BaseEntity {
+
+//     @PrimaryGeneratedColumn()
+//     id?:number
+
+//     @Column('text', {nullable: false})
+//     locale: string
+
+//     @Column('text', {nullable: false})
+//     slug: string
+
+//     @OneToOne(_ => Page)
+//     @JoinColumn()
+//     page: Page
+// }
