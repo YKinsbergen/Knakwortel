@@ -4,6 +4,7 @@ import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStra
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
 import { snakeCase } from 'typeorm/util/StringUtils'
 import  Admin  from './admins/entity';
+import { Recipe, Topping, ToppingType } from './recipes/entity';
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -29,7 +30,10 @@ export default () =>
       type: "postgres",
       url: process.env.DATABASE_URL || 'postgres://postgres:secret@localhost:5432/postgres',
       entities: [
-        Admin
+        Admin,
+        Recipe,
+        Topping,
+        ToppingType
       ],
       synchronize: true,
       logging: true,
