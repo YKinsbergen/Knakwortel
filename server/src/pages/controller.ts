@@ -30,7 +30,7 @@ export class PagesController {
         const skip = (page -1) * take
         let range = {
             first: skip+1, 
-            last: (skip + take > count) ? count : skip+take
+            last: (skip + take > count) ? count : skip + take
         }
     
     
