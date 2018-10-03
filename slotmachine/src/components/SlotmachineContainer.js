@@ -24,7 +24,6 @@ export default class SlotmachineContainer extends React.Component {
         }))
     }
 
-
     render() {
         return (
             <div>

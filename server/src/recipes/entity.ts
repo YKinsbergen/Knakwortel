@@ -27,7 +27,7 @@ export class Topping extends BaseEntity {
     @Column()
     name: string
 
-    @OneToMany(_ => ToppingType, toppingType => toppingType.topping)
+    @ManyToOne(_ => ToppingType, toppingType => toppingType.topping)
     toppingTypes: ToppingType[]
 }
 
@@ -60,6 +60,6 @@ export class ToppingType extends BaseEntity {
     @Column()
     name: string
 
-    @ManyToOne(_ => Topping, topping => topping.toppingTypes)
+    @OneToMany(_ => Topping, topping => topping.toppingTypes)
     topping: Topping
 }
