@@ -3,6 +3,7 @@ import 'reflect-metadata'
 import {createKoaServer} from "routing-controllers"
 import setupDb from './db'
 import AdminController from './admins/controller';
+import { RecipeController } from './recipes/controller';
 import LoginController from './logins/controller';
 
 
@@ -12,6 +13,7 @@ const app = createKoaServer({
   cors: true,
   controllers: [
     AdminController,
+    RecipeController,
     LoginController
     ]
 })
