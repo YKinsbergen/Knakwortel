@@ -1,27 +1,21 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
-import Placeholder from './entity'
+import { JsonController, Get, Body, HttpCode, Post } from "routing-controllers";
+import { Recipe } from "./entity";
+
 
 @JsonController()
-export class PlaceholderController {
-    @Get('/placeholders')
+export class RecipeController {
+    @Get('/recipes')
     allAdvertisements = async() => {
-        const placeholders = await Placeholder.find()
-        return {placeholders}
+        const recipes = await Recipe.find({relations: ["toppings"]})
+        return {recipes}
     }
 
-    @Get('/ads/:id')
-    getAd(
-    @Param('id') id: number) { 
-        return Placeholder.findOne(id)
-    }
-
-    @Post('/ads')
+    @Post('/recipes')
     @HttpCode(201)
-    createAd(
-      @Body() placeholder: Placeholder
+    async createRecipe(
+      @Body() recipe: Recipe
     ) {
-      return placeholder.save()
+        return recipe.save()
     }
-
 }
