@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { loadRecipes } from '../actions/recipes'
+import { filterSauce, filterVegetable } from '../actions/filters'
 import Test from './Test'
 
 class TestContainer extends React.Component {
@@ -10,11 +11,14 @@ class TestContainer extends React.Component {
 }
 
   render() {
-    const {recipes} = this.props
+    const {recipes, filterSauce, filterVegetable} = this.props
     if (!recipes) return 'Loading...'
     return (
       <div>
-        <Test recipes={recipes}/>
+        <Test filterSauce={filterSauce}
+        recipes={recipes} 
+        filterVegetable={filterVegetable}
+        />
       </div>
     )
   }
@@ -24,4 +28,10 @@ const mapStateToProps = (state) => ({
   recipes: state.recipes
 })
 
-export default connect(mapStateToProps, {loadRecipes})(TestContainer)
+export default connect(
+  mapStateToProps, {
+  loadRecipes, 
+  filterSauce, 
+  filterVegetable}
+  )
+  (TestContainer)
