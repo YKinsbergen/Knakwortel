@@ -1,7 +1,19 @@
 import * as React from 'react'
 
 // All ingredients, no filter
-const allIngredients = ['Gebakken uitjes', 'Augurk', 'Zuurkool', 'Komkommer', 'Paprika', 'Avocado', 'Ketchup', 'Mayonaisse', 'Curry', 'Bacon', 'Zeewier']
+const allIngredients = [
+    'Gebakken uitjes', 
+    'Augurk', 
+    'Zuurkool', 
+    'Komkommer', 
+    'Paprika', 
+    'Avocado', 
+    'Ketchup', 
+    'Mayonaisse', 
+    'Curry', 
+    'Bacon', 
+    'Zeewier'
+]
 
 // Choose by sauce
 const filterBySauce = allIngredients.filter(ingredient => {
@@ -137,3 +149,5 @@ export default function Slotmachine(props) {
         </div>
     )
 }
+
+
