@@ -9,20 +9,56 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var _a, _b;
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const typeorm_1 = require("typeorm");
-let Placeholder = class Placeholder extends BaseEntity_1.BaseEntity {
+let SeoTag = class SeoTag extends BaseEntity_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Placeholder.prototype, "id", void 0);
+], SeoTag.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column('text', { nullable: false }),
     __metadata("design:type", String)
-], Placeholder.prototype, "title", void 0);
-Placeholder = __decorate([
+], SeoTag.prototype, "type", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SeoTag.prototype, "content", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], SeoTag.prototype, "locale", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", typeof (_a = typeof  !== "undefined" && ) === "function" ? _a : Object)
+], SeoTag.prototype, "pageId", void 0);
+SeoTag = __decorate([
     typeorm_1.Entity()
-], Placeholder);
-exports.default = Placeholder;
+], SeoTag);
+exports.default = SeoTag;
+class SeoTagAttribute extends BaseEntity_1.BaseEntity {
+}
+__decorate([
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
+], SeoTagAttribute.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", typeof (_b = typeof  !== "undefined" && ) === "function" ? _b : Object)
+], SeoTagAttribute.prototype, "seoTagId", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: false }),
+    __metadata("design:type", String)
+], SeoTagAttribute.prototype, "type", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: false }),
+    __metadata("design:type", String)
+], SeoTagAttribute.prototype, "value", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], SeoTagAttribute.prototype, "locale", void 0);
+exports.SeoTagAttribute = SeoTagAttribute;
 //# sourceMappingURL=entities.js.map

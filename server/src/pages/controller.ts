@@ -1,6 +1,6 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
-import Placeholder from './entities'
+import { JsonController, Get, Param, Post, HttpCode, Body, Param } from "routing-controllers";
+import Page from './entities'
 
 @JsonController()
 export class PlaceholderController {
@@ -25,3 +25,9 @@ export class PlaceholderController {
     }
 
 }
+
+
+//www.knakwortel.nl/:locale
+//@Param(locale)
+// if (!locale) 
+// page.locale = NL

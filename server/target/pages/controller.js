@@ -12,17 +12,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var _a;
 const routing_controllers_1 = require("routing-controllers");
-const entities_1 = require("./entities");
 let PlaceholderController = class PlaceholderController {
     constructor() {
         this.allAdvertisements = async () => {
-            const placeholders = await entities_1.default.find();
+            const placeholders = await Placeholder.find();
             return { placeholders };
         };
     }
     getAd(id) {
-        return entities_1.default.findOne(id);
+        return Placeholder.findOne(id);
     }
     createAd(placeholder) {
         return placeholder.save();
@@ -44,7 +44,7 @@ __decorate([
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [entities_1.default]),
+    __metadata("design:paramtypes", [typeof (_a = typeof Placeholder !== "undefined" && Placeholder) === "function" ? _a : Object]),
     __metadata("design:returntype", void 0)
 ], PlaceholderController.prototype, "createAd", null);
 PlaceholderController = __decorate([

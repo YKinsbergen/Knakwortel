@@ -1,10 +1,10 @@
 // src/advertisements/controller.ts
 import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
-import Placeholder from './entities'
+import SeoTag from '.entities'
 
 @JsonController()
-export class PlaceholderController {
-    @Get('/placeholders')
+export class SeoController {
+    @Get('/seotag')
     allAdvertisements = async() => {
         const placeholders = await Placeholder.find()
         return {placeholders}
