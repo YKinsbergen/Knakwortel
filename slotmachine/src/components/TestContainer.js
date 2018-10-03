@@ -6,13 +6,15 @@ import Test from './Test'
 class TestContainer extends React.Component {
   componentDidMount() {
     this.props.loadRecipes()
+    console.log('component did mount')
 }
 
   render() {
-    if (!this.props.recipes) return 'Loading...'
+    const {recipes} = this.props
+    if (!recipes) return 'Loading...'
     return (
       <div>
-        <Test />
+        <Test recipes={recipes}/>
       </div>
     )
   }
