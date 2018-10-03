@@ -1,27 +1,27 @@
 // src/advertisements/controller.ts
 import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
-import Placeholder from './entity'
+import Image from './entity'
 
 @JsonController()
-export class PlaceholderController {
-    @Get('/placeholders')
-    allAdvertisements = async() => {
-        const placeholders = await Placeholder.find()
-        return {placeholders}
+export class ImageController {
+    @Get('/images')
+    allImages = async() => {
+        const images = await Image.find()
+        return {images}
     }
 
-    @Get('/ads/:id')
-    getAd(
+    @Get('/images/:id')
+    getImage(
     @Param('id') id: number) { 
-        return Placeholder.findOne(id)
+        return Image.findOne(id)
     }
 
-    @Post('/ads')
+    @Post('/images') // Pipe naar AWS S3????
     @HttpCode(201)
     createAd(
-      @Body() placeholder: Placeholder
+      @Body() image: Image
     ) {
-      return placeholder.save()
+      return image.save()
     }
 
 }
