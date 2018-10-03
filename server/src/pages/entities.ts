@@ -13,4 +13,3 @@ export default class Placeholder extends BaseEntity {
     @Column('text', {nullable:false})
     title: string
 }
-
