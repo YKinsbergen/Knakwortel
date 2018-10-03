@@ -1,20 +1,14 @@
 // src/advertisements/controller.ts
-import { JsonController, Get } from "routing-controllers";
-import Page from './entities'
+import { JsonController, Get, Param} from "routing-controllers";
+import {Page} from './entities'
 
 @JsonController()
-export class PageController{
-    @Get('/pages')
-    allAdvertisements = async() => {
-        const pages = await Page.find()
-        return {pages}
+export class PagesController {
+    @Get('/pages/:id')
+    async onePage (
+        @Param('id') id: number
+    ) {
+        const page = await Page.findOne(id, {relations: ['pageTitle', 'pageContents', 'pageContents.image']})
+        return page
     }
-
-
 }
-
-
-//www.knakwortel.nl/:locale
-//@Param(locale)
-// if (!locale) 
-// page.locale = NL
