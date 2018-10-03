@@ -14,41 +14,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
-let PlaceholderController = class PlaceholderController {
+let RecipeController = class RecipeController {
     constructor() {
         this.allAdvertisements = async () => {
-            const placeholders = await entity_1.default.find();
-            return { placeholders };
+            const recipes = await entity_1.Recipe.find({ relations: ["toppings"] });
+            return { recipes };
         };
     }
-    getAd(id) {
-        return entity_1.default.findOne(id);
-    }
-    createAd(placeholder) {
-        return placeholder.save();
+    async createRecipe(recipe) {
+        return recipe.save();
     }
 };
 __decorate([
-    routing_controllers_1.Get('/placeholders'),
+    routing_controllers_1.Get('/recipes'),
     __metadata("design:type", Object)
-], PlaceholderController.prototype, "allAdvertisements", void 0);
+], RecipeController.prototype, "allAdvertisements", void 0);
 __decorate([
-    routing_controllers_1.Get('/ads/:id'),
-    __param(0, routing_controllers_1.Param('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "getAd", null);
-__decorate([
-    routing_controllers_1.Post('/ads'),
+    routing_controllers_1.Post('/recipes'),
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [entity_1.default]),
-    __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "createAd", null);
-PlaceholderController = __decorate([
+    __metadata("design:paramtypes", [entity_1.Recipe]),
+    __metadata("design:returntype", Promise)
+], RecipeController.prototype, "createRecipe", null);
+RecipeController = __decorate([
     routing_controllers_1.JsonController()
-], PlaceholderController);
-exports.PlaceholderController = PlaceholderController;
+], RecipeController);
+exports.RecipeController = RecipeController;
 //# sourceMappingURL=controller.js.map

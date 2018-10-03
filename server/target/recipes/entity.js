@@ -9,20 +9,92 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const typeorm_1 = require("typeorm");
-let Placeholder = class Placeholder extends BaseEntity_1.BaseEntity {
+let Recipe = class Recipe extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Placeholder.prototype, "id", void 0);
+], Recipe.prototype, "id", void 0);
 __decorate([
-    typeorm_1.Column('text', { nullable: false }),
+    typeorm_1.Column(),
     __metadata("design:type", String)
-], Placeholder.prototype, "title", void 0);
-Placeholder = __decorate([
+], Recipe.prototype, "name", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Recipe.prototype, "description", void 0);
+__decorate([
+    typeorm_1.ManyToMany(() => Topping),
+    typeorm_1.JoinTable({ name: "RecipeConfigurations" }),
+    __metadata("design:type", Array)
+], Recipe.prototype, "toppings", void 0);
+Recipe = __decorate([
     typeorm_1.Entity()
-], Placeholder);
-exports.default = Placeholder;
+], Recipe);
+exports.Recipe = Recipe;
+let Topping = class Topping extends typeorm_1.BaseEntity {
+};
+__decorate([
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
+], Topping.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], Topping.prototype, "name", void 0);
+__decorate([
+    typeorm_1.OneToMany(_ => ToppingType, toppingType => toppingType.topping),
+    __metadata("design:type", Array)
+], Topping.prototype, "toppingTypes", void 0);
+Topping = __decorate([
+    typeorm_1.Entity()
+], Topping);
+exports.Topping = Topping;
+let RecipeConfigurations = class RecipeConfigurations extends typeorm_1.BaseEntity {
+};
+__decorate([
+    typeorm_1.Column({ type: 'text' }),
+    __metadata("design:type", String)
+], RecipeConfigurations.prototype, "ingredient", void 0);
+__decorate([
+    typeorm_1.PrimaryColumn('int'),
+    __metadata("design:type", Number)
+], RecipeConfigurations.prototype, "recipeId", void 0);
+__decorate([
+    typeorm_1.PrimaryColumn('int'),
+    __metadata("design:type", Number)
+], RecipeConfigurations.prototype, "toppingId", void 0);
+__decorate([
+    typeorm_1.OneToOne(() => Recipe),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", Recipe)
+], RecipeConfigurations.prototype, "recipe", void 0);
+__decorate([
+    typeorm_1.OneToOne(() => Topping),
+    typeorm_1.JoinColumn(),
+    __metadata("design:type", Topping)
+], RecipeConfigurations.prototype, "topping", void 0);
+RecipeConfigurations = __decorate([
+    typeorm_1.Entity()
+], RecipeConfigurations);
+exports.RecipeConfigurations = RecipeConfigurations;
+let ToppingType = class ToppingType extends typeorm_1.BaseEntity {
+};
+__decorate([
+    typeorm_1.PrimaryGeneratedColumn(),
+    __metadata("design:type", Number)
+], ToppingType.prototype, "id", void 0);
+__decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], ToppingType.prototype, "name", void 0);
+__decorate([
+    typeorm_1.ManyToOne(_ => Topping, topping => topping.toppingTypes),
+    __metadata("design:type", Topping)
+], ToppingType.prototype, "topping", void 0);
+ToppingType = __decorate([
+    typeorm_1.Entity()
+], ToppingType);
+exports.ToppingType = ToppingType;
 //# sourceMappingURL=entity.js.map
