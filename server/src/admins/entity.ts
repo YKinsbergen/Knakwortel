@@ -26,6 +26,6 @@ export default class Admin extends BaseEntity {
     }
 
     checkPassword(rawPassword: string): Promise<boolean> {
-        return bcrypt.compare (rawPassword, this.password)
+        return bcrypt.compare(rawPassword, this.password)
     }
 }

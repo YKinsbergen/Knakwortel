@@ -15,7 +15,7 @@ const class_transformer_1 = require("class-transformer");
 const bcrypt = require("bcrypt");
 let Admin = class Admin extends typeorm_1.BaseEntity {
     async setPassword(rawPassword) {
-        const hash = await bcrypt.hashSync(rawPassword, 10);
+        const hash = await bcrypt.hash(rawPassword, 10);
         this.password = hash;
     }
     checkPassword(rawPassword) {
