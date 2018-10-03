@@ -8,47 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
 const routing_controllers_1 = require("routing-controllers");
-let PlaceholderController = class PlaceholderController {
+const entities_1 = require("./entities");
+let PageController = class PageController {
     constructor() {
         this.allAdvertisements = async () => {
-            const placeholders = await Placeholder.find();
-            return { placeholders };
+            const pages = await entities_1.default.find();
+            return { pages };
         };
-    }
-    getAd(id) {
-        return Placeholder.findOne(id);
-    }
-    createAd(placeholder) {
-        return placeholder.save();
     }
 };
 __decorate([
-    routing_controllers_1.Get('/placeholders'),
+    routing_controllers_1.Get('/pages'),
     __metadata("design:type", Object)
-], PlaceholderController.prototype, "allAdvertisements", void 0);
-__decorate([
-    routing_controllers_1.Get('/ads/:id'),
-    __param(0, routing_controllers_1.Param('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "getAd", null);
-__decorate([
-    routing_controllers_1.Post('/ads'),
-    routing_controllers_1.HttpCode(201),
-    __param(0, routing_controllers_1.Body()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = typeof Placeholder !== "undefined" && Placeholder) === "function" ? _a : Object]),
-    __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "createAd", null);
-PlaceholderController = __decorate([
+], PageController.prototype, "allAdvertisements", void 0);
+PageController = __decorate([
     routing_controllers_1.JsonController()
-], PlaceholderController);
-exports.PlaceholderController = PlaceholderController;
+], PageController);
+exports.PageController = PageController;
 //# sourceMappingURL=controller.js.map

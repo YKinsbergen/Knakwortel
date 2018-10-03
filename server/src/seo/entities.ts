@@ -20,7 +20,7 @@ export default class SeoTag extends BaseEntity {
     locale: string
     
     @Column()
-    pageId: 
+    pageId: number
 }
 
 export class SeoTagAttribute extends BaseEntity {
@@ -28,7 +28,7 @@ export class SeoTagAttribute extends BaseEntity {
     id?: number
 
     @Column()
-    seoTagId: 
+    seoTagId: number
 
     @Column('text', {nullable:false}) 
     type: string

@@ -14,41 +14,41 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
-let PlaceholderController = class PlaceholderController {
+let ImageController = class ImageController {
     constructor() {
-        this.allAdvertisements = async () => {
-            const placeholders = await entity_1.default.find();
-            return { placeholders };
+        this.allImages = async () => {
+            const images = await entity_1.default.find();
+            return { images };
         };
     }
-    getAd(id) {
+    getImage(id) {
         return entity_1.default.findOne(id);
     }
-    createAd(placeholder) {
-        return placeholder.save();
+    createAd(image) {
+        return image.save();
     }
 };
 __decorate([
-    routing_controllers_1.Get('/placeholders'),
+    routing_controllers_1.Get('/images'),
     __metadata("design:type", Object)
-], PlaceholderController.prototype, "allAdvertisements", void 0);
+], ImageController.prototype, "allImages", void 0);
 __decorate([
-    routing_controllers_1.Get('/ads/:id'),
+    routing_controllers_1.Get('/images/:id'),
     __param(0, routing_controllers_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "getAd", null);
+], ImageController.prototype, "getImage", null);
 __decorate([
-    routing_controllers_1.Post('/ads'),
+    routing_controllers_1.Post('/images'),
     routing_controllers_1.HttpCode(201),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [entity_1.default]),
     __metadata("design:returntype", void 0)
-], PlaceholderController.prototype, "createAd", null);
-PlaceholderController = __decorate([
+], ImageController.prototype, "createAd", null);
+ImageController = __decorate([
     routing_controllers_1.JsonController()
-], PlaceholderController);
-exports.PlaceholderController = PlaceholderController;
+], ImageController);
+exports.ImageController = ImageController;
 //# sourceMappingURL=controller.js.map

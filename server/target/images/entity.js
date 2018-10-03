@@ -11,18 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const typeorm_1 = require("typeorm");
-let Placeholder = class Placeholder extends BaseEntity_1.BaseEntity {
+let Image = class Image extends BaseEntity_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], Placeholder.prototype, "id", void 0);
+], Image.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column('text', { nullable: false }),
     __metadata("design:type", String)
-], Placeholder.prototype, "title", void 0);
-Placeholder = __decorate([
+], Image.prototype, "url", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: false }),
+    __metadata("design:type", String)
+], Image.prototype, "altText", void 0);
+Image = __decorate([
     typeorm_1.Entity()
-], Placeholder);
-exports.default = Placeholder;
+], Image);
+exports.default = Image;
 //# sourceMappingURL=entity.js.map

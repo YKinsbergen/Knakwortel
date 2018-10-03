@@ -2,7 +2,7 @@
 
 // src/pages/entities.ts
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export default class Page extends BaseEntity { 
@@ -54,8 +54,8 @@ export class PageTitle extends BaseEntity {
     @Column('text', {nullable:false})
     content: string
 
-    @OneToOne ()
-    pageId: 
+    // @OneToOne ()
+    // pageId: 
 
 }
 

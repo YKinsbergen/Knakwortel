@@ -3,11 +3,15 @@ import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class Placeholder extends BaseEntity {
+export default class Image extends BaseEntity {
     
     @PrimaryGeneratedColumn()
     id?: number
 
     @Column('text', {nullable:false})
-    title: string
+    url: string
+
+    @Column('text', {nullable:false})
+    altText: string
+
 }

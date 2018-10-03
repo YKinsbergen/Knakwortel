@@ -8,45 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
 const routing_controllers_1 = require("routing-controllers");
+const entities_1 = require("./entities");
 let SeoController = class SeoController {
     constructor() {
-        this.allAdvertisements = async () => {
-            const placeholders = await Placeholder.find();
-            return { placeholders };
+        this.allSeoTags = async () => {
+            const seoTags = await entities_1.default.find();
+            return { seoTags };
         };
-    }
-    getAd(id) {
-        return Placeholder.findOne(id);
-    }
-    createAd(placeholder) {
-        return placeholder.save();
     }
 };
 __decorate([
     routing_controllers_1.Get('/seotag'),
     __metadata("design:type", Object)
-], SeoController.prototype, "allAdvertisements", void 0);
-__decorate([
-    routing_controllers_1.Get('/ads/:id'),
-    __param(0, routing_controllers_1.Param('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
-], SeoController.prototype, "getAd", null);
-__decorate([
-    routing_controllers_1.Post('/ads'),
-    routing_controllers_1.HttpCode(201),
-    __param(0, routing_controllers_1.Body()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_a = typeof Placeholder !== "undefined" && Placeholder) === "function" ? _a : Object]),
-    __metadata("design:returntype", void 0)
-], SeoController.prototype, "createAd", null);
+], SeoController.prototype, "allSeoTags", void 0);
 SeoController = __decorate([
     routing_controllers_1.JsonController()
 ], SeoController);

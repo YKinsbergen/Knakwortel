@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a, _b;
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const typeorm_1 = require("typeorm");
 let SeoTag = class SeoTag extends BaseEntity_1.BaseEntity {
@@ -32,7 +31,7 @@ __decorate([
 ], SeoTag.prototype, "locale", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", typeof (_a = typeof  !== "undefined" && ) === "function" ? _a : Object)
+    __metadata("design:type", Number)
 ], SeoTag.prototype, "pageId", void 0);
 SeoTag = __decorate([
     typeorm_1.Entity()
@@ -46,7 +45,7 @@ __decorate([
 ], SeoTagAttribute.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
-    __metadata("design:type", typeof (_b = typeof  !== "undefined" && ) === "function" ? _b : Object)
+    __metadata("design:type", Number)
 ], SeoTagAttribute.prototype, "seoTagId", void 0);
 __decorate([
     typeorm_1.Column('text', { nullable: false }),

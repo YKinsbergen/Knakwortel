@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var _a;
 const BaseEntity_1 = require("typeorm/repository/BaseEntity");
 const typeorm_1 = require("typeorm");
 let Page = class Page extends BaseEntity_1.BaseEntity {
@@ -75,9 +74,5 @@ __decorate([
     typeorm_1.Column('text', { nullable: false }),
     __metadata("design:type", String)
 ], PageTitle.prototype, "content", void 0);
-__decorate([
-    typeorm_1.OneToOne(),
-    __metadata("design:type", typeof (_a = typeof  !== "undefined" && ) === "function" ? _a : Object)
-], PageTitle.prototype, "pageId", void 0);
 exports.PageTitle = PageTitle;
 //# sourceMappingURL=entities.js.map
