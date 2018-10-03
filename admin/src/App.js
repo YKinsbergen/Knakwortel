@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
-import TopBar from './components/layout/TopBar'
 import LogoutPage from './components/logout/LogoutPage'
 import LoginPage from './components/login/LoginPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import SignupPage from './components/signup/SignupPage'
-import Dashboard from './components/Dashboard'
+import DashboardContainer from './components/DashboardContainer';
 
 
 class App extends Component {
@@ -13,15 +12,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <nav>
-            {/* <TopBar /> */}
-          </nav>
           <main>
             <Route exact path="/login" component={LoginPage} />
-            {/* <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dashboard" component={DashboardContainer} />
             <Route exact path="/logout" component={LogoutPage} />
-            <Route exact path="/signup" component={SignupPage} />
-            <Route exact path="/" render={ () => <Redirect to="/dashboard" /> } /> */}
+            {/* <Route exact path="/signup" component={SignupPage} /> */}
+            <Route exact path="/" render={ () => <Redirect to="/dashboard" /> } />
           </main>
         </div>
       </Router>
