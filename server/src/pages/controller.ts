@@ -1,27 +1,14 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
-import Placeholder from './entities'
+import { JsonController, Get, Param} from "routing-controllers";
+import {Page} from './entities'
 
 @JsonController()
-export class PlaceholderController {
-    @Get('/placeholders')
-    allAdvertisements = async() => {
-        const placeholders = await Placeholder.find()
-        return {placeholders}
-    }
-
-    @Get('/ads/:id')
-    getAd(
-    @Param('id') id: number) { 
-        return Placeholder.findOne(id)
-    }
-
-    @Post('/ads')
-    @HttpCode(201)
-    createAd(
-      @Body() placeholder: Placeholder
+export class PagesController {
+    @Get('/pages/:id')
+    async onePage (
+        @Param('id') id: number
     ) {
-      return placeholder.save()
+        const page = await Page.findOne(id, {relations: ['pageTitle', 'pageContents', 'pageContents.image']})
+        return page
     }
-
 }
