@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-//import {login} from '../../actions/users'
+import {login} from '../../actions/admins'
 import LoginForm from './LoginForm'
 import {Redirect} from 'react-router-dom'
 import './Login.css'
@@ -37,6 +37,5 @@ const mapStateToProps = function (state) {
 	}
 }
 
-export default connect(mapStateToProps)(LoginPage)
+export default connect(mapStateToProps, {login})(LoginPage)
 
-//{login}
