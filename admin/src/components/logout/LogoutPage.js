@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-//import {logout} from '../../actions/users'
+import {logout} from '../../actions/admins'
 import {Redirect} from 'react-router-dom'
 
 class LogoutPage extends PureComponent {
@@ -25,6 +25,4 @@ const mapStateToProps = state => ({
 	authenticated: state.currentUser !== null
 })
 
-export default connect(mapStateToProps)(LogoutPage)
-
-//{logout}
+export default connect(mapStateToProps, {logout})(LogoutPage)
