@@ -9,9 +9,9 @@ class GamesList extends PureComponent {
   render() {
     const {authenticated} = this.props
 
-    if (!authenticated) return (
-			<Redirect to="/login" />
-    ) 
+    // if (!authenticated) return (
+		// 	<Redirect to="/login" />
+    // ) 
     //Straks weer aanzetten om achter inlogmuur te krijgen!
 
     return (

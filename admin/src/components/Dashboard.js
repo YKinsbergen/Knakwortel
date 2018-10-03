@@ -66,10 +66,11 @@ export default function Dashboard(props) {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Categorie</th>
                   <th>Titel</th>
-                  <th>Text</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Tekst</th>
+                  <th>Tags</th>
+                  <th>Afbeelding</th>
                 </tr>
               </thead>
               <tbody>
@@ -79,6 +80,7 @@ export default function Dashboard(props) {
                   <td>ipsum</td>
                   <td>dolor</td>
                   <td>sit</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,002</td>
@@ -86,6 +88,7 @@ export default function Dashboard(props) {
                   <td>consectetur</td>
                   <td>adipiscing</td>
                   <td>elit</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,003</td>
@@ -93,6 +96,7 @@ export default function Dashboard(props) {
                   <td>nec</td>
                   <td>odio</td>
                   <td>Praesent</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,003</td>
@@ -100,6 +104,7 @@ export default function Dashboard(props) {
                   <td>Sed</td>
                   <td>cursus</td>
                   <td>ante</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,004</td>
@@ -107,6 +112,7 @@ export default function Dashboard(props) {
                   <td>diam</td>
                   <td>Sed</td>
                   <td>nisi</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,005</td>
@@ -114,6 +120,7 @@ export default function Dashboard(props) {
                   <td>quis</td>
                   <td>sem</td>
                   <td>at</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,006</td>
@@ -121,6 +128,7 @@ export default function Dashboard(props) {
                   <td>elementum</td>
                   <td>imperdiet</td>
                   <td>Duis</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,007</td>
@@ -128,6 +136,7 @@ export default function Dashboard(props) {
                   <td>ipsum</td>
                   <td>Praesent</td>
                   <td>mauris</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,008</td>
@@ -135,6 +144,7 @@ export default function Dashboard(props) {
                   <td>nec</td>
                   <td>tellus</td>
                   <td>sed</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,009</td>
@@ -142,6 +152,7 @@ export default function Dashboard(props) {
                   <td>semper</td>
                   <td>porta</td>
                   <td>Mauris</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,010</td>
@@ -149,6 +160,7 @@ export default function Dashboard(props) {
                   <td>Vestibulum</td>
                   <td>lacinia</td>
                   <td>arcu</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,011</td>
@@ -156,6 +168,7 @@ export default function Dashboard(props) {
                   <td>nulla</td>
                   <td>Class</td>
                   <td>aptent</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,012</td>
@@ -163,6 +176,7 @@ export default function Dashboard(props) {
                   <td>sociosqu</td>
                   <td>ad</td>
                   <td>litora</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,013</td>
@@ -170,6 +184,7 @@ export default function Dashboard(props) {
                   <td>per</td>
                   <td>conubia</td>
                   <td>nostra</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,014</td>
@@ -177,6 +192,7 @@ export default function Dashboard(props) {
                   <td>inceptos</td>
                   <td>himenaeos</td>
                   <td>Curabitur</td>
+                  <td>Afbeelding1</td>
                 </tr>
                 <tr>
                   <td>1,015</td>
@@ -184,6 +200,7 @@ export default function Dashboard(props) {
                   <td>ligula</td>
                   <td>in</td>
                   <td>libero</td>
+                  <td>Afbeelding1</td>
                 </tr>
               </tbody>
             </table>
