@@ -1,6 +1,6 @@
 // pages, pagecontent, pagetitles, slugs
 
-// src/advertisements/entity.ts
+// src/pages/entities.ts
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import { Entity, PrimaryGeneratedColumn, Column, Timestamp, OneToOne, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import Image from '../images/entity'
