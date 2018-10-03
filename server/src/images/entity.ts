@@ -1,13 +1,21 @@
 // src/advertisements/entity.ts
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {PageContent} from '../pages/entities'
 
 @Entity()
-export default class Placeholder extends BaseEntity {
+export default class Image extends BaseEntity {
     
     @PrimaryGeneratedColumn()
     id?: number
 
     @Column('text', {nullable:false})
-    title: string
+    url: string
+
+    @Column('text', {nullable:false})
+    altText: string
+
+    @OneToMany(_ => PageContent, pageContent => pageContent.image)
+    pageContents: PageContent[]
+
 }

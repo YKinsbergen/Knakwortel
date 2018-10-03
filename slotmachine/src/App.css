@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  background-color: darkslategrey;
+  color: white;
+}
+
+.column {
+  background-color: purple;
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
