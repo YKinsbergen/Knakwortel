@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 export default function Dashboard(props) {
+  console.log(props.blocks.pageContents)
   return (
     <div>
       <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">

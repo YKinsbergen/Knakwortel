@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import PAgeForm from './EventForm'
+import PageForm from './PageForm'
 
 class PageFormContainer extends React.Component {
   state = {}
@@ -15,18 +15,14 @@ class PageFormContainer extends React.Component {
     console.log(this.state)
     event.preventDefault()
     this.setState({
-      name: '',
-      description: '',
-      startDate: '',
-      endDate: '',
-      pictureUrl: ''
+      headline: '',
+      body: '',
     })
     this.props.createEvent(this.state)
   }
 
   render() {
-    console.table(this.state)
-    return (<EventForm
+    return (<PageForm
       handleSubmit={this.handleSubmit}
       handleChange={this.handleChange}
       values={this.state}
