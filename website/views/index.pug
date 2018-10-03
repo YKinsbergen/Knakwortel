@@ -1,15 +1,8 @@
 extends ./common/layout.pug
 
 block content
-  each contentBlock in page.pageContent
+  each contentBlock in page.pageContents
     section.section
       .container
         h1=contentBlock.headline
         p=contentBlock.body
-  //- section.section
-  //-   .container
-  //-     h1 Knakwortel test
-  //-     p Starwars people:
-  //-     ul
-  //-       each person in people.results
-  //-         li=person.name
