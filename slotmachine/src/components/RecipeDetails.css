@@ -1,0 +1,10 @@
+#go-back-btn {
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+#go-back-link {
+  color: black;
+  text-decoration: none;
+}
