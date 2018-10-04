@@ -5,19 +5,38 @@ import { filterSauce, filterVegetable } from '../actions/filters'
 import Test from './Test'
 
 class TestContainer extends React.Component {
+  // Render different text based on which filters are on / off
+  conditionalFilterRender = () => {
+    const {filters} = this.props
+    if (filters.sauceFilter === true && filters.vegetableFilter === true) {
+      return <div><p>Sauce filter ON - Vegetable filter ON</p></div>
+    }
+    if (filters.sauceFilter === true) {
+      return <div><p>Sauce filter ON - Vegetable filter OFF</p></div>
+    }
+    if (filters.vegetableFilter === true) {
+      return <div><p>Sauce filter OFF - Vegetable filter ON</p></div>
+    }
+
+    else {
+      return <div><p>Sauce filter OFF - Vegetable filter OFF</p></div>
+    }
+  }
+
   componentDidMount() {
     this.props.loadRecipes()
-    console.log('component did mount')
 }
 
   render() {
-    const {recipes, filterSauce, filterVegetable} = this.props
+    const {recipes, filters, filterSauce, filterVegetable} = this.props
     if (!recipes) return 'Loading...'
     return (
       <div>
-        <Test filterSauce={filterSauce}
-        recipes={recipes} 
+        <Test recipes={recipes} 
+        filters={filters}
+        filterSauce={filterSauce}
         filterVegetable={filterVegetable}
+        conditionalFilterRender={this.conditionalFilterRender}
         />
       </div>
     )
@@ -25,7 +44,8 @@ class TestContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes
+  recipes: state.recipes,
+  filters: state.filters
 })
 
 export default connect(
