@@ -16,17 +16,17 @@ class SlotmachineContainer extends React.Component {
   conditionalRenderSauceFilter = () => {
     const {filters} = this.props
     return filters.sauceFilter ? 
-    <p>Sauce filter ON</p> : <p>Sauce filter OFF</p>
+    <span>Sauce filter ON </span> : <span>Sauce filter OFF </span>
   }
   conditionalRenderVegetableFilter = () => {
     const {filters} = this.props
     return filters.vegetableFilter ? 
-    <p>Vegetable filter ON</p> : <p>Vegetable filter OFF</p>
+    <span>Vegetable filter ON </span> : <span>Vegetable filter OFF </span>
   }
   conditionalRenderWithSauceFilter = () => {
     const {filters} = this.props
     return filters.withSauceFilter ? 
-    <p>With Sauce filter ON</p> : <p>With Sauce filter OFF</p>
+    <span>With Sauce filter ON </span> : <span>With Sauce filter OFF </span>
   }
 
   renderLinkToRecipeDetails = () => {
