@@ -1,6 +1,7 @@
 // src/actions/recipes.js
 export const FILTER_SAUCE = 'FILTER_SAUCE'
 export const FILTER_VEGETABLE = 'FILTER_VEGETABLE'
+export const FILTER_WITHSAUCE = 'FILTER_WITHSAUCE'
 
 export const filterSauce = () => ({
     type: FILTER_SAUCE,
@@ -9,5 +10,10 @@ export const filterSauce = () => ({
 
 export const filterVegetable = () => ({
     type: FILTER_VEGETABLE,
+    payload: null
+})
+
+export const filterWithSauce = () => ({
+    type: FILTER_WITHSAUCE,
     payload: null
 })
