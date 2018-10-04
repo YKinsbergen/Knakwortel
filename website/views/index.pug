@@ -12,3 +12,9 @@ block content
     .container
       h1=verkrijgbaar.headline
       p=verkrijgbaar.body
+  
+  //- INSTAGRAM FEED CONTENT BLOK
+  section.section
+    .container
+      each instaPost in instaFeed
+        img(src=instaPost.node.thumbnail_src)
