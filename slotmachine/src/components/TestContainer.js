@@ -1,26 +1,25 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { loadRecipes } from '../actions/recipes'
-import { filterSauce, filterVegetable } from '../actions/filters'
+import { filterSauce, filterVegetable, filterWithSauce } from '../actions/filters'
 import Test from './Test'
 
 class TestContainer extends React.Component {
   // Render different text based on which filters are on / off
-  conditionalFilterRender = () => {
+  conditionalRenderSauceFilter = () => {
     const {filters} = this.props
-    if (filters.sauceFilter === true && filters.vegetableFilter === true) {
-      return <div><p>Sauce filter ON - Vegetable filter ON</p></div>
-    }
-    if (filters.sauceFilter === true) {
-      return <div><p>Sauce filter ON - Vegetable filter OFF</p></div>
-    }
-    if (filters.vegetableFilter === true) {
-      return <div><p>Sauce filter OFF - Vegetable filter ON</p></div>
-    }
-
-    else {
-      return <div><p>Sauce filter OFF - Vegetable filter OFF</p></div>
-    }
+    return filters.sauceFilter ? 
+    <p>Sauce filter ON</p> : <p>Sauce filter OFF</p>
+  }
+  conditionalRenderVegetableFilter = () => {
+    const {filters} = this.props
+    return filters.vegetableFilter ? 
+    <p>Vegetable filter ON</p> : <p>Vegetable filter OFF</p>
+  }
+  conditionalRenderWithSauceFilter = () => {
+    const {filters} = this.props
+    return filters.withSauceFilter ? 
+    <p>With Sauce filter ON</p> : <p>With Sauce filter OFF</p>
   }
 
   componentDidMount() {
@@ -28,7 +27,14 @@ class TestContainer extends React.Component {
 }
 
   render() {
-    const {recipes, filters, filterSauce, filterVegetable} = this.props
+    const {
+      recipes, 
+      filters, 
+      filterSauce, 
+      filterVegetable, 
+      filterWithSauce
+    } = this.props
+    
     if (!recipes) return 'Loading...'
     return (
       <div>
@@ -36,7 +42,10 @@ class TestContainer extends React.Component {
         filters={filters}
         filterSauce={filterSauce}
         filterVegetable={filterVegetable}
-        conditionalFilterRender={this.conditionalFilterRender}
+        filterWithSauce={filterWithSauce}
+        conditionalRenderSauceFilter={this.conditionalRenderSauceFilter}
+        conditionalRenderVegetableFilter={this.conditionalRenderVegetableFilter}
+        conditionalRenderWithSauceFilter={this.conditionalRenderWithSauceFilter}
         />
       </div>
     )
@@ -48,10 +57,10 @@ const mapStateToProps = (state) => ({
   filters: state.filters
 })
 
-export default connect(
-  mapStateToProps, {
+export default connect(mapStateToProps, {
   loadRecipes, 
   filterSauce, 
-  filterVegetable}
-  )
-  (TestContainer)
+  filterVegetable,
+  filterWithSauce
+})
+(TestContainer)
