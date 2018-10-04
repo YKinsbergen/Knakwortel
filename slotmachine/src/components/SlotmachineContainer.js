@@ -6,7 +6,12 @@ import { filterSauce, filterVegetable, filterWithSauce } from '../actions/filter
 import { dispatchRecipeId } from '../actions/recipeId'
 import Slotmachine from './Slotmachine'
 
-class TestContainer extends React.Component {
+class SlotmachineContainer extends React.Component {
+  componentWillMount() {
+    if (!this.props.recipes) this.props.loadRecipes()
+    return 
+  }
+
   // Render different text based on which filters are on / off
   conditionalRenderSauceFilter = () => {
     const {filters} = this.props
@@ -27,12 +32,10 @@ class TestContainer extends React.Component {
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
-    return <Link id="link-details" to={`/recipes/${recipeId.value}`}>Recipe details</Link>
+    return <Link id="link-details" to={`/recipes/${recipeId.value}`}>
+    Recipe details
+    </Link>
   }
-
-  componentDidMount() {
-    this.props.loadRecipes()
-}
 
   render() {
     const {
@@ -78,4 +81,4 @@ export default connect(mapStateToProps, {
   filterVegetable,
   filterWithSauce
 })
-(TestContainer)
+(SlotmachineContainer)

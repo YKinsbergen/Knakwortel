@@ -2,19 +2,26 @@
 import * as React from 'react'
 import RecipeDetails from './RecipeDetails'
 import { connect } from 'react-redux';
+import { loadRecipe } from '../actions/recipes'
 
 class RecipeDetailsContainer extends React.Component {
   componentWillMount() {
-      const {match} = this.props
-      // this.props.loadRecipe(Number(match.params.id))
+      const {match, loadRecipe} = this.props
+      loadRecipe(Number(match.params.id))
   }
   render() {
+    const {recipe} = this.props
+    if (!recipe) return 'Loading...'
     return (
       <div>
-        <RecipeDetails />
+        <RecipeDetails recipe={recipe}/>
       </div>
     )
   }
 }
 
-export default connect(null)(RecipeDetailsContainer)
+const mapStateToProps = state => ({
+  recipe: state.recipe
+})
+
+export default connect(mapStateToProps, {loadRecipe})(RecipeDetailsContainer)
