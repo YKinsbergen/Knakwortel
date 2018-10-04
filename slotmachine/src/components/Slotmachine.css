@@ -30,6 +30,17 @@
   transition: 0.2s;
 }
 
+#link-details {
+  color: white;
+  font-size: 40px;
+  transition: 0.2s;
+}
+
+#link-details:hover {
+  font-size: 45px;
+  transition: 0.2s;
+}
+
 /* Columns */
 .column-name {
   background-color: rgb(203, 54, 0);
@@ -48,7 +59,6 @@
   margin-left: 4%;
   margin-bottom: 3%;
 }
-
 
 /* Clear floats after the columns */
 .row:after {

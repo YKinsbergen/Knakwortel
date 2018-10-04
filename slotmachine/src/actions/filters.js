@@ -1,4 +1,4 @@
-// src/actions/recipes.js
+// src/actions/filters.js
 export const FILTER_SAUCE = 'FILTER_SAUCE'
 export const FILTER_VEGETABLE = 'FILTER_VEGETABLE'
 export const FILTER_WITHSAUCE = 'FILTER_WITHSAUCE'

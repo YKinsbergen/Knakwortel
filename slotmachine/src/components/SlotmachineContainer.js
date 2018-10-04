@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { loadRecipes } from '../actions/recipes'
 import { filterSauce, filterVegetable, filterWithSauce } from '../actions/filters'
+import { dispatchRecipeId } from '../actions/recipeId'
 import Slotmachine from './Slotmachine'
 
 class TestContainer extends React.Component {
@@ -22,6 +24,12 @@ class TestContainer extends React.Component {
     <p>With Sauce filter ON</p> : <p>With Sauce filter OFF</p>
   }
 
+  renderLinkToRecipeDetails = () => {
+    const {recipeId} = this.props
+    if (recipeId.value === 0) return null
+    return <Link id="link-details" to={`/recipes/${recipeId.value}`}>Recipe details</Link>
+  }
+
   componentDidMount() {
     this.props.loadRecipes()
 }
@@ -30,9 +38,11 @@ class TestContainer extends React.Component {
     const {
       recipes, 
       filters, 
+      recipeId,
+      dispatchRecipeId,
       filterSauce, 
       filterVegetable, 
-      filterWithSauce
+      filterWithSauce,
     } = this.props
     
     if (!recipes) return 'Loading...'
@@ -40,12 +50,15 @@ class TestContainer extends React.Component {
       <div>
         <Slotmachine recipes={recipes} 
         filters={filters}
+        recipeId={recipeId}
         filterSauce={filterSauce}
         filterVegetable={filterVegetable}
         filterWithSauce={filterWithSauce}
         conditionalRenderSauceFilter={this.conditionalRenderSauceFilter}
         conditionalRenderVegetableFilter={this.conditionalRenderVegetableFilter}
         conditionalRenderWithSauceFilter={this.conditionalRenderWithSauceFilter}
+        renderLinkToRecipeDetails={this.renderLinkToRecipeDetails}
+        dispatchRecipeId={dispatchRecipeId}
         />
       </div>
     )
@@ -54,11 +67,13 @@ class TestContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
   recipes: state.recipes,
-  filters: state.filters
+  filters: state.filters,
+  recipeId: state.recipeId
 })
 
 export default connect(mapStateToProps, {
   loadRecipes, 
+  dispatchRecipeId,
   filterSauce, 
   filterVegetable,
   filterWithSauce
