@@ -1,8 +1,14 @@
 extends ./common/layout.pug
 
 block content
-  each contentBlock in page.pageContents
-    section.section
-      .container
-        h1=contentBlock.headline
-        p=contentBlock.body
+  - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
+  section.section
+    .container
+      h1=start.headline
+      p=start.body
+  
+  - const verkrijgbaar = page.pageContents.find(contentBlock => contentBlock.tag === 'verkrijgbaar')
+  section.section
+    .container
+      h1=verkrijgbaar.headline
+      p=verkrijgbaar.body

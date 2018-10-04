@@ -51,6 +51,9 @@ export class PageContent extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
+    @Column('text', {nullable: true, unique: true})
+    tag: string
+
     @Column('text', {nullable: false})
     headline: string
 
