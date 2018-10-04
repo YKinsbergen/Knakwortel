@@ -1,9 +1,13 @@
 import * as React from 'react'
 import './Slotmachine.css'
+import { Link } from 'react-router-dom'
 
 export default function Slotmachine(props) {
   const {recipes, 
     filters, 
+    recipeId,
+    renderLinkToRecipeDetails,
+    dispatchRecipeId,
     filterSauce, 
     filterVegetable, 
     conditionalRenderSauceFilter,
@@ -90,10 +94,20 @@ export default function Slotmachine(props) {
   const RecipeName = (array, number) => {
     return array[number].name
   }
+  const RecipeId = (array, number) => {
+    return array[number].id
+  }
 
   const RecipeToppings = (array, number) => {
     return array[number].toppings
   }
+
+  // Details link rendering
+  const findRecipeById = (array, id) => {
+    return array.find(element => {
+      return element.id === id
+    })
+}
         
   return (
     <div className="slotmachine-wrapper">
@@ -103,8 +117,11 @@ export default function Slotmachine(props) {
         <button className="start-btn" 
         onClick={
           () => {
+            // This random number is stored so that the number is stored
+            // and can be used in different functions.
             const randomNumber = rNum(recipes)
             const randomRecipeName = RecipeName(recipes, randomNumber)
+            const randomRecipeId = RecipeId(recipes, randomNumber)
             const randomRecipeToppings = RecipeToppings(recipes, randomNumber)
             const h1 = document.getElementById("recipe-header1")
             const h2 = document.getElementById("recipe-header2")
@@ -122,6 +139,7 @@ export default function Slotmachine(props) {
               rouletteName(h1, recipes, 1, 850),
               rouletteName(h1, recipes, 2, 1100),
               setTimeout(() => {
+                dispatchRecipeId(randomRecipeId)
                 return h1.innerHTML = randomRecipeName
               }, 1500),
               // Second header
@@ -164,11 +182,12 @@ export default function Slotmachine(props) {
             }}>
           Start
         </button>
-
       </div>
+
       <div className="column-name">
           <h4 id="recipe-header1" className="animation">Recipe</h4>
       </div>
+
       <p>Main ingredients</p>
       <div className="column">
           <h4 id="recipe-header2">1</h4>
@@ -179,6 +198,12 @@ export default function Slotmachine(props) {
       <div className="column">
           <h4 id="recipe-header4">3</h4>
       </div> 
+
+      <div id="link-div" className="link-wrapper">
+        {renderLinkToRecipeDetails()}
+      </div> 
+      {/* remove this in future, replace space with css */}
+      <br/>
 
       <div className="filter-wrapper">
         <button id="sauce-filter-btn" className="filter-btn" 
