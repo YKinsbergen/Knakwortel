@@ -32,6 +32,4 @@ export class SeoController {
         return SeoTag.merge(tag, update).save()
     }
 }
-
-   // Link met Google Analytics?? 
 }
