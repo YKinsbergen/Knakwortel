@@ -1,9 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PageForm from './PageForm'
+import {loadBlocks} from '../actions/blocks'
+
 
 class PageFormContainer extends React.Component {
   state = {}
+
+  componentWillMount() {
+    if (this.props.block === null) this.props.loadBlocks()}
 
   handleChange = (event) => {
     this.setState({
@@ -30,4 +35,4 @@ class PageFormContainer extends React.Component {
   }
 }
 
-export default connect(null)(PageFormContainer)
+export default connect(mapStateToProps, {loadBlocks})(PageFormContainer)

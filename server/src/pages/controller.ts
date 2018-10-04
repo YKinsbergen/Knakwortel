@@ -36,7 +36,7 @@ export class PagesController {
     
         if (!orderBy) orderBy = 'order'
         if (!direction) direction = 'ASC'
-        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle'], order: { [orderBy]: direction }, skip, take})
+        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle', 'image'], order: { [orderBy]: direction }, skip, take})
         
         const totalPages = count / take
         let next

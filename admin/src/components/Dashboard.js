@@ -25,7 +25,7 @@ export default function Dashboard(props) {
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>
+                  <span data-feather="home"></span> 
                   Dashboard <span class="sr-only">(current)</span>
                 </a>
               </li>
@@ -62,6 +62,7 @@ export default function Dashboard(props) {
 
 
           <h2>Pages</h2>
+          <p className="text-muted"><small>Klik op het ID om het content-block aan te passen.</small></p>
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
@@ -75,134 +76,28 @@ export default function Dashboard(props) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                  <td>Afbeelding1</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                  <td>Afbeelding1</td>
-                </tr>
+                {props.blocks.pageContents.map(block => 
+                <tr key={block.id}>
+                  <td><Link to={`/dashboard/pages/${block.id}`}>{block.id}</Link></td>
+                  <td>{block.page.pageTitle.content}</td>
+                  
+                  {block.headline.length > 50 &&
+                  <td>{block.headline.slice(0,50)+'...'}</td>}
+
+                  {block.headline.length <= 50 &&
+                  <td>{block.headline}</td>}
+
+                  {block.body.length > 50 &&
+                  <td>{block.body.slice(0,50)+'...'}</td>}
+
+                   {block.body.length <= 50 &&
+                  <td>{block.body}</td>}
+
+                  <td>Tag</td>
+                  <td><img className=" thumbnails img-thumbnail img-fluid" src={block.image.url} alt={block.image.altText}/></td>
+                </tr>  
+                )}
+
               </tbody>
             </table>
           </div>

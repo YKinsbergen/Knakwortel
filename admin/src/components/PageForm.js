@@ -1,13 +1,13 @@
 import * as React from 'react'
 
-export default function PageForm(props) {
+export default function TicketForm(props) {
   return (<div>
-  <h1> Create new event</h1>
+  <h1> Create new ticket</h1>
     <form onSubmit={props.handleSubmit}>
         <div className="form-group row">
-          <label htmlFor="name" className="col-sm-2 col-form-label">Name:</label>
+          <label htmlFor="price" className="col-sm-2 col-form-label">Price:</label>
             <div className="col-sm-10">
-              <input id="name" type="text" name="name" value={props.values.name} onChange={props.handleChange} className="form-control" />
+              <input id="price" type="number" name="price" value={props.values.price} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
 
@@ -17,23 +17,9 @@ export default function PageForm(props) {
               <textarea id="description" type="text" name="description" value={props.values.description} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
-
-        <div className="form-group row">
-          <label htmlFor="start-date" className="col-sm-2 col-form-label">Start date:</label>
-            <div className="col-sm-10">
-              <input id="start-date" type="date" name="startDate" value={props.values.startDate} onChange={props.handleChange} className="form-control" />
-            </div>
-        </div>
-
-      <div className="form-group row">
-          <label htmlFor="end-date" className="col-sm-2 col-form-label">End date:</label>
-            <div className="col-sm-10">
-              <input id="end-date" type="date" name="endDate" value={props.values.endDate} onChange={props.handleChange} className="form-control" />
-            </div>
-        </div>
       
         <div className="form-group row">
-          <label htmlFor="picture-url" className="col-sm-2 col-form-label">Picture URL:</label>
+          <label htmlFor="picture-url" className="col-sm-2 col-form-label">Picture URL (optional):</label>
             <div className="col-sm-10">
               <input id="picture-url" type="url" name="pictureUrl" value={props.values.pictureUrl} onChange={props.handleChange} className="form-control" />
             </div>
