@@ -3,8 +3,9 @@ import './App.css'
 import LogoutPage from './components/logout/LogoutPage'
 import LoginPage from './components/login/LoginPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import SignupPage from './components/signup/SignupPage'
+//import SignupPage from './components/signup/SignupPage'
 import DashboardContainer from './components/DashboardContainer';
+import BlockDetailsContainer from './components/BlockDetailsContainer';
 
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact path="/logout" component={LogoutPage} />
             {/* <Route exact path="/signup" component={SignupPage} /> */}
             <Route exact path="/" render={ () => <Redirect to="/dashboard" /> } />
+            <Route exact path="/dashboard/blocks/:id" component={BlockDetailsContainer} />
           </main>
         </div>
       </Router>

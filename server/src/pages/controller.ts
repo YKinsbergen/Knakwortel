@@ -35,7 +35,7 @@ export class PagesController {
     
         if (!orderBy) orderBy = 'order'
         if (!direction) direction = 'ASC'
-        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle','image'], order: { [orderBy]: direction }, skip, take})
+        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle', 'image'], order: { [orderBy]: direction }, skip, take})
         
         const totalPages = count / take
         let next
@@ -66,7 +66,7 @@ export class PagesController {
         @Param('id') id: number,
         @Body() update: Partial<PageContent>
     ) {
-        const content = await PageContent.findOne(id)
+        const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
         if (!content) throw new NotFoundError('Cannot find page content')
 
         return PageContent.merge(content, update).save()
