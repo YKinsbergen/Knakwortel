@@ -1,0 +1,45 @@
+.start-btn {
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  margin: 1% 1% 3% 1%;
+}
+
+.start-btn:hover {
+  background-color: lightblue;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.filter-btn {
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  margin: auto 1%;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background-color: lightblue;
+  transition: 0.2s;
+}
+
+/* Columns */
+.column {
+  background-color: rgb(203, 54, 0);
+  border: solid black 2px;
+  border-radius: 10px;
+
+  float: left;
+  width: 22%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
