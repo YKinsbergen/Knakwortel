@@ -113,6 +113,11 @@ export default function Slotmachine(props) {
     <div className="slotmachine-wrapper">
       <h2>Slot machine v2.0</h2>
 
+      {/* Render the conditional filter text */}
+      {conditionalRenderSauceFilter()}
+      {conditionalRenderVegetableFilter()}
+      {conditionalRenderWithSauceFilter()}
+
       <div className="start-wrapper">
         <button className="start-btn" 
         onClick={
@@ -131,13 +136,13 @@ export default function Slotmachine(props) {
               && filters.vegetableFilter === false
               && filters.withSauceFilter === false) {
               // First header
-              return rouletteName(h1, recipes, 0, 0),
-              rouletteName(h1, recipes, 2, 100),
-              rouletteName(h1, recipes, 1, 200),
-              rouletteName(h1, recipes, 2, 400),
-              rouletteName(h1, recipes, 0, 600),
-              rouletteName(h1, recipes, 1, 850),
-              rouletteName(h1, recipes, 2, 1100),
+              return rouletteName(h1, recipes, rNum(recipes), 0),
+              rouletteName(h1, recipes, rNum(recipes), 100),
+              rouletteName(h1, recipes, rNum(recipes), 200),
+              rouletteName(h1, recipes, rNum(recipes), 400),
+              rouletteName(h1, recipes, rNum(recipes), 600),
+              rouletteName(h1, recipes, rNum(recipes), 850),
+              rouletteName(h1, recipes, rNum(recipes), 1100),
               setTimeout(() => {
                 dispatchRecipeId(randomRecipeId)
                 return h1.innerHTML = randomRecipeName
@@ -202,7 +207,7 @@ export default function Slotmachine(props) {
       <div id="link-div" className="link-wrapper">
         {renderLinkToRecipeDetails()}
       </div> 
-      {/* remove this in future, replace space with css */}
+      {/* remove br tag in future, replace space with css */}
       <br/>
 
       <div className="filter-wrapper">
@@ -235,11 +240,6 @@ export default function Slotmachine(props) {
             // return btn.innerText = 'Filter with sauce off'
             }}>Filter with sauce
         </button>
-
-        {/* Render the conditional filter text */}
-        {conditionalRenderSauceFilter()}
-        {conditionalRenderVegetableFilter()}
-        {conditionalRenderWithSauceFilter()}
       </div>
     </div>
   )
