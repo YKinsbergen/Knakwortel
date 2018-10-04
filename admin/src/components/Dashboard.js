@@ -78,7 +78,7 @@ export default function Dashboard(props) {
               <tbody>
                 {props.blocks.pageContents.map(block => 
                 <tr key={block.id}>
-                  <td><Link to={`/dashboard/pages/${block.id}`}>{block.id}</Link></td>
+                  <td><Link to={`/dashboard/blocks/${block.id}`}>{block.id}</Link></td>
                   <td>{block.page.pageTitle.content}</td>
                   
                   {block.headline.length > 50 &&

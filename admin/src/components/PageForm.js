@@ -1,33 +1,35 @@
 import * as React from 'react'
 
-export default function TicketForm(props) {
+export default function PageForm(props) {
+  console.log(props)
   return (<div>
-  <h1> Create new ticket</h1>
+  <h1>Pas de content aan: </h1>
     <form onSubmit={props.handleSubmit}>
+
         <div className="form-group row">
-          <label htmlFor="price" className="col-sm-2 col-form-label">Price:</label>
+          <label htmlFor="headline" className="col-sm-2 col-form-label">Titel:</label>
             <div className="col-sm-10">
-              <input id="price" type="number" name="price" value={props.values.price} onChange={props.handleChange} className="form-control" />
+              <input id="headline" type="text" name="headline" placeholder={props.values.headline} value={props.values.headline} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">Description:</label>
+          <label htmlFor="body" className="col-sm-2 col-form-label">Tekst:</label>
             <div className="col-sm-10">
-              <textarea id="description" type="text" name="description" value={props.values.description} onChange={props.handleChange} className="form-control" />
+              <textarea id="body" type="text" name="body" value={props.values.body} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
       
-        <div className="form-group row">
-          <label htmlFor="picture-url" className="col-sm-2 col-form-label">Picture URL (optional):</label>
+        {/* <div className="form-group row">
+          <label htmlFor="picture-url" className="col-sm-2 col-form-label">Afbeelding URL:</label>
             <div className="col-sm-10">
-              <input id="picture-url" type="url" name="pictureUrl" value={props.values.pictureUrl} onChange={props.handleChange} className="form-control" />
+              <input id="picture-url" type="url" name="pictureUrl" value={props.values.url} onChange={props.handleChange} className="form-control" />
             </div>
-        </div>
+        </div> */}
 
       <div className="form-group row">
         <div className="col-sm-10">
-          <button type="submit" className="btn btn-primary">Save</button>
+          <button type="submit" className="btn btn-primary">Opslaan</button>
         </div>
         </div>
       </form>

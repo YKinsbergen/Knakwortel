@@ -55,7 +55,7 @@ export class PagesController {
     async onePageContent(
         @Param('id') id: number
     ) {
-        const pageContent = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle']})
+        const pageContent = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
         if (!pageContent) throw new BadRequestError('That pageContent does not exist')
         return pageContent
     }
