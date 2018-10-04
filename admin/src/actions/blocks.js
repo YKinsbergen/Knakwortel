@@ -49,7 +49,7 @@ export const updateBlock = (blockId, data) => (dispatch, getState) => {
   // if (isExpired(jwt)) return dispatch(logout())
 
   request
-    .patch(`${apiUrl}/contents/${blockId}`)
+    .put(`${apiUrl}/contents/${blockId}`)
     // .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => dispatch(blockUpdateSuccess(response.body)))

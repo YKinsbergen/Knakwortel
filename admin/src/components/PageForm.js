@@ -3,7 +3,6 @@ import * as React from 'react'
 export default function PageForm(props) {
   console.log(props)
   return (<div>
-  <h1>Pas de content aan: </h1>
     <form onSubmit={props.handleSubmit}>
 
         <div className="form-group row">
