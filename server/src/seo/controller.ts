@@ -24,4 +24,6 @@ export class SeoController {
     //   return placeholder.save()
     // }
 
+
+    // Link met Google Analytics??
 }

@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Param, BadRequestError, QueryParam} from "routing-controllers";
+import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode} from "routing-controllers";
 import {Page, PageContent} from './entities'
 
 @JsonController()
@@ -10,7 +10,6 @@ export class PagesController {
     ) {
         const page = await Page.findOne(id, {relations: ['pageTitle']})
         const pageContents = await PageContent.find({where: {page}, order: {order: 'ASC'}})
-
 
         if (page) page.pageContents = pageContents
         return page
@@ -36,7 +35,7 @@ export class PagesController {
     
         if (!orderBy) orderBy = 'order'
         if (!direction) direction = 'ASC'
-        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle'], order: { [orderBy]: direction }, skip, take})
+        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle','image'], order: { [orderBy]: direction }, skip, take})
         
         const totalPages = count / take
         let next
@@ -55,8 +54,21 @@ export class PagesController {
     async onePageContent(
         @Param('id') id: number
     ) {
-        const pageContent = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle']})
+        const pageContent = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
         if (!pageContent) throw new BadRequestError('That pageContent does not exist')
         return pageContent
+    }
+
+    //@Authorized
+    @HttpCode(201)
+    @Put('/contents/:id([0-9]+)')
+    async updatePageContent(
+        @Param('id') id: number,
+        @Body() update: Partial<PageContent>
+    ) {
+        const content = await PageContent.findOne(id)
+        if (!content) throw new NotFoundError('Cannot find page content')
+
+        return PageContent.merge(content, update).save()
     }
 }
