@@ -1,0 +1,68 @@
+#recipe-header1 {
+  font-size: 40px;
+  font-style: italic;
+}
+
+.start-btn {
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  margin: 1% 1% 1% 1%;
+}
+
+.start-btn:hover {
+  background-color: lightblue;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.filter-btn {
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+  margin: auto 1%;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background-color: lightblue;
+  transition: 0.2s;
+}
+
+#link-details {
+  color: white;
+  font-size: 40px;
+  transition: 0.2s;
+}
+
+#link-details:hover {
+  font-size: 45px;
+  transition: 0.2s;
+}
+
+/* Columns */
+.column-name {
+  background-color: rgb(203, 54, 0);
+  border: solid black 3px;
+  border-radius: 10px;
+  width: 15%;
+  margin: 0 auto;
+  margin-bottom: 3%;
+}
+.column {
+  background-color: rgb(203, 54, 0);
+  border: solid black 3px;
+  border-radius: 10px;
+  float: left;
+  width: 28%;
+  margin-left: 4%;
+  margin-bottom: 3%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
