@@ -9,7 +9,7 @@ export class PagesController {
         @Param('id') id: number
     ) {
         const page = await Page.findOne(id, {relations: ['pageTitle']})
-        const pageContents = await PageContent.find({where: {page}, order: {order: 'ASC'}})
+        const pageContents = await PageContent.find({where: {page}, order: {order: 'ASC'}, relations: ['image']})
 
         if (page) page.pageContents = pageContents
         return page
