@@ -29,3 +29,7 @@ body {
 .instaPost img {
   max-width: 200px;
 }
+
+.black {
+  background-color: black;
+}
