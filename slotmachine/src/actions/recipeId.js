@@ -1,7 +1,7 @@
 // src/actions/recipeId.js
-export const RECIPE_ID = 'RECIPE_ID'
+export const GET_RECIPE_ID = 'GET_RECIPE_ID'
 
 export const dispatchRecipeId = (id) => ({
-    type: RECIPE_ID,
+    type: GET_RECIPE_ID,
     payload: id
 })

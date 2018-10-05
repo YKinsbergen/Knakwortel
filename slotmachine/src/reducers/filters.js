@@ -11,16 +11,25 @@ export default (state = initialState, action = {}) => {
     switch (action.type) {
       // Only sauce
       case FILTER_SAUCE:
-        if (state.sauceFilter === false) return {...state, sauceFilter: true}
-        return {...state, sauceFilter: false}
+        return (state.sauceFilter) ?
+        {...state, sauceFilter: false} 
+        : {...state, sauceFilter: true,
+          vegetableFilter: false, 
+          withSauceFilter: false}
       // Only vegetables
       case FILTER_VEGETABLE:
-        if (state.vegetableFilter === false) return {...state, vegetableFilter: true}
-        return {...state, vegetableFilter: false}
+        return (state.vegetableFilter) ?
+        {...state, vegetableFilter: false} 
+        : {...state, vegetableFilter: true,
+          sauceFilter: false, 
+          withSauceFilter: false}
       case FILTER_WITHSAUCE:
       // Only recipes that have sauce in them
-        if (state.withSauceFilter === false) return {...state, withSauceFilter: true}
-        return {...state, withSauceFilter: false}
+      return (state.withSauceFilter) ?
+      {...state, withSauceFilter: false} 
+      : {...state, withSauceFilter: true,
+        sauceFilter: false, 
+        vegetableFilter: false}
     default: 
       return state
     }
