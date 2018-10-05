@@ -1,19 +1,26 @@
-import { JsonController, Get, BadRequestError} from "routing-controllers";
+import { JsonController, Get, BadRequestError, Body, Post} from "routing-controllers";
 import {Shop} from './entity'
 
 @JsonController()
 export class ShopsController {
 
-  // @Post('/shops')
-  // async newShop(
-  //   @BodyParam('name') name: string,
-  //   @BodyParam('address') address: string,
-  //   @BodyParam('zipcode') zipcode: string,
-  //   @BodyParam('latitute') latitute: number,
-  //   @BodyParam('longitude') longitude: number
-  // ) {
-
-  // }
+  @Post('/shops')
+  async newShop(
+    @Body() shops: any,//object[]
+  ) {
+    if (shops.length === 0) {
+      throw new BadRequestError('Shops is not an array')
+    }
+    const savedShops: any = []
+    shops.forEach(async (shop) => {
+      if (shop.name) {
+        const newShop = await Shop.create(shop)
+        newShop.save()
+        savedShops.push(newShop)
+      }
+    })
+    return {newShops: savedShops}
+  }
 
   @Get('/shops')
   async allShops() {
