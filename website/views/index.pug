@@ -4,17 +4,25 @@ block content
   - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
   section.section
     .container
-      h1=start.headline
-      p=start.body
+      if (start)
+        h1=start.headline
+        p=start.body
   
   - const verkrijgbaar = page.pageContents.find(contentBlock => contentBlock.tag === 'verkrijgbaar')
   section.section
     .container
-      h1=verkrijgbaar.headline
-      p=verkrijgbaar.body
+      if (verkrijgbaar)
+        h1=verkrijgbaar.headline
+        p=verkrijgbaar.body
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.section
     .container
-      each instaPost in instaFeed
-        img(src=instaPost.node.thumbnail_src)
+      if (instaFeed)
+        - const shortInstaFeed = instaFeed.slice(0,3)
+        each instaPost in shortInstaFeed
+          div.instaPost
+              img(src=instaPost.node.thumbnail_resources[1].src)
+              p likes: 
+                b=instaPost.node.edge_liked_by.count
+              p=`${instaPost.node.edge_media_to_caption.edges[0].node.text.substring(0,60)}(...)`
