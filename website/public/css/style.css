@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
 body {
-  margin: 0;
+  padding-bottom: 20px;
+  font-family: 'Lato', sans-serif;
 }
 
+h1, h2 {
+font-family: 'Dosis', sans-serif;
+ font-weight: 700;
+ line-height: 1.375;
+ letter-spacing: 0.05em;
+ margin: 0 0 1rem 0;
+ text-transform: uppercase;
+}
 .navbar {
-  width: 100%;
-  height: 40px;
-  background-color: #d0d0d0;
+  margin-bottom: 20px;
 }
 
-.footer {
+.nav-logo {
+  height: 50px;
+}
+
+/* .footer {
   position: fixed;
   bottom: 0;
   height: 160px;
@@ -16,12 +28,12 @@ body {
   background-color: #F6813A;
 	background-image: url("http://www.knakwortel.nl/images/knakwortel-logo-plantaardig-vegan-snack-04.png");
 	background-repeat: repeat;
-}
-
+} */
+/* 
 .instaPost {
   display: inline-block;
   max-width: 250px;
-  /* max-height: 250px; */
+  max-height: 250px;
   border: 1px solid;
   position: relative;
   top: 0;
@@ -32,4 +44,4 @@ body {
 
 .black {
   background-color: black;
-}
+} */
