@@ -13,20 +13,26 @@ class SlotmachineContainer extends React.Component {
   }
 
   // Render different text based on which filters are on / off
+  conditionalRenderNoFilters = () => {
+    const {sauceFilter, vegetableFilter, withSauceFilter} = this.props.filters
+    return (sauceFilter || vegetableFilter || withSauceFilter) ?
+    <span></span> : <span>Roll any recipe</span>
+  }
+
   conditionalRenderSauceFilter = () => {
     const {filters} = this.props
     return filters.sauceFilter ? 
-    <span>Sauce filter ON </span> : <span>Sauce filter OFF </span>
+    <span>Only rolling recipes without sauce </span> : <span></span>
   }
   conditionalRenderVegetableFilter = () => {
     const {filters} = this.props
     return filters.vegetableFilter ? 
-    <span>Vegetable filter ON </span> : <span>Vegetable filter OFF </span>
+    <span>Only rolling sauces</span> : <span></span>
   }
   conditionalRenderWithSauceFilter = () => {
     const {filters} = this.props
     return filters.withSauceFilter ? 
-    <span>With Sauce filter ON </span> : <span>With Sauce filter OFF </span>
+    <span>Only rolling recipes with sauce</span> : <span></span>
   }
 
   renderLinkToRecipeDetails = () => {
@@ -57,6 +63,7 @@ class SlotmachineContainer extends React.Component {
         filterSauce={filterSauce}
         filterVegetable={filterVegetable}
         filterWithSauce={filterWithSauce}
+        conditionalRenderNoFilters={this.conditionalRenderNoFilters}
         conditionalRenderSauceFilter={this.conditionalRenderSauceFilter}
         conditionalRenderVegetableFilter={this.conditionalRenderVegetableFilter}
         conditionalRenderWithSauceFilter={this.conditionalRenderWithSauceFilter}
