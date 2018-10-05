@@ -1,15 +1,29 @@
 extends ./common/layout.pug
 
 block content
-  each contentBlock in page.pageContent
-    section.section
-      .container
-        h1=contentBlock.headline
-        p=contentBlock.body
-  //- section.section
-  //-   .container
-  //-     h1 Knakwortel test
-  //-     p Starwars people:
-  //-     ul
-  //-       each person in people.results
-  //-         li=person.name
+  - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
+  section.section
+    .container
+      if (start)
+        //- img(src=start.image.url)
+        h1=start.headline
+        p=start.body
+  
+  - const verkrijgbaar = page.pageContents.find(contentBlock => contentBlock.tag === 'verkrijgbaar')
+  section.section
+    .container
+      if (verkrijgbaar)
+        h1=verkrijgbaar.headline
+        p=verkrijgbaar.body
+  
+  //- INSTAGRAM FEED CONTENT BLOK
+  section.section
+    .container
+      if (instaFeed)
+        - const shortInstaFeed = instaFeed.slice(0,3)
+        each instaPost in shortInstaFeed
+          div.instaPost
+            img(src=instaPost.node.thumbnail_resources[1].src)
+            p likes: 
+              b=instaPost.node.edge_liked_by.count
+            p=`${instaPost.node.edge_media_to_caption.edges[0].node.text.substring(0,60)}(...)`

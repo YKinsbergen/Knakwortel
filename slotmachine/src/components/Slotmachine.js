@@ -1,153 +1,462 @@
 import * as React from 'react'
-
-// All ingredients, no filter
-const allIngredients = [
-    'Gebakken uitjes', 
-    'Augurk', 
-    'Zuurkool', 
-    'Komkommer', 
-    'Paprika', 
-    'Avocado', 
-    'Ketchup', 
-    'Mayonaisse', 
-    'Curry', 
-    'Bacon', 
-    'Zeewier'
-]
-
-// Choose by sauce
-const filterBySauce = allIngredients.filter(ingredient => {
-        return (ingredient === 'Ketchup' || ingredient === 'Mayonaisse' || ingredient === 'Curry')
-    })
-
-// Choose by !sauce
-const filterNoSauce = allIngredients.filter(ingredient => {
-    return (ingredient !== 'Ketchup' && ingredient !== 'Mayonaisse' && ingredient !== 'Curry')
-})
-
-// Random number
-const rNum = (array) => {
-    return Math.round( Math.random() * (array.length-1) )
-}
-
-// Single random ingredient
-const rIngredient = (ingredientsArray, index) => {
-    return ingredientsArray[index]
-}
-
-// Three random ingredients, no duplicates
-const threeRandIngredients = (ingredientsArray, index) => {
-    if (index === 0) {
-        return [ingredientsArray[index], ingredientsArray[index+1], ingredientsArray[index+2]]
-    }
-    if (index === ingredientsArray.length-1) {
-        return [ingredientsArray[index], ingredientsArray[index-1], ingredientsArray[index-2]]
-    }
-    else {
-        return [ingredientsArray[index], ingredientsArray[index-1], ingredientsArray[index+1]]
-    }
-}
+import './Slotmachine.css'
+import { Link } from 'react-router-dom'
 
 export default function Slotmachine(props) {
-    const { state, setFilterSauce, setFilterNoSauce } = props
-    return (
-        <div>
-            <h1>Knakwortel slotmachine</h1>
-            <button onClick={
-                () => {
-                    const h1 = document.getElementById("recipe-header1")
-                    const h2 = document.getElementById("recipe-header2")
-                    const h3 = document.getElementById("recipe-header3")
-                    const randomAllIngredients = (threeRandIngredients(allIngredients, rNum(allIngredients)))
-                    const randomSauce = (threeRandIngredients(filterBySauce, rNum(filterBySauce)))
-                    const randomNoSauce = (threeRandIngredients(filterNoSauce, rNum(filterNoSauce)))
-                    if (state.filterSauce === false && state.filterNoSauce === false) {
-                        // First header roulette
-                        return setTimeout(() => {h1.innerHTML = allIngredients[0]}, 0),
-                        setTimeout(() => {h1.innerHTML = allIngredients[1]}, 100),
-                        setTimeout(() => {h1.innerHTML = allIngredients[3]}, 400),
-                        setTimeout(() => {h1.innerHTML = allIngredients[4]}, 600),
-                        setTimeout(() => {h1.innerHTML = allIngredients[2]}, 850),
-                        setTimeout(() => {h1.innerHTML = allIngredients[5]}, 1100),
-                        setTimeout(() => {h1.innerHTML = randomAllIngredients[0]}, 1500),
-                        // Second header roulette
-                        setTimeout(() => {h2.innerHTML = allIngredients[4]}, 150),
-                        setTimeout(() => {h2.innerHTML = allIngredients[3]}, 200),
-                        setTimeout(() => {h2.innerHTML = allIngredients[0]}, 300),
-                        setTimeout(() => {h2.innerHTML = allIngredients[2]}, 500),
-                        setTimeout(() => {h2.innerHTML = allIngredients[3]}, 700),
-                        setTimeout(() => {h2.innerHTML = allIngredients[1]}, 850),
-                        setTimeout(() => {h2.innerHTML = allIngredients[2]}, 1100),
-                        setTimeout(() => {h2.innerHTML = randomAllIngredients[1]}, 1500),
-                        // Third header roulette
-                        setTimeout(() => {h3.innerHTML = allIngredients[5]}, 0),
-                        setTimeout(() => {h3.innerHTML = allIngredients[3]}, 100),
-                        setTimeout(() => {h3.innerHTML = allIngredients[2]}, 200),
-                        setTimeout(() => {h3.innerHTML = allIngredients[1]}, 400),
-                        setTimeout(() => {h3.innerHTML = allIngredients[2]}, 600),
-                        setTimeout(() => {h3.innerHTML = allIngredients[4]}, 850),
-                        setTimeout(() => {h3.innerHTML = allIngredients[0]}, 1100),
-                        setTimeout(() => {h3.innerHTML = randomAllIngredients[2]}, 1500)
-                    }
-                    else if (state.filterSauce === true && state.filterNoSauce === false) {
-                        return setTimeout(() => {h1.innerHTML = randomSauce[0]}, 0),
-                        setTimeout(() => {h2.innerHTML = randomSauce[1]}, 300),
-                        setTimeout(() => {h3.innerHTML = randomSauce[2]}, 600)
-                    }
-                    else if (state.filterSauce === false && state.filterNoSauce === true) {
-                        return setTimeout(() => {h1.innerHTML = randomNoSauce[0]}, 0),
-                        setTimeout(() => {h2.innerHTML = randomNoSauce[1]}, 300),
-                        setTimeout(() => {h3.innerHTML = randomNoSauce[2]}, 600)
-                    }
-                    else {
-                        return h1.innerHTML = 'No available recipes with those parameters',
-                        h2.innerHTML = '',
-                        h3.innerHTML = ''
-                    }
-                }
-            }> Switch </button>
-            <h2>Recipe:</h2>
-            <div class="column">
-                <h3 id="recipe-header1" className="animation">&nbsp;</h3>
-            </div>
-            <div class="column">
-                <h3 id="recipe-header2">&nbsp;</h3>
-            </div>
-            <div class="column">
-                <h3 id="recipe-header3">&nbsp;</h3>
-            </div> 
-            {/* Space break */}
-            <p></p>&nbsp;<br />
-            <p id="filter-sauce">Sauce filter: OFF{state.filterSauce}</p> <br/>
-            <p id="filter-no-sauce">No sauce filter: OFF{state.filterNoSauce}</p>
+  const {recipes, 
+    filters, 
+    recipeId,
+    renderLinkToRecipeDetails,
+    dispatchRecipeId,
+    filterSauce, 
+    filterVegetable, 
+    conditionalRenderNoFilters,
+    conditionalRenderSauceFilter,
+    conditionalRenderVegetableFilter,
+    conditionalRenderWithSauceFilter,
+    filterWithSauce
+  } = props
+  
+  // Only get recipes that have no sauce in the toppings list
+  const filterRecipesNoSauce = (recipes) => {
+    return recipes.filter(recipe => {
+      return (!recipe.toppings.map(topping => {
+        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        return false
+      }).includes(false))
+    })
+  }
+  // Only get recipes that have sauce in the toppings list
+  const filterRecipesWithSauce = (recipes) => {
+    return recipes.filter(recipe => {
+      return (recipe.toppings.map(topping => {
+        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        return false
+      }).includes(false))
+    })
+  }
 
+  const recipesNoSauce = filterRecipesNoSauce(recipes)
+  const recipesWithSauce = filterRecipesWithSauce(recipes)
 
-            <button onClick={
-                () => {
-                    if (state.filterSauce === false) {
-                        document.getElementById("filter-sauce").innerHTML = 'Sauce filter: ON'
-                    }
-                    else {
-                        document.getElementById("filter-sauce").innerHTML = 'Sauce filter: OFF'
-                    }
-                    return setFilterSauce()
-                }
+  // Get all the topping names
+  // Returns an array of arrays
+  const getToppingNameArrays = (recipes) => {
+    return recipes
+    .map(recipe => {
+      return recipe.toppings
+    })
+    .map(array => {
+      return array
+      .map(topping => {
+        return topping.name
+      })
+    })
+  }
+  // Get all toppings of type sauce
+  const getSauceToppingArray = (recipes) => {
+    return recipes
+    .map(recipe => {
+      return recipe.toppings
+    })
+    .map(array => {
+      return array
+      .filter(topping => {
+        return (topping.toppingTypes.name === 'Sauce')
+      })
+    })
+  }
 
-            }>Only sauces</button>
-            <button onClick={
-                () => {
-                    if (state.filterNoSauce === false) {
-                        document.getElementById("filter-no-sauce").innerHTML = 'No sauce filter: ON'
-                    }
-                    else {
-                        document.getElementById("filter-no-sauce").innerHTML = 'No sauce filter: OFF'
-                    }
-                    return setFilterNoSauce()
-                }
-            }>No sauces</button>
+  // Function to reduce the nested array into one
+  const concatNestedArrays = (array) => {
+    let result = [].concat.apply([], array);
+    return result
+  }
+  
+  // Gets topping names from flattened array of toppings and removes repeats
+  const getSauceToppingArrayNames = (toppings) => {
+    return toppings.map(topping => {
+      return topping.name
+    })
+  }
+  
+  // Remove repeating elements from an array by creating a 'Set'
+  // Sets inherently cannot have repeating values
+  const removeRepeats = (array) => {
+    return Array.from(new Set(array));
+ }
+ 
+  // Random number
+  const rNum = (array) => {
+    return Math.round( Math.random() * (array.length-1) )
+  }
 
-        </div>
-    )
+  // h = header, a = array, n = indexNumber, t = time
+  const roulette = (h, a, n, t) => {
+    return setTimeout(() => {
+      h.innerHTML = a[n]
+    }, t)
+  }
+  // Same as above but requires 'a' to be an array of objects with a 'name' property
+  const rouletteName = (h, a, n, t) => {
+    return setTimeout(() => {
+      h.innerHTML = a[n].name
+    }, t)
+  }
+
+  const RecipeName = (array, number) => {
+    return array[number].name
+  }
+  const RecipeId = (array, number) => {
+    return array[number].id
+  }
+
+  const RecipeToppings = (array, number) => {
+    return array[number].toppings
+  }
+
+  // For an array of only topping name elements
+  const getToppingName = (array, number) => {
+    return array[number]
+  }
+
+  // Find recipe by id
+  const findRecipeById = (array, id) => {
+    return array.find(element => {
+      return element.id === id
+    })
 }
 
+  return (
+    <div className="slotmachine-wrapper">
+      <h2>Slot machine v2.0</h2>
+
+      {/* Render the conditional filter text */}
+      {conditionalRenderNoFilters()}
+      {conditionalRenderSauceFilter()}
+      {conditionalRenderVegetableFilter()}
+      {conditionalRenderWithSauceFilter()}
+
+      <div className="start-wrapper">
+        <button className="start-btn" 
+        onClick={
+          () => {
+            // This random number is stored so that the number is stored
+            // and can be used in different functions.
+            const randomNum = rNum(recipes)
+            const rNumNoSauce = rNum(recipesNoSauce)
+            const rNumWithSauce = rNum(recipesWithSauce)
+
+            // All
+            const rRecipeName = RecipeName(recipes, randomNum)
+            const rRecipeId = RecipeId(recipes, randomNum)
+            const rRecipeToppings = RecipeToppings(recipes, randomNum)
+            const allToppings = concatNestedArrays(
+              getToppingNameArrays(recipesWithSauce)
+              )
+            
+
+            // No sauce
+            const rRecipeNoSauceName = (RecipeName(recipesNoSauce, rNumNoSauce))
+            const rRecipeNoSauceId = (RecipeId(recipesNoSauce, rNumNoSauce))
+            const rRecipeNoSauceToppings = RecipeToppings(recipesNoSauce, rNumNoSauce)
+           
+            // With sauce
+            const rRecipeWithSauceName = (RecipeName(recipesWithSauce, rNumWithSauce))
+            const rRecipeWithSauceId = (RecipeId(recipesWithSauce, rNumWithSauce))
+            const rRecipeWithSauceToppings = RecipeToppings(recipesWithSauce, rNumWithSauce)
+
+            // Only sauces
+            const sauces = removeRepeats(
+              getSauceToppingArrayNames(
+                concatNestedArrays(
+                  getSauceToppingArray(
+                    recipesWithSauce)
+                    )
+                  )
+                )
+            const rNumSauces = rNum(sauces)
+
+            const h1 = document.getElementById("recipe-header1")
+            const h2 = document.getElementById("recipe-header2")
+            const h3 = document.getElementById("recipe-header3")
+            const h4 = document.getElementById("recipe-header4")
+
+            // No sauces filter
+            if (filters.sauceFilter === true) {
+              return rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 0),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 100),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 150),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 200),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 300),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 400),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 500),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 700),
+              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 1000),
+              setTimeout(() => {
+                dispatchRecipeId(rRecipeNoSauceId)
+                return h1.innerHTML = rRecipeNoSauceName
+              }, 1500),
+              // Second header
+              roulette(h2, allToppings, 8, 100),
+              roulette(h2, allToppings, 4, 150),
+              roulette(h2, allToppings, 3, 200),
+              roulette(h2, allToppings, 0, 300),
+              roulette(h2, allToppings, 2, 500),
+              roulette(h2, allToppings, 3, 700),
+              roulette(h2, allToppings, 1, 850),
+              roulette(h2, allToppings, 2, 1100),
+              setTimeout(() => {
+                return h2.innerHTML = rRecipeNoSauceToppings[0].name
+              }, 1500),
+              // Third header
+              roulette(h3, allToppings, 10, 80),
+              roulette(h3, allToppings, 4, 150),
+              roulette(h3, allToppings, 3, 200),
+              roulette(h3, allToppings, 0, 300),
+              roulette(h3, allToppings, 2, 520),
+              roulette(h3, allToppings, 3, 600),
+              roulette(h3, allToppings, 1, 800),
+              roulette(h3, allToppings, 2, 1200),
+              setTimeout(() => {
+                return h3.innerHTML = rRecipeNoSauceToppings[1].name
+              }, 1500),
+              // Fourth header
+              roulette(h4, allToppings, 12, 130),
+              roulette(h4, allToppings, 3, 150),
+              roulette(h4, allToppings, 6, 200),
+              roulette(h4, allToppings, 1, 350),
+              roulette(h4, allToppings, 0, 500),
+              roulette(h4, allToppings, 7, 700),
+              roulette(h4, allToppings, 6, 900),
+              roulette(h4, allToppings, 5, 1300),
+              setTimeout(() => {
+                return h4.innerHTML = rRecipeNoSauceToppings[2].name
+              }, 1500)
+            }
+
+            // Only with sauce
+            if (filters.withSauceFilter === true) {
+              return rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 0),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 100),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 150),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 200),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 300),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 400),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 500),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 700),
+              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 1000),
+              setTimeout(() => {
+                dispatchRecipeId(rRecipeWithSauceId)
+                return h1.innerHTML = rRecipeWithSauceName
+              }, 1500),
+              // Second header
+              roulette(h2, allToppings, 8, 100),
+              roulette(h2, allToppings, 4, 150),
+              roulette(h2, allToppings, 3, 200),
+              roulette(h2, allToppings, 0, 300),
+              roulette(h2, allToppings, 2, 500),
+              roulette(h2, allToppings, 3, 700),
+              roulette(h2, allToppings, 1, 850),
+              roulette(h2, allToppings, 2, 1100),
+              setTimeout(() => {
+                return h2.innerHTML = rRecipeWithSauceToppings[0].name
+              }, 1500),
+              // Third header
+              roulette(h3, allToppings, 10, 80),
+              roulette(h3, allToppings, 4, 150),
+              roulette(h3, allToppings, 3, 200),
+              roulette(h3, allToppings, 0, 300),
+              roulette(h3, allToppings, 2, 520),
+              roulette(h3, allToppings, 3, 600),
+              roulette(h3, allToppings, 1, 800),
+              roulette(h3, allToppings, 2, 1200),
+              setTimeout(() => {
+                return h3.innerHTML = rRecipeWithSauceToppings[1].name
+              }, 1500),
+              // Fourth header
+              roulette(h4, allToppings, 12, 130),
+              roulette(h4, allToppings, 3, 150),
+              roulette(h4, allToppings, 6, 200),
+              roulette(h4, allToppings, 1, 350),
+              roulette(h4, allToppings, 0, 500),
+              roulette(h4, allToppings, 7, 700),
+              roulette(h4, allToppings, 6, 900),
+              roulette(h4, allToppings, 5, 1300),
+              setTimeout(() => {
+                return h4.innerHTML = rRecipeWithSauceToppings[2].name
+              }, 1500)
+            }
+
+            // Only sauces
+            else if (filters.vegetableFilter === true) {
+              // First header
+              return h1.innerHTML = 'Sauces',
+              // Second header
+              roulette(h2, sauces, 0, 100),
+              roulette(h2, sauces, 1, 150),
+              roulette(h2, sauces, 2, 200),
+              roulette(h2, sauces, 0, 300),
+              roulette(h2, sauces, 1, 500),
+              roulette(h2, sauces, 2, 700),
+              roulette(h2, sauces, 0, 850),
+              roulette(h2, sauces, 1, 1100),
+              // Third header
+              roulette(h3, sauces, 3, 100),
+              roulette(h3, sauces, 2, 150),
+              roulette(h3, sauces, 1, 200),
+              roulette(h3, sauces, 0, 300),
+              roulette(h3, sauces, 1, 500),
+              roulette(h3, sauces, 2, 700),
+              roulette(h3, sauces, 3, 850),
+              roulette(h3, sauces, 2, 1100),
+              // Fourth header
+              roulette(h4, sauces, 2, 100),
+              roulette(h4, sauces, 3, 150),
+              roulette(h4, sauces, 2, 200),
+              roulette(h4, sauces, 1, 300),
+              roulette(h4, sauces, 0, 500),
+              roulette(h4, sauces, 2, 700),
+              roulette(h4, sauces, 0, 850),
+              roulette(h4, sauces, 3, 1100),
+              setTimeout(() => {
+                if (rNumSauces === 0) {
+                return h2.innerHTML = getToppingName(sauces, rNumSauces),
+                h3.innerHTML = getToppingName(sauces, rNumSauces+1),
+                h4.innerHTML = getToppingName(sauces, rNumSauces+2)
+                }
+                else if (rNumSauces === 1) {
+                  return h2.innerHTML = getToppingName(sauces, rNumSauces-1),
+                  h3.innerHTML = getToppingName(sauces, rNumSauces),
+                  h4.innerHTML = getToppingName(sauces, rNumSauces+1)
+                }
+                else if (rNumSauces === 2) {
+                  return h2.innerHTML = getToppingName(sauces, rNumSauces-1), 
+                  h3.innerHTML = getToppingName(sauces, rNumSauces),
+                  h4.innerHTML = getToppingName(sauces, rNumSauces-2)
+                }
+                else if (rNumSauces === 3) {
+                  return h2.innerHTML = getToppingName(sauces, rNumSauces), 
+                  h3.innerHTML = getToppingName(sauces, rNumSauces-2),
+                  h4.innerHTML = getToppingName(sauces, rNumSauces-1)
+                }
+                else {
+                  return h2.innerHTML = getToppingName(sauces, rNumSauces-2), 
+                  h3.innerHTML = getToppingName(sauces, rNumSauces),
+                  h4.innerHTML = getToppingName(sauces, rNumSauces-1)
+                }
+              }, 1500)
+            }
+
+            // No filters
+            else {
+              // First header
+              return rouletteName(h1, recipes, rNum(recipes), 0),
+              rouletteName(h1, recipes, rNum(recipes), 100),
+              rouletteName(h1, recipes, rNum(recipes), 200),
+              rouletteName(h1, recipes, rNum(recipes), 400),
+              rouletteName(h1, recipes, rNum(recipes), 600),
+              rouletteName(h1, recipes, rNum(recipes), 850),
+              rouletteName(h1, recipes, rNum(recipes), 1100),
+              setTimeout(() => {
+                dispatchRecipeId(rRecipeId)
+                return h1.innerHTML = rRecipeName
+              }, 1500),
+              // Second header
+              roulette(h2, allToppings, 8, 100),
+              roulette(h2, allToppings, 4, 150),
+              roulette(h2, allToppings, 3, 200),
+              roulette(h2, allToppings, 0, 300),
+              roulette(h2, allToppings, 2, 500),
+              roulette(h2, allToppings, 3, 700),
+              roulette(h2, allToppings, 1, 850),
+              roulette(h2, allToppings, 2, 1100),
+              setTimeout(() => {
+                return h2.innerHTML = rRecipeToppings[0].name
+              }, 1500),
+              // Third header
+              roulette(h3, allToppings, 10, 80),
+              roulette(h3, allToppings, 4, 150),
+              roulette(h3, allToppings, 3, 200),
+              roulette(h3, allToppings, 0, 300),
+              roulette(h3, allToppings, 2, 520),
+              roulette(h3, allToppings, 3, 600),
+              roulette(h3, allToppings, 1, 800),
+              roulette(h3, allToppings, 2, 1200),
+              setTimeout(() => {
+                return h3.innerHTML = rRecipeToppings[1].name
+              }, 1500),
+              // Fourth header
+              roulette(h4, allToppings, 12, 130),
+              roulette(h4, allToppings, 3, 150),
+              roulette(h4, allToppings, 6, 200),
+              roulette(h4, allToppings, 1, 350),
+              roulette(h4, allToppings, 0, 500),
+              roulette(h4, allToppings, 7, 700),
+              roulette(h4, allToppings, 6, 900),
+              roulette(h4, allToppings, 5, 1300),
+              setTimeout(() => {
+                return h4.innerHTML = rRecipeToppings[2].name
+              }, 1500)
+            }
+            }}>
+          Start
+        </button>
+      </div>
+
+      <div className="column-name">
+          <h4 id="recipe-header1" className="animation">Recipe</h4>
+      </div>
+
+      <p>Main ingredients</p>
+      <div className="column">
+          <h4 id="recipe-header2">1</h4>
+      </div>
+      <div className="column">
+          <h4 id="recipe-header3">2</h4>
+      </div> 
+      <div className="column">
+          <h4 id="recipe-header4">3</h4>
+      </div> 
+
+      <div id="link-div" className="link-wrapper">
+        {renderLinkToRecipeDetails()}
+      </div> 
+      {/* remove br tag in future, replace space with css */}
+      <br/>
+
+      <div className="filter-wrapper">
+        <button id="sauce-filter-btn" className="filter-btn" 
+          onClick={() => {
+            // const btn = document.getElementById("sauce-filter-btn")
+            filterSauce()
+            // State has a delay, so the inverse needs to be true
+            // if (!filters.sauceFilter === true) return btn.innerText = 'Filter sauce on'
+            // return btn.innerText = 'Filter sauce off'
+            }}>Filter sauce
+        </button>
+
+        <button id="vegetable-filter-btn" className="filter-btn" 
+          onClick={() => {
+            // const btn = document.getElementById("vegetable-filter-btn")
+            filterVegetable()
+            // State has a delay, so the inverse needs to be true
+            // if (!filters.vegetableFilter === true) return btn.innerText = 'Filter vegetable on'
+            // return btn.innerText = 'Filter vegetable off'
+            }}>Filter vegetable
+        </button>
+
+        <button id="withsauce-filter-btn" className="filter-btn" 
+          onClick={() => {
+            // const btn = document.getElementById("withsauce-filter-btn")
+            filterWithSauce()
+            // State has a delay, so the inverse needs to be true
+            // if (!filters.withSauceFilter === true) return btn.innerText = 'Filter with sauce on'
+            // return btn.innerText = 'Filter with sauce off'
+            }}>Filter no sauce
+        </button>
+      </div>
+    </div>
+  )
+}
 

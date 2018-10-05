@@ -9,11 +9,27 @@ body {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 160px;
   width: 100vw;
   background-color: #F6813A;
 	background-image: url("http://www.knakwortel.nl/images/knakwortel-logo-plantaardig-vegan-snack-04.png");
 	background-repeat: repeat;
+}
+
+.instaPost {
+  display: inline-block;
+  max-width: 250px;
+  /* max-height: 250px; */
+  border: 1px solid;
+  position: relative;
+  top: 0;
+}
+.instaPost img {
+  max-width: 200px;
+}
+
+.black {
+  background-color: black;
 }

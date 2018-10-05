@@ -1,0 +1,16 @@
+#go-back-btn {
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+#go-back-btn:hover {
+  background-color: lightblue;
+  transition: 0.2s;
+}
+
+#go-back-link {
+  color: black;
+  text-decoration: none;
+}
