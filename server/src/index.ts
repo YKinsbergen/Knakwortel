@@ -6,7 +6,7 @@ import AdminController from './admins/controller';
 import { RecipeController } from './recipes/controller';
 import LoginController from './logins/controller';
 import {PagesController} from './pages/controller'
-// import { Page } from './pages/entities';
+import { ShopsController } from './shops/controller';
 
 
 const port = process.env.PORT || 4000
@@ -17,7 +17,8 @@ const app = createKoaServer({
     AdminController,
     RecipeController,
     LoginController,
-    PagesController
+    PagesController,
+    ShopsController
     ]
 })
 
