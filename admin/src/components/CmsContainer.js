@@ -5,6 +5,7 @@ import DashboardContainer from './DashboardContainer';
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import BlockDetailsContainer from './BlockDetailsContainer';
+import ContentContainer from './ContentContainer';
 
 class CmsContainer extends Component {
   render() {
@@ -16,13 +17,14 @@ class CmsContainer extends Component {
             <div class="row">
               <Sidebar />
               <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-              <Route exact path="/dashboard" component={DashboardContainer}/>
-              <Route exact path="/dashboard/content/:id" component={BlockDetailsContainer} />
+                <Route exact path="/dashboard" component={DashboardContainer}/>
+                <Route exact path="/dashboard/content" component={ContentContainer} />
+                <Route exact path="/dashboard/content/:id" component={BlockDetailsContainer} />
               </main>
             </div>
           </div>
-    </div>
-    </Router>
+        </div>
+      </Router>
     );
   }
 }

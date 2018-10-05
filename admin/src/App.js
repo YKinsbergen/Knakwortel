@@ -14,7 +14,7 @@ class App extends Component {
         <div className="App">
           <main>
             <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/dashboard" component={CmsContainer} />
+            <Route path="/dashboard" component={CmsContainer} />
             <Route exact path="/logout" component={LogoutPage} />
             {/* <Route exact path="/signup" component={SignupPage} /> */}
             <Route exact path="/" render={ () => <Redirect to="/dashboard" /> } />
