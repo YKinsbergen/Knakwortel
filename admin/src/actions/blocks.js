@@ -21,9 +21,8 @@ const blockUpdateSuccess = block => ({
   payload: block
 })
 
-export const loadBlocks = () => (dispatch, getState) => {
-  if (getState().blocks) return
-  
+export const loadBlocks = () => (dispatch) => {
+ 
   request(`${apiUrl}/contents`)
     .then(response => {
       dispatch(blocksFetched(response.body))

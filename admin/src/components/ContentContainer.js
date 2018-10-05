@@ -1,15 +1,16 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import DashBoard from './Dashboard'
+import {Redirect, Route} from 'react-router-dom'
+import Content from './Content'
 import './Dashboard.css'
 import {loadBlocks} from '../actions/blocks'
 
 
-class DashboardContainer extends PureComponent {
-  componentDidMount() {
-    this.props.loadBlocks()
+class ContentContainer extends PureComponent {
+  componentWillMount() {
+      this.props.loadBlocks()
   }
+  
 
   render() {
     if (!this.props.blocks) return <h2>Loading...</h2>
@@ -22,7 +23,7 @@ class DashboardContainer extends PureComponent {
 
     return (
      <div>
-       <DashBoard blocks={blocks}/>
+       <Content blocks={blocks}/>
       </div>
     )
   }
@@ -33,4 +34,4 @@ const mapStateToProps = state => ({
   blocks: state.blocks
 })
 
-export default connect(mapStateToProps, {loadBlocks})(DashboardContainer)
+export default connect(mapStateToProps, {loadBlocks})(ContentContainer)

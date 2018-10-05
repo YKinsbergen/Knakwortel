@@ -35,6 +35,15 @@ export default function BlockDetails(props) {
                 }
             {props.editMode && <PageForm handleSubmit={props.onSubmit} handleChange={props.onChange} values={props.formValues} />}
 
+            <dl class="row">
+              <dt class="col-sm-3">Categorie</dt>
+              <dd class="col-sm-9">{props.block.page.pageTitle.content}</dd>
+
+              <dt class="col-sm-3">Tag</dt>
+              <dd class="col-sm-9">
+                <p>{props.block.tag}</p>
+              </dd>
+            </dl>
           </div>
 
 
