@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Route} from 'react-router-dom'
 import DashBoard from './Dashboard'
 import './Dashboard.css'
 import {loadBlocks} from '../actions/blocks'
+
 
 
 
@@ -22,8 +23,8 @@ class GamesList extends PureComponent {
     //Straks weer aanzetten om achter inlogmuur te krijgen!
 
     return (
-      <div>
-        <DashBoard blocks={blocks}/>
+     <div>
+       <DashBoard blocks={blocks}/>
       </div>
     )
   }

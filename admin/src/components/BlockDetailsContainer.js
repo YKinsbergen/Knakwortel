@@ -43,6 +43,13 @@ class BlockDetailsContainer extends React.Component {
     this.props.updateBlock(Number(this.props.match.params.id), this.state.formValues)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.block !== this.props.block) {
+      console.log("hello")
+      this.props.loadBlocks()
+    }
+  }
+
   render() {
     console.log(this.props)
     if (!this.props.block) return <h2>Loading...</h2>
