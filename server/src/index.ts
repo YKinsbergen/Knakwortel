@@ -6,6 +6,7 @@ import AdminController from './admins/controller';
 import { RecipeController } from './recipes/controller';
 import LoginController from './logins/controller';
 import {PagesController} from './pages/controller'
+import { ImageController } from './images/controller';
 // import { Page } from './pages/entities';
 
 
@@ -17,7 +18,8 @@ const app = createKoaServer({
     AdminController,
     RecipeController,
     LoginController,
-    PagesController
+    PagesController,
+    ImageController
     ]
 })
 

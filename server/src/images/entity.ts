@@ -12,7 +12,7 @@ export default class Image extends BaseEntity {
     @Column('text', {nullable:false})
     url: string
 
-    @Column('text', {nullable:false})
+    @Column('text', {nullable:true})
     altText: string
 
     @OneToMany(_ => PageContent, pageContent => pageContent.image)

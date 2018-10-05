@@ -1,12 +1,12 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Put, Param, Post, HttpCode, Body, NotFoundError } from "routing-controllers";
+import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
 import Image from './entity'
 
 @JsonController()
 export class ImageController {
     @Get('/images')
     allImages = async() => {
-        const images = await Image.find()
+        const images = await Image.find({relations: ["pageContents"]})
         return {images}
     }
 
@@ -16,24 +16,15 @@ export class ImageController {
         return Image.findOne(id)
     }
 
-    @Post('/images') // Pipe naar bucket???
+    @Post('/images')
     @HttpCode(201)
-    createAd(
+    async createImage(
       @Body() image: Image
     ) {
-      return image.save()
+        await Image.create({
+            url: image.url
+        }).save()
+        
+        return image
     }
-
-      //@Authorized
-      @HttpCode(201)
-      @Put('/images/:id([0-9]+)')
-      async updateImage(
-          @Param('id') id: number,
-          @Body() update: Partial<Image>
-      ) {
-          const image = await Image.findOne(id)
-          if (!image) throw new NotFoundError('Cannot find image')
-  
-          return Image.merge(image, update).save()
-      }
 }
