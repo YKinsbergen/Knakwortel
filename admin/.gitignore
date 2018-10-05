@@ -9,6 +9,8 @@
 # production
 /build
 
+/src/cdnConstant.js
+
 # misc
 .DS_Store
 .env.local
