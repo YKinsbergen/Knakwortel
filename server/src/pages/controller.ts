@@ -1,6 +1,7 @@
 // src/advertisements/controller.ts
 import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode} from "routing-controllers";
 import {Page, PageContent} from './entities'
+import Image from '../images/entity'
 
 @JsonController()
 export class PagesController {
@@ -64,12 +65,18 @@ export class PagesController {
     @Put('/contents/:id([0-9]+)')
     async updatePageContent(
         @Param('id') id: number,
-        @Body() update: Partial<PageContent>
+        @Body() update: any,
     ) {
+        const image = await Image.create({
+            url: update.imageUrl
+        }).save()
+
         const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
+
         if (!content) throw new NotFoundError('Cannot find page content')
+
         
-        return PageContent.merge(content, update).save(),
-        console.log(content, update)
+        return content.image.id = image.id,
+        PageContent.merge(content, update).save()
     }
 }

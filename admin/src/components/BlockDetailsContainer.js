@@ -22,7 +22,7 @@ class BlockDetailsContainer extends React.Component {
       formValues: {
         headline: this.props.block.headline,
         body: this.props.block.body,
-        imageId: 1
+        imageUrl: 'testUrlForId10'
       }
     })
   }
