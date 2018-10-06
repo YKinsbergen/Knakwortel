@@ -69,7 +69,11 @@ export class PageContent extends BaseEntity {
     @Column('text', {nullable: true})
     iframeUrl: string
 
+    @Column({ type: "int", nullable: true })
+    imageId: number;
+
     @ManyToOne(_ => Image, image => image.pageContents)
+    @JoinColumn({ name: "imageId" })
     image: Image
 
     @ManyToOne(_ => Page, page => page.pageContents)

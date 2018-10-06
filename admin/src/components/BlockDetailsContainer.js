@@ -21,7 +21,8 @@ class BlockDetailsContainer extends React.Component {
       editMode: true,
       formValues: {
         headline: this.props.block.headline,
-        body: this.props.block.body
+        body: this.props.block.body,
+        imageId: 1
       }
     })
   }

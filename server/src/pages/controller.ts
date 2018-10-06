@@ -68,7 +68,8 @@ export class PagesController {
     ) {
         const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
         if (!content) throw new NotFoundError('Cannot find page content')
-
-        return PageContent.merge(content, update).save()
+        
+        return PageContent.merge(content, update).save(),
+        console.log(content, update)
     }
 }
