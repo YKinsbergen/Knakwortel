@@ -9,7 +9,7 @@ router.get('/', async (ctx, next) => {
   const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
   
   const instaMediaArray = await instagramPhotos()
-
+  console.log(instaMediaArray)
   const page = pageRequest.data
   ctx.render('index', 
     { 
@@ -26,6 +26,7 @@ async function instagramPhotos() {
 
   const userInfo = JSON.parse(jsonObject)
   const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
+  console.log(mediaArray)
   return mediaArray
 }
 

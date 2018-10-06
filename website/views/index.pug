@@ -2,31 +2,97 @@ extends ./common/layout.pug
 
 block content
   - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
-  section.section
-    .container
-      if (start)
-        //- img(src=start.image.url)
-        h1=start.headline
-        p=start.body
+  section(class="home text-center d-flex")
+      div(class="container my-auto")
+        div(class="row")
+        if (start)
+          img(class="img-fluid" src=start.image.url)
+          h1=start.headline
+          p=start.body
+          h3
+            a(class="icon style4 major fa-angle-down")
   
-  - const verkrijgbaar = page.pageContents.find(contentBlock => contentBlock.tag === 'verkrijgbaar')
-  section.section
-    .container
-      if (verkrijgbaar)
-        h1=verkrijgbaar.headline
-        p=verkrijgbaar.body
+  section
+    .container-fluid(class="text-center")
+      h2 de knakwortel
+    
+    - const begin = page.pageContents.find(contentBlock => contentBlock.tag === 'begin')
+    .container-fluid.my-5
+      .row
+        if (begin)
+        .col-md-4.offset-md-1
+          h3=begin.headline
+          p=begin.body
+        .col-md-6.offset-md-1
+          img(class="img-fluid story-img" src=begin.image.url)
+
+    - const boer = page.pageContents.find(contentBlock => contentBlock.tag === 'boer')
+    .container-fluid.my-5
+      .row
+        if (boer)
+        .col-md-4.offset-md-1.order-md-5
+          h3=boer.headline
+          p=boer.body
+        .col-md-6.order-md-1
+          img(class="img-fluid story-img" src=boer.image.url)
+
+    - const fabriek = page.pageContents.find(contentBlock => contentBlock.tag === 'fabriek')
+    .container-fluid.my-5
+      .row
+        if (fabriek)
+        .col-md-4.offset-md-1
+          h3=fabriek.headline
+          p=fabriek.body
+        .col-md-6.offset-md-1
+          img(class="img-fluid story-img" src=fabriek.image.url)
+
+    - const ah = page.pageContents.find(contentBlock => contentBlock.tag === 'ah')
+    .container-fluid.my-5
+      .row
+        if (ah)
+        .col-md-4.offset-md-1.order-md-2
+          h3=ah.headline
+          p=ah.body
+        .col-md-6.order-md-1
+          img(class="img-fluid story-img" src=ah.image.url)
+    
+    - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
+    .container-fluid.my-5
+      .row
+        if (trui)
+        .col-md-4.offset-md-1
+          h3=trui.headline
+          p=trui.body
+        .col-md-6.offset-md-1
+          img(class="img-fluid story-img" src=trui.image.url)    
   
   //- INSTAGRAM FEED CONTENT BLOK
-  section.section
+  section.section.text-center
     .container
       h2 #KNAKWORTEL
-      if (instaFeed)
+      div(id="carouselExampleIndicators" data-ride="carousel" class="carousel slide")
+        ol(class="carousel-indicators")
+          li(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
+          li(data-target="#carouselExampleIndicators" data-slide-to="1")
+          li(data-target="#carouselExampleIndicators" data-slide-to="2")
+        div(class="carousel-inner")
+        if (instaFeed)
         - const shortInstaFeed = instaFeed.slice(0,3)
-        each instaPost in shortInstaFeed
-          div.instaPost
-              img(src=instaPost.node.thumbnail_resources[1].src)
-              //- p likes: 
-              //-   b=instaPost.node.edge_liked_by.count
-              //- p=`${instaPost.node.edge_media_to_caption.edges[0].node.text.substring(0,60)}(...)`
+        - const firstPost = shortInstaFeed[0]
+        - const secondPost = shortInstaFeed[1]
+        - const thirdPost = shortInstaFeed[2]
+          div(class="carousel-item active")
+            img(class="d-block w-100" src=(firstPost.node.display_url) alt="First slide")
+          div(class="carousel-item")
+            img(class="d-block w-100" src=(secondPost.node.display_url) alt="Second slide")
+          div(class="carousel-item")
+            img(class="d-block w-100" src=(thirdPost.node.display_url) alt="Third slide")
+        a(class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev")
+          span(class="carousel-control-prev-icon" aria-hidden="true")
+          span(class="sr-only") Previous
+        a(class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next")
+          span(class="carousel-control-next-icon" aria-hidden="true")
+          span(class="sr-only") Next
 
-              
+
+
