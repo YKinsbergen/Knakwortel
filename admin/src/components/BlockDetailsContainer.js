@@ -1,12 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import BlockDetails from './BlockDetails'
-import {loadBlocks, loadBlock, updateBlock} from '../actions/blocks'
 import {Redirect} from 'react-router-dom'
+import BlockDetails from './BlockDetails'
+import {loadBlocks, loadBlock, updateBlock, updateBlockImage} from '../actions/blocks'
+import {CLOUDINARY_UPLOAD_PRESET} from '../cdnConstant'
+import {CLOUDINARY_UPLOAD_URL} from '../cdnConstant'
+import request from 'superagent'
 
 
 class BlockDetailsContainer extends React.Component {
-  state = { editMode: false }
+  state = { 
+    editMode: false,
+    uploadedFileCloudinaryUrl: ''
+  }
 
   componentWillMount() {
     if (this.props.blocks === null) this.props.loadBlocks()
@@ -16,13 +22,13 @@ class BlockDetailsContainer extends React.Component {
     await this.props.loadBlock(Number(this.props.match.params.id))
   }
 
+  // Text edit handlers
   onEdit = () => {
     this.setState({
       editMode: true,
       formValues: {
         headline: this.props.block.headline,
         body: this.props.block.body,
-        imageUrl: 'testUrlForId10'
       }
     })
   }
@@ -42,6 +48,31 @@ class BlockDetailsContainer extends React.Component {
       editMode: false
     })
     this.props.updateBlock(Number(this.props.match.params.id), this.state.formValues)
+  }
+
+  
+  // Image upload handlers
+  fileSelectHandler = event => {
+    this.fileUploadHandler(event.target.files[0])
+  }
+
+  fileUploadHandler(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                      .field('file', file);
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        })
+        this.props.updateBlockImage(
+          Number(this.props.match.params.id), 
+          this.state.uploadedFileCloudinaryUrl)
+      }
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -68,6 +99,8 @@ class BlockDetailsContainer extends React.Component {
       onSubmit={this.onSubmit}
       editMode={this.state.editMode}
       formValues={this.state.formValues}
+
+      fileSelectHandler={this.fileSelectHandler}
     />)
   }
 }
@@ -79,4 +112,6 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, {loadBlocks, loadBlock, updateBlock})(BlockDetailsContainer)
+export default connect(mapStateToProps, 
+  {loadBlocks, loadBlock, updateBlock, updateBlockImage})
+  (BlockDetailsContainer)

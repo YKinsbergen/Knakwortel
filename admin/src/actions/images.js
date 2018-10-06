@@ -22,4 +22,4 @@ export const dispatchUrl = (url) => (dispatch) => {
     		console.error(err)
     	}
     })
-  }
+	}

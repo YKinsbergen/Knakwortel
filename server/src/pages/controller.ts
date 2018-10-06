@@ -65,17 +65,29 @@ export class PagesController {
     @Put('/contents/:id([0-9]+)')
     async updatePageContent(
         @Param('id') id: number,
-        @Body() update: any,
+        @Body() update: Partial<PageContent>,
+    ) {
+        const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
+
+        if (!content) throw new NotFoundError('Cannot find page content')
+        
+        return PageContent.merge(content, update).save()
+    }
+
+    @HttpCode(201)
+    @Put('/contents/:id([0-9]+)/image')
+    async updatePageContentImage(
+        @Param('id') id: number,
+        @Body() update: Partial<Image>
     ) {
         const image = await Image.create({
-            url: update.imageUrl
+            url: update.url
         }).save()
 
         const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
 
         if (!content) throw new NotFoundError('Cannot find page content')
 
-        
         return content.image.id = image.id,
         PageContent.merge(content, update).save()
     }

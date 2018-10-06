@@ -54,3 +54,18 @@ export const updateBlock = (blockId, data) => (dispatch, getState) => {
     .then(response => dispatch(blockUpdateSuccess(response.body)))
     .catch(console.error)
 }
+
+export const updateBlockImage = (blockId, url) => () => {
+  request
+    .put(`${apiUrl}/contents/${blockId}/image`)
+    .send({url})
+    .then(result => console.log(result.body))
+    .catch(err => {
+      if (err.status === 400) {
+        console.error(err)
+      }
+      else {
+        console.error(err)
+      }
+    })
+  }
