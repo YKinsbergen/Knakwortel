@@ -12,11 +12,11 @@ import LogoutPage from './logout/LogoutPage'
 
 class CmsContainer extends Component {
   render() {
-    if (!this.props.authenticated) {
-			return (
-				<Redirect to="/login" />
-			)
-		}
+    // if (!this.props.authenticated) {
+		// 	return (
+		// 		<Redirect to="/login" />
+		// 	)
+		// }
     return (
       <Router>
       <div>

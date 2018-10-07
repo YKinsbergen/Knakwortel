@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Param, Post, HttpCode, Body } from "routing-controllers";
+import { JsonController, Get, Param, Post, HttpCode, Body, Authorized } from "routing-controllers";
 import Image from './entity'
 
 @JsonController()
@@ -16,6 +16,7 @@ export class ImageController {
         return Image.findOne(id)
     }
 
+    @Authorized()
     @Post('/images')
     @HttpCode(201)
     async createImage(

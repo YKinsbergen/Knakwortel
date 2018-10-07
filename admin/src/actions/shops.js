@@ -1,5 +1,7 @@
 import request from 'superagent'
 import {apiUrl} from '../constants'
+import {isExpired} from '../jwt'
+import {logout} from './admins'
 
 export const SHOPS_FETCHED = 'SHOPS_FETCHED'
 export const NEW_SHOPS_FETCHED = 'NEW_SHOPS_FETCHED'
@@ -19,14 +21,14 @@ function newShopsFetched(shops) {
 }
 
 export const addShops = (shopsArrOfObj) => (dispatch, getState) => {
-  // const state = getState()
-  // const jwt = state.currentUser.jwt
+  const state = getState()
+  const jwt = state.currentUser.jwt
  
-  // if (isExpired(jwt)) return dispatch(logout())
+  if (isExpired(jwt)) return dispatch(logout())
 
   request
     .post(`${apiUrl}/shops`)
-    // .set('Authorization', `Bearer ${jwt}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(shopsArrOfObj)
     .then(response => dispatch(newShopsFetched(response.body.newShops)))
     .catch(console.error)

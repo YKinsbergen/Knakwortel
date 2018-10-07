@@ -1,9 +1,10 @@
-import { JsonController, Get, BadRequestError, Body, Post} from "routing-controllers";
+import { JsonController, Get, BadRequestError, Body, Post, Authorized} from "routing-controllers";
 import {Shop} from './entity'
 
 @JsonController()
 export class ShopsController {
 
+  @Authorized()
   @Post('/shops')
   async newShop(
     @Body() shops: any,//object[]
