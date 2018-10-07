@@ -17,3 +17,4 @@ app.use(home.allowedMethods())
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 console.log(`Api url: ${apiUrl}`)
+

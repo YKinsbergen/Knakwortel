@@ -3,11 +3,15 @@ import login from './login'
 import currentUser from './currentUser'
 import blocks from './blocks'
 import block from './block'
+import images from './images'
+import shops from './shops'
 
 
 export default combineReducers({
   login,
   currentUser,
   blocks,
-  block
+  block,
+  images,
+  shops
 })

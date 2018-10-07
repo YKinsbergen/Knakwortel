@@ -6,21 +6,41 @@ html
     title Knakwortel - #{title}
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
     link(rel="stylesheet" href="/css/style.css")
+    link(rel="icon" href="images/favicon.ico")
 
   body
-    nav.navbar(role="navigation" aria-label="main navigation")
-      .navbar-brand
-        a.navbar-item(href="/")
-          img(src="https://knakwortel.nl/images/knakwortel-logo.svg" alt="Knakwortel" height="28")
-        a.navbar-item(href="/")  Home
+    nav(class="navbar navbar-expand-md navbar-light fixed-top")
+      div(class="container")
+        a.navbar-brand(href="/")
+          img.nav-logo(src="/lib/knakwortel-logo.svg" alt="Knakwortel")
+        button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse(id="navbarsExample04")
+          ul.navbar-nav.justify-content-around
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Knakwortel
+              .dropdown-menu(aria-labelledby="navbarDropdown")
+                a.dropdown-item(href="#") Waarom
+                a.dropdown-item(href="#") Verkrijgbaar
+                a.dropdown-item(href="#") Trui
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Inspiratie
+              .dropdown-menu(aria-labelledby="navbarDropdown")
+                a.dropdown-item(href="#") Creaties
+                a.dropdown-item(href="#") De Kookshow
+                a.dropdown-item(href="#") #knakwortel
+            li.nav-item
+              a.nav-link(href='#') FAQ
+            li.nav-item
+              a.nav-link(href='#') Knakwortel voor je evenement
+            li.nav-item
+              a.nav-link(href='#') EN | NL
 
     block content
 
-    footer.footer
-      .footer-container
-        ul
-          li test
-          li test 2
+    //- footer.footer
+    //-   .footer-container
+
 
     script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")

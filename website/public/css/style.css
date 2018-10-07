@@ -1,15 +1,41 @@
-body {
-  margin: 0;
+@import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
+
+body, html {
+  width:100%;
+  height:100%;
+  font-family: 'Lato', sans-serif;
 }
 
+h1, h2 {
+font-family: 'Dosis', sans-serif;
+ font-weight: 700;
+ line-height: 1.375;
+ letter-spacing: 0.05em;
+ margin: 0 0 1rem 0;
+ text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 700;
+}
 .navbar {
+  background-color: white;
+}
+
+.nav-logo {
+  height: 55px;
+  width: auto;
+}
+
+.navbar-nav {
   width: 100%;
-  height: 40px;
-  background-color: #d0d0d0;
+}
+
+.dropdown-item:active, .dropdown-item:focus {
+  background-color: #F6813A !important;
 }
 
 .footer {
-  position: fixed;
   bottom: 0;
   height: 160px;
   width: 100vw;
@@ -18,18 +44,34 @@ body {
 	background-repeat: repeat;
 }
 
-.instaPost {
-  display: inline-block;
-  max-width: 250px;
-  /* max-height: 250px; */
-  border: 1px solid;
-  position: relative;
-  top: 0;
-}
-.instaPost img {
-  max-width: 200px;
+/* .container {
+  border: 1px solid black;
+} */
+
+.home {
+  height: 100vh;
 }
 
-.black {
-  background-color: black;
+.home h1{
+  font-size: 4rem;
+line-height: 1.2;
 }
+
+.home p {
+  font-size: 1.25rem;
+}
+
+.img-fluid {
+  max-width: 100%; 
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .home h1 {
+    font-size: 3rem;
+  }
+}
+
+
+
+
