@@ -15,6 +15,8 @@ export default function BlockDetails(props) {
 
           <div class="col-md-6">
             <img class="detail-img img-fluid" src={props.block.image.url} alt=""/>
+            
+            <input type="file" onChange={props.fileSelectHandler}/>
           </div>
 
           
@@ -33,7 +35,8 @@ export default function BlockDetails(props) {
             <button class="btn btn-outline-primary" onClick={props.onEdit}>Edit</button>
             </div>
                 }
-            {props.editMode && <PageForm handleSubmit={props.onSubmit} handleChange={props.onChange} values={props.formValues} />}
+            {props.editMode && 
+            <PageForm handleSubmit={props.onSubmit} handleChange={props.onChange} values={props.formValues} />}
 
             <dl class="row">
               <dt class="col-sm-3">Categorie</dt>
