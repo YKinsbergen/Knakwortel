@@ -3,8 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import BlockDetails from './BlockDetails'
 import {loadBlocks, loadBlock, updateBlock, updateBlockImage} from '../actions/blocks'
-import {CLOUDINARY_UPLOAD_PRESET} from '../cdnConstant'
-import {CLOUDINARY_UPLOAD_URL} from '../cdnConstant'
+import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
 
 
@@ -52,13 +51,20 @@ class BlockDetailsContainer extends React.Component {
 
   
   // Image upload handlers
-  fileSelectHandler = event => {
-    this.fileUploadHandler(event.target.files[0])
+  uploadPresetPrompt = () => {
+    let form = prompt("Please enter your preset")
+    if (form !== null) {
+      return form
+    }
   }
 
-  fileUploadHandler(file) {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+  fileSelectHandler = async(event) => {
+    this.fileUploadHandler(event.target.files[0], await this.uploadPresetPrompt())
+  }
+
+  fileUploadHandler(file, uploadPreset) {
+    let upload = request.post(CDN_UPLOAD_URL)
+                      .field('upload_preset', uploadPreset)
                       .field('file', file);
     upload.end((err, response) => {
       if (err) {
