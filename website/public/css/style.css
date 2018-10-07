@@ -27,6 +27,10 @@ h3 {
   width: auto;
 }
 
+.navbar-nav {
+  width: 100%;
+}
+
 /* .footer {
   position: fixed;
   bottom: 0;
@@ -36,29 +40,12 @@ h3 {
 	background-image: url("http://www.knakwortel.nl/images/knakwortel-logo-plantaardig-vegan-snack-04.png");
 	background-repeat: repeat;
 } */
-/* 
-.instaPost {
-  display: inline-block;
-  max-width: 250px;
-  max-height: 250px;
-  border: 1px solid;
-  position: relative;
-  top: 0;
-}
-.instaPost img {
-  max-width: 200px;
-}
- */
 
-.img-fluid {
-  max-width: 100%; 
-  height: auto;
-}
 
-.carousel{
+/* .carousel{
   width: 50%;
   height: 50%;
-}
+} */
 
 /* .container {
   border: 1px solid black;
@@ -77,6 +64,20 @@ line-height: 1.2;
   font-size: 1.25rem;
 }
 
+.img-fluid {
+  max-width: 100%; 
+  height: auto;
+}
+
+/* .carousel-item {
+  height: 75vh;
+}
+
+.car-img {
+  height: 100%;
+  max-width: auto;
+} */
+
 @media (max-width: 768px) {
   .home h1 {
     font-size: 3rem;
@@ -84,7 +85,4 @@ line-height: 1.2;
 }
 
 
-.navbar-nav {
-  width: 100%;
-}
 

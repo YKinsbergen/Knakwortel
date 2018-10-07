@@ -9,7 +9,6 @@ router.get('/', async (ctx, next) => {
   const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
   
   const instaMediaArray = await instagramPhotos()
-  console.log(instaMediaArray)
   const page = pageRequest.data
   ctx.render('index', 
     { 
