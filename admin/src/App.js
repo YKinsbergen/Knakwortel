@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import LogoutPage from './components/logout/LogoutPage'
+// import LogoutPage from './components/logout/LogoutPage'
 import LoginPage from './components/login/LoginPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 //import SignupPage from './components/signup/SignupPage'
@@ -15,7 +15,7 @@ class App extends Component {
           <main>
             <Route exact path="/login" component={LoginPage} />
             <Route path="/dashboard" component={CmsContainer} />
-            <Route exact path="/logout" component={LogoutPage} />
+            {/* <Route path="/logout" component={LogoutPage} /> */}
             {/* <Route exact path="/signup" component={SignupPage} /> */}
             <Route exact path="/" render={ () => <Redirect to="/dashboard" /> } />
           </main>
