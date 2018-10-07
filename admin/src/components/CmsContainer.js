@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import './Dashboard.css'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import DashboardContainer from './DashboardContainer';
@@ -7,9 +8,15 @@ import Sidebar from './Sidebar'
 import BlockDetailsContainer from './BlockDetailsContainer';
 import ContentContainer from './ContentContainer';
 import ShopsContainer from './ShopsContainer'
+import LogoutPage from './logout/LogoutPage'
 
 class CmsContainer extends Component {
   render() {
+    // if (!this.props.authenticated) {
+		// 	return (
+		// 		<Redirect to="/login" />
+		// 	)
+		// }
     return (
       <Router>
       <div>
@@ -22,6 +29,7 @@ class CmsContainer extends Component {
                 <Route exact path="/dashboard/content" component={ContentContainer} />
                 <Route exact path="/dashboard/content/:id" component={BlockDetailsContainer} />
                 <Route exact path="/dashboard/shops" component={ShopsContainer} />
+                <Route path="/logout" component={LogoutPage} />
               </main>
             </div>
           </div>
@@ -31,4 +39,8 @@ class CmsContainer extends Component {
   }
 }
 
-export default CmsContainer;
+const mapStateToProps = state => ({
+	authenticated: state.currentUser !== null
+})
+
+export default connect(mapStateToProps)(CmsContainer)
