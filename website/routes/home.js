@@ -25,7 +25,6 @@ async function instagramPhotos() {
 
   const userInfo = JSON.parse(jsonObject)
   const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
-  console.log(mediaArray)
   return mediaArray
 }
 

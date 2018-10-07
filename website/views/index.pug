@@ -20,51 +20,51 @@ block content
     .container-fluid.my-5
       .row
         if (begin)
-        .col-md-4.offset-md-1
-          h3=begin.headline
-          p=begin.body
-        .col-md-6.offset-md-1
-          img(class="img-fluid story-img" src=begin.image.url)
+          .col-md-4.offset-md-1
+            h3=begin.headline
+            p=begin.body
+          .col-md-6.offset-md-1
+            img(class="img-fluid story-img" src=begin.image.url)
 
     - const boer = page.pageContents.find(contentBlock => contentBlock.tag === 'boer')
     .container-fluid.my-5
       .row
         if (boer)
-        .col-md-4.offset-md-1.order-md-5
-          h3=boer.headline
-          p=boer.body
-        .col-md-6.order-md-1
-          img(class="img-fluid story-img" src=boer.image.url)
+          .col-md-4.offset-md-1.order-md-5
+            h3=boer.headline
+            p=boer.body
+          .col-md-6.order-md-1
+            img(class="img-fluid story-img" src=boer.image.url)
 
     - const fabriek = page.pageContents.find(contentBlock => contentBlock.tag === 'fabriek')
     .container-fluid.my-5
       .row
         if (fabriek)
-        .col-md-4.offset-md-1
-          h3=fabriek.headline
-          p=fabriek.body
-        .col-md-6.offset-md-1
-          img(class="img-fluid story-img" src=fabriek.image.url)
+          .col-md-4.offset-md-1
+            h3=fabriek.headline
+            p=fabriek.body
+          .col-md-6.offset-md-1
+            img(class="img-fluid story-img" src=fabriek.image.url)
 
     - const ah = page.pageContents.find(contentBlock => contentBlock.tag === 'ah')
     .container-fluid.my-5
       .row
         if (ah)
-        .col-md-4.offset-md-1.order-md-2
-          h3=ah.headline
-          p=ah.body
-        .col-md-6.order-md-1
-          img(class="img-fluid story-img" src=ah.image.url)
+          .col-md-4.offset-md-1.order-md-2
+            h3=ah.headline
+            p=ah.body
+          .col-md-6.order-md-1
+            img(class="img-fluid story-img" src=ah.image.url)
     
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
     .container-fluid.my-5
       .row
         if (trui)
-        .col-md-4.offset-md-1
-          h3=trui.headline
-          p=trui.body
-        .col-md-6.offset-md-1
-          img(class="img-fluid story-img" src=trui.image.url)    
+          .col-md-4.offset-md-1
+            h3=trui.headline
+            p=trui.body
+          .col-md-6.offset-md-1
+            img(class="img-fluid story-img" src=trui.image.url)    
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.section.text-center
