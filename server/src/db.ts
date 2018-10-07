@@ -6,6 +6,7 @@ import { snakeCase } from 'typeorm/util/StringUtils'
 import  Admin  from './admins/entity';
 import { Recipe, Topping, ToppingType } from './recipes/entity'
 import {Page, PageTitle, PageContent} from './pages/entities'
+import {Shop} from './shops/entity'
 import Image from './images/entity'
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
@@ -39,7 +40,8 @@ export default () =>
         Page,
         PageTitle,
         PageContent,
-        Image
+        Image,
+        Shop
       ],
       synchronize: true,
       logging: true,

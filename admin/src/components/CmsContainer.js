@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 import BlockDetailsContainer from './BlockDetailsContainer';
 import ContentContainer from './ContentContainer';
+import ShopsContainer from './ShopsContainer'
 
 class CmsContainer extends Component {
   render() {
@@ -20,6 +21,7 @@ class CmsContainer extends Component {
                 <Route exact path="/dashboard" component={DashboardContainer}/>
                 <Route exact path="/dashboard/content" component={ContentContainer} />
                 <Route exact path="/dashboard/content/:id" component={BlockDetailsContainer} />
+                <Route exact path="/dashboard/shops" component={ShopsContainer} />
               </main>
             </div>
           </div>

@@ -32,4 +32,3 @@ export class SeoController {
         return SeoTag.merge(tag, update).save()
     }
 }
-}
