@@ -27,7 +27,7 @@ export default class Order extends BaseEntity {
     street: string
 
     @IsNumber()
-    @Column('integer', {nullable:false})
+    @Column('int', {nullable:false})
     houseNumber: number
 
     @IsString()
