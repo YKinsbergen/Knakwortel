@@ -1,6 +1,6 @@
 // src/advertisements/entity.ts
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, 
-    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import Image from '../images/entity';
 
 @Entity()
@@ -36,25 +36,25 @@ export class Topping extends BaseEntity {
     image: Image
 }
 
-@Entity()
-export class RecipeConfigurations extends BaseEntity {
-    @Column({ type: 'text' })
-    ingredient: string
+// @Entity()
+// export class RecipeConfigurations extends BaseEntity {
+//     @Column({ type: 'text' })
+//     ingredient: string
     
-    @PrimaryColumn('int')
-    recipeId: number
+//     @PrimaryColumn('int')
+//     recipeId: number
     
-    @PrimaryColumn('int')
-    toppingId: number
+//     @PrimaryColumn('int')
+//     toppingId: number
     
-    @OneToOne(() => Recipe)
-    @JoinColumn()
-    recipe: Recipe
+//     @OneToOne(() => Recipe)
+//     @JoinColumn()
+//     recipe: Recipe
     
-    @OneToOne(() => Topping)
-    @JoinColumn()
-    topping: Topping
-}
+//     @OneToOne(() => Topping)
+//     @JoinColumn()
+//     topping: Topping
+// }
 
 @Entity()
 export class ToppingType extends BaseEntity {

@@ -1,4 +1,4 @@
-import { JsonController, Get, BadRequestError, Body, Post, Authorized} from "routing-controllers";
+import { JsonController, Get, BadRequestError, Body, Post, Authorized, Param} from "routing-controllers";
 import {Shop} from './entity'
 
 @JsonController()
@@ -29,6 +29,18 @@ export class ShopsController {
     if (!shops) throw new BadRequestError(`Can't find any shops`)
     return {shops}
   }
+
+  @Get('/shops/:postcode')
+  async getShopsByPostcode(
+    @Param('postcode') postcode: string
+  ) {
+    console.log(postcode)
+    const shops = await Shop.find({where: {postcode}})
+    if (!shops) throw new BadRequestError(`Can't find any shops`)
+    return shops
+  }
+
+
 
 
 
