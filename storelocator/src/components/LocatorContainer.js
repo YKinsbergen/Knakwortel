@@ -10,6 +10,11 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 class LocatorContainer extends Component {
+  componentWillMount() {
+    if (!this.props.storesFound[0]) this.props.actions.fetchStores()
+    return
+  }
+
   render() {
     const markers = this.props.storesFound.map((store) => {
       return {
@@ -27,7 +32,8 @@ class LocatorContainer extends Component {
 
     return (
       <div>
-        <MapSearch onSearchPostcode={this.props.actions.fetchStores} />
+        <MapSearch onSearchPostcode={this.props.actions.fetchStores} 
+        loadStoresByPostcode={this.props.actions.loadStoresByPostcode}/>
         <button className="btn btn-secondary btn-block mb-4 hidden-sm-up">Bekijk kaart</button>
         {resultInfos.length > 0 ? <Results resultInfos={resultInfos} /> : 'Niets gevonden'}
         <MyMap markers={markers} />

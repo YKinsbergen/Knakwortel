@@ -30,6 +30,16 @@ export class ShopsController {
     return {shops}
   }
 
+  @Get('/shops/:postcode')
+  async getShopsByPostcode(
+    @Param('postcode') postcode: string
+  ) {
+    console.log(postcode)
+    const shops = await Shop.find({where: {postcode}})
+    if (!shops) throw new BadRequestError(`Can't find any shops`)
+    return shops
+  }
+
   @Delete('/shops/:id')
   async deleteShop(
     @Param('id') id: number
@@ -38,7 +48,5 @@ export class ShopsController {
     if (!shop) throw new NotFoundError('Shop doesnt exist')
     return Shop.delete(shop)
   }
-
-
 
 }

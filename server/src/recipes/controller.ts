@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Body, HttpCode, Post, Delete, NotFoundError, Param } from "routing-controllers";
+import { JsonController, Get, Delete, NotFoundError, Param } from "routing-controllers";
 import { Recipe } from "./entity";
 
 
@@ -18,14 +18,7 @@ export class RecipeController {
         return recipe
     }
 
-    //@Authorized()
-    @Post('/recipes')
-    @HttpCode(201)
-    async createRecipe(
-      @Body() recipe: Recipe
-    ) {
-        return recipe.save()
-    }
+
 
     //@Authorized()
     @Delete('/recipes')
