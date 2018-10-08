@@ -67,6 +67,12 @@ export default function Slotmachine(props) {
     })
   }
 
+  // Function to reduce the nested array into one
+  const concatNestedArrays = (array) => {
+    let result = [].concat.apply([], array);
+    return result
+  }
+
   // Gets topping urls from flattened array of toppings
   const getToppingArrayUrls = (recipes) => {
     return recipes
@@ -80,17 +86,17 @@ export default function Slotmachine(props) {
       })
     })
   }
-
-  // Function to reduce the nested array into one
-  const concatNestedArrays = (array) => {
-    let result = [].concat.apply([], array);
-    return result
-  }
-  
   // Gets topping names from flattened array of toppings
   const getSauceToppingArrayNames = (toppings) => {
     return toppings.map(topping => {
       return topping.name
+    })
+  }
+  // Gets image urls from flattened array of sauces
+  const getSauceArrayUrls = (sauces) => {
+    return sauces
+    .map(sauce => {
+      return sauce.image.url
     })
   }
   
@@ -99,13 +105,13 @@ export default function Slotmachine(props) {
   const removeRepeats = (array) => {
     return Array.from(new Set(array));
  }
-
+ // Remove repeating elements from an array of objects
  const removeRepeatsObjects = (array) => {
-   return array.reduce((p, c) => {
-    var id = [c.id].join('|')
+   return array.reduce((p, element) => {
+    var id = [element.id].join('|')
 
     if (p.temp.indexOf(id) === -1) {
-      p.out.push(c);
+      p.out.push(element);
       p.temp.push(id);
     }
     return p;
@@ -195,8 +201,8 @@ export default function Slotmachine(props) {
         <button className="start-btn" 
         onClick={
           () => {
-            // This random number is stored so that the number is stored
-            // and can be used in different functions.
+            // This random number is stored so that the number can be used in
+            // different functions without randomizing for each call
             const randomNum = rNum(recipes)
             const rNumNoSauce = rNum(recipesNoSauce)
             const rNumWithSauce = rNum(recipesWithSauce)
@@ -233,7 +239,14 @@ export default function Slotmachine(props) {
                   )
                 )
             const rNumSauces = rNum(sauces)
-            const sauceObjectArray = removeRepeatsObjects(concatNestedArrays(getSauceToppingArray(recipesWithSauce)))
+            const sauceUrls = getSauceArrayUrls(
+              removeRepeatsObjects(
+                concatNestedArrays(
+                  getSauceToppingArray(
+                    recipesWithSauce)
+                    )
+                  )
+                )
 
             // h = header, i = img
             const h1 = document.getElementById("recipe-header1")
@@ -406,46 +419,79 @@ export default function Slotmachine(props) {
               return h1.innerHTML = 'Sauces',
               // Second header
               roulette(h2, sauces, 0, 100),
+              rouletteUrl(i2, sauceUrls, 0, 100),
               roulette(h2, sauces, 1, 150),
+              rouletteUrl(i2, sauceUrls, 1, 150),
               roulette(h2, sauces, 2, 200),
+              rouletteUrl(i2, sauceUrls, 2, 200),
               roulette(h2, sauces, 0, 300),
+              rouletteUrl(i2, sauceUrls, 0, 300),
               roulette(h2, sauces, 1, 500),
+              rouletteUrl(i2, sauceUrls, 1, 500),
               roulette(h2, sauces, 2, 700),
+              rouletteUrl(i2, sauceUrls, 2, 700),
               roulette(h2, sauces, 0, 850),
+              rouletteUrl(i2, sauceUrls, 0, 850),
               roulette(h2, sauces, 1, 1100),
+              rouletteUrl(i2, sauceUrls, 1, 1100),
               // Third header
               roulette(h3, sauces, 1, 100),
+              rouletteUrl(i3, sauceUrls, 1, 100),
               roulette(h3, sauces, 2, 150),
+              rouletteUrl(i3, sauceUrls, 2, 150),
               roulette(h3, sauces, 1, 200),
-              roulette(h3, sauces, 0, 300),
-              roulette(h3, sauces, 1, 500),
+              rouletteUrl(i3, sauceUrls, 1, 200),
+              roulette(h3, sauces, 2, 300),
+              rouletteUrl(i3, sauceUrls, 2, 300),
+              roulette(h3, sauces, 0, 500),
+              rouletteUrl(i3, sauceUrls, 0, 500),
               roulette(h3, sauces, 2, 700),
+              rouletteUrl(i3, sauceUrls, 2, 700),
               roulette(h3, sauces, 1, 850),
+              rouletteUrl(i3, sauceUrls, 1, 850),
               roulette(h3, sauces, 2, 1100),
+              rouletteUrl(i3, sauceUrls, 2, 1100),
               // Fourth header
               roulette(h4, sauces, 1, 100),
+              rouletteUrl(i4, sauceUrls, 1, 100),
               roulette(h4, sauces, 0, 150),
+              rouletteUrl(i4, sauceUrls, 0, 150),
               roulette(h4, sauces, 2, 200),
+              rouletteUrl(i4, sauceUrls, 2, 200),
               roulette(h4, sauces, 1, 300),
+              rouletteUrl(i4, sauceUrls, 1, 300),
               roulette(h4, sauces, 0, 500),
+              rouletteUrl(i4, sauceUrls, 0, 500),
               roulette(h4, sauces, 2, 700),
+              rouletteUrl(i4, sauceUrls, 2, 700),
               roulette(h4, sauces, 0, 850),
+              rouletteUrl(i4, sauceUrls, 0, 850),
               roulette(h4, sauces, 1, 1100),
+              rouletteUrl(i4, sauceUrls, 1, 1100),
               setTimeout(() => {
                 if (rNumSauces === 0) {
                 return h2.innerHTML = getToppingName(sauces, rNumSauces),
+                i2.src=`${sauceUrls[rNumSauces]}`,
                 h3.innerHTML = getToppingName(sauces, rNumSauces+1),
-                h4.innerHTML = getToppingName(sauces, rNumSauces+2)
+                i3.src=`${sauceUrls[rNumSauces+1]}`,
+                h4.innerHTML = getToppingName(sauces, rNumSauces+2),
+                i4.src=`${sauceUrls[rNumSauces+2]}`
                 }
                 else if (rNumSauces === 1) {
                   return h2.innerHTML = getToppingName(sauces, rNumSauces-1),
+                  i2.src=`${sauceUrls[rNumSauces-1]}`,
                   h3.innerHTML = getToppingName(sauces, rNumSauces),
-                  h4.innerHTML = getToppingName(sauces, rNumSauces+1)
+                  i3.src=`${sauceUrls[rNumSauces]}`,
+                  h4.innerHTML = getToppingName(sauces, rNumSauces+1),
+                  i4.src=`${sauceUrls[rNumSauces+1]}`
                 }
                 else if (rNumSauces === 2) {
                   return h2.innerHTML = getToppingName(sauces, rNumSauces-1), 
+                  i2.src=`${sauceUrls[rNumSauces-1]}`,
                   h3.innerHTML = getToppingName(sauces, rNumSauces),
-                  h4.innerHTML = getToppingName(sauces, rNumSauces-2)
+                  i3.src=`${sauceUrls[rNumSauces]}`,
+                  h4.innerHTML = getToppingName(sauces, rNumSauces-2),
+                  i4.src=`${sauceUrls[rNumSauces-2]}`
                 }
               }, 1500)
             }
@@ -465,40 +511,63 @@ export default function Slotmachine(props) {
                 return h1.innerHTML = rRecipeName
               }, 1500),
               // Second header
-              roulette(h2, allToppings, 8, 100),
-              roulette(h2, allToppings, 4, 150),
-              roulette(h2, allToppings, 3, 200),
-              roulette(h2, allToppings, 0, 300),
-              roulette(h2, allToppings, 2, 500),
-              roulette(h2, allToppings, 3, 700),
-              roulette(h2, allToppings, 1, 850),
-              roulette(h2, allToppings, 2, 1100),
+              roulette(h2, allToppings, 8, 150),
+              rouletteUrl(i2, allToppingsUrl, 8, 150),
+              roulette(h2, allToppings, 4, 200),
+              rouletteUrl(i2, allToppingsUrl, 4, 200),
+              roulette(h2, allToppings, 3, 300),
+              rouletteUrl(i2, allToppingsUrl, 3, 300),
+              roulette(h2, allToppings, 0, 500),
+              rouletteUrl(i2, allToppingsUrl, 0, 500),
+              roulette(h2, allToppings, 2, 700),
+              rouletteUrl(i2, allToppingsUrl, 2, 700),
+              roulette(h2, allToppings, 3, 850),
+              rouletteUrl(i2, allToppingsUrl, 3, 850),
+              roulette(h2, allToppings, 1, 1100),
+              rouletteUrl(i2, allToppingsUrl, 1, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeToppings[0].name
+                return h2.innerHTML = rRecipeToppings[0].name,
+                i2.src=`${rRecipeToppings[0].image.url}`
               }, 1500),
               // Third header
-              roulette(h3, allToppings, 10, 80),
-              roulette(h3, allToppings, 4, 150),
-              roulette(h3, allToppings, 3, 200),
-              roulette(h3, allToppings, 0, 300),
-              roulette(h3, allToppings, 2, 520),
-              roulette(h3, allToppings, 3, 600),
-              roulette(h3, allToppings, 1, 800),
-              roulette(h3, allToppings, 2, 1200),
+              roulette(h3, allToppings, 1, 100),
+              rouletteUrl(i3, allToppingsUrl, 1, 100),
+              roulette(h3, allToppings, 5, 200),
+              rouletteUrl(i3, allToppingsUrl, 5, 200),
+              roulette(h3, allToppings, 0, 340),
+              rouletteUrl(i3, allToppingsUrl, 0, 340),
+              roulette(h3, allToppings, 11, 480),
+              rouletteUrl(i3, allToppingsUrl, 11, 480),
+              roulette(h3, allToppings, 9, 690),
+              rouletteUrl(i3, allToppingsUrl, 9, 690),
+              roulette(h3, allToppings, 7, 900),
+              rouletteUrl(i3, allToppingsUrl, 7, 900),
+              roulette(h3, allToppings, 8, 1150),
+              rouletteUrl(i3, allToppingsUrl, 8, 1150),
               setTimeout(() => {
-                return h3.innerHTML = rRecipeToppings[1].name
+                return h3.innerHTML = rRecipeToppings[1].name,
+                i3.src=`${rRecipeToppings[1].image.url}`
               }, 1500),
               // Fourth header
               roulette(h4, allToppings, 12, 130),
+              rouletteUrl(i4, allToppingsUrl, 12, 130),
               roulette(h4, allToppings, 3, 150),
+              rouletteUrl(i4, allToppingsUrl, 3, 150),
               roulette(h4, allToppings, 6, 200),
+              rouletteUrl(i4, allToppingsUrl, 7, 200),
               roulette(h4, allToppings, 1, 350),
+              rouletteUrl(i4, allToppingsUrl, 1, 350),
               roulette(h4, allToppings, 0, 500),
+              rouletteUrl(i4, allToppingsUrl, 0, 500),
               roulette(h4, allToppings, 7, 700),
+              rouletteUrl(i4, allToppingsUrl, 7, 800),
               roulette(h4, allToppings, 6, 900),
+              rouletteUrl(i4, allToppingsUrl, 6, 900),
               roulette(h4, allToppings, 5, 1300),
+              rouletteUrl(i4, allToppingsUrl, 5, 1300),
               setTimeout(() => {
-                return h4.innerHTML = rRecipeToppings[2].name
+                return h4.innerHTML = rRecipeToppings[2].name,
+                i4.src=`${rRecipeToppings[2].image.url}`
               }, 1500)
             }
             }}>
