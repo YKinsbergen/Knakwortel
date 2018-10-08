@@ -1,8 +1,13 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: darkslategrey;
+}
+
 .App {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
-  background-color: darkslategrey;
   color: white;
 }
 
