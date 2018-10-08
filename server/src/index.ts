@@ -13,6 +13,7 @@ import { ImageController } from './images/controller';
 // import { Page } from './pages/entities';
 import { ShopsController } from './shops/controller';
 import Admin from './admins/entity'
+import  OrderController  from './sweaterorders/controller';
 
 
 const port = process.env.PORT || 4000
@@ -43,7 +44,8 @@ useKoaServer(app, {
     LoginController,
     PagesController,
     ImageController,
-    ShopsController
+    ShopsController,
+    OrderController
     ],
     authorizationChecker: (action: Action) => {
       const header: string = action.request.headers.authorization
