@@ -1,0 +1,60 @@
+{
+  "_comment": "XML converted and modified to JSON from API (what our backend response might be like) postcode=1000AA",
+  "success": true,
+  "stores": [
+    {
+      "storeName": "Albert Heijn",
+      "address": "Elandsgracht 13A",
+      "postcode": "1016TM",
+      "city": "Amsterdam",
+      "mapUrl": "https://www.google.com/maps/place/Albert+Heijn/@52.3697806,4.8818158,17z/data=!3m1!4b1!4m5!3m4!1s0x47c609dd2ab6da35:0x458bd56ec7514910!8m2!3d52.3697806!4d4.8818158",
+      "latitude": 52.3697806,
+      "longitude": 4.8818158
+    },
+    {
+      "storeName": "Albert Heijn",
+      "address": "Watercipresstraat 15",
+      "postcode": "1326CM",
+      "city": "Almere",
+      "mapUrl": "https://www.google.com/maps/place/Albert+Heijn/@52.3760251,5.243492,17z/data=!3m1!4b1!4m5!3m4!1s0x47c617aa637a5b41:0x914a5d0fb753e4ad!8m2!3d52.3760251!4d5.243492",
+      "latitude": 52.3760251,
+      "longitude": 5.243492
+    },
+    {
+      "storeName": "Albert Heijn",
+      "address": "Pontstraat 34",
+      "postcode": "9300",
+      "city": "Aalst",
+      "mapUrl": "https://www.google.com/maps/place/AH+Pontstraat/@50.936441,4.0430767,17z/data=!3m1!4b1!4m5!3m4!1s0x47c3bd5c3c44cd5b:0x70046b97abc2b14!8m2!3d50.936441!4d4.0430767",
+      "latitude": 50.936441,
+      "longitude": 4.0430767
+    },
+    {
+      "storeName": "Albert Heijn XL",
+      "address": "Triade 14",
+      "postcode": "9401ZH",
+      "city": "Assen",
+      "mapUrl": "https://www.google.com/maps/place/Albert+Heijn+XL/@52.9978248,6.560446,17z/data=!3m1!4b1!4m5!3m4!1s0x47c8251c4c0520a1:0x529d3b7de19d03be!8m2!3d52.9978248!4d6.560446",
+      "latitude": 52.9978248,
+      "longitude": 6.560446
+    },
+    {
+      "storeName": "Albert Heijn",
+      "address": "Maltaplein 52",
+      "postcode": "3059 XW",
+      "city": "Rotterdam",
+      "mapUrl": "https://www.google.com/maps/place/Albert+Heijn/@51.9804148,4.5827503,17z/data=!3m1!4b1!4m5!3m4!1s0x47c5cd8476f97681:0xfc0f44a9c8d83be5!8m2!3d51.9804148!4d4.5827503",
+      "latitude": 51.9804148,
+      "longitude": 4.5827503
+    },
+    {
+      "storeName": "Albert Heijn",
+      "address": "Emiclaerhof 142",
+      "postcode": "3823ER",
+      "city": "Amersfoort",
+      "mapUrl": "https://www.google.com/maps/place/AH+Emiclaerhof/@52.1867979,5.3965148,17z/data=!3m1!4b1!4m5!3m4!1s0x47c646e64ccc0c3b:0xc9d55691b102b8e7!8m2!3d52.1867979!4d5.3965148",
+      "latitude": 52.1867979,
+      "longitude": 5.3965148
+    } 
+  ]
+}

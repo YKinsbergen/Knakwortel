@@ -1,8 +1,8 @@
-import storeReducer from './store.js';
+import storesFound from './stores-reducer.js';
 import {combineReducers} from 'redux';
 
-const reducer = combineReducers({
-  storeReducer
+const rootReducer = combineReducers({
+  storesFound
 });
 
-export default reducer;
+export default rootReducer;

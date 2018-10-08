@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
-import './MapView.css';
+import PropTypes from 'prop-types';
+import './MyMap.css';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 
-class MapView extends Component {
+class MyMap extends Component {
   render() {
-    const center = [54, -4];
-    const zoom = 6;
-    // let {markers} = this.props;
-    const markers = [
-         {
-          storeName: 'Appie',
-          type: 'Point',
-          position: [parseFloat(52.3702157), parseFloat(4.8951679)]
-         },
-          {
-          storeName: 'Appie',
-          position: [52.3702157, 4.8951679]
-          }
-    ]          
-   
-    const latLngList = markers.map((marker) => {
-       return marker.position
-     })
-
-     console.log(latLngList)
+    const center = [52, 5];
+    const zoom = 7;
+    const {markers} = this.props;
     
+    const latLngList = markers.map((marker) => {
+      return marker.position
+    })
+
     let mapSettings = {
       center,
       zoom,
@@ -44,10 +32,13 @@ class MapView extends Component {
         {markers.map((marker, idx) =>
           <Marker key={`marker-${idx}`} position={marker.position}>
             <Popup>
-              <h6>{ marker.storeName }</h6>
+              <div>
+              <a target="_blank" href={ marker.mapUrl } className="popup-link"><h6>{ marker.storeName }</h6></a>
+              </div>
             </Popup>
           </Marker>
         )}
+        {console.log(markers)}
       </Map>
     );
 
@@ -57,4 +48,8 @@ class MapView extends Component {
   }
 }
 
-export default MapView;
+MyMap.propTypes = {
+  markers: PropTypes.array.isRequired
+};
+
+export default MyMap;
