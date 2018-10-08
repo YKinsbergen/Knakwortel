@@ -19,13 +19,32 @@ router.get('/', async (ctx, next) => {
   await next()
 })
 
-async function instagramPhotos() {
-  const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')
-  const jsonObject = userPageSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+router.get('/trui', async (ctx, next) => {
+  const pageId = 2
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  console.log(page)
+  ctx.render('trui', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
 
-  const userInfo = JSON.parse(jsonObject)
-  const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
-  return mediaArray
+async function instagramPhotos() {
+  try {
+    const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')
+    const jsonObject = userPageSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+
+    const userInfo = JSON.parse(jsonObject)
+    const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
+    return mediaArray
+  }
+  catch(er) {
+    return er
+  }
 }
 
 module.exports = router

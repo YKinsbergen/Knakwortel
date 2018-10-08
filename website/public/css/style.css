@@ -32,7 +32,7 @@ h3 {
 }
 
 .dropdown-item:active, .dropdown-item:focus {
-  background-color: #F6813A !important;
+  background-color: #F6813A
 }
 
 .footer {
@@ -44,7 +44,7 @@ h3 {
 	background-repeat: repeat;
 }
 
-/* .container {
+/* .container, .container-fluid {
   border: 1px solid black;
 } */
 
@@ -52,8 +52,8 @@ h3 {
   height: 100vh;
 }
 
-.home h1{
-  font-size: 4rem;
+.home h1 {
+font-size: 4rem;
 line-height: 1.2;
 }
 
@@ -61,17 +61,67 @@ line-height: 1.2;
   font-size: 1.25rem;
 }
 
+.bestel {
+  padding-top: 100px;
+  height: 100vh;
+}
+
+.bestel h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  }
+
 .img-fluid {
   max-width: 100%; 
   height: auto;
 }
 
 @media (max-width: 768px) {
-  .home h1 {
+  .home h1, .bestel h1 {
     font-size: 3rem;
+  }
+  .btn {
+    background-color: white;
   }
 }
 
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
 
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
 
+.carousel-indicators .active{
+  background-color: black;
+}
 
+.carousel-indicators li {
+  background-color: grey
+}
+
+.btn {
+  border: 3px solid #F6813A;
+  border-radius: 0%;
+  /* color: #F6813A */
+}
+
+.btn:active, .btn:focus, .btn:hover {
+  background-color: #F6813A;
+  color: white;
+}
+
+.form-control, .custom-select {
+  border-color: #F6813A;
+  border-radius: 0%
+}
+
+.controleer {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.detrui {
+  margin-bottom: 4.5rem;
+}
