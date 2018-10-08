@@ -1,5 +1,7 @@
 import * as types from './action-types';
-import fetch from 'isomorphic-fetch'
+// import fetch from 'isomorphic-fetch'
+import request from 'superagent'
+import { apiUrl } from '../constants'
 
 export const requestStores = (postcode) => {
   return {
@@ -8,11 +10,10 @@ export const requestStores = (postcode) => {
   };
 }
 
-export const receiveStores = (postcode, json) => {
+export const receiveStores = (stores) => {
   return {
     type: types.RECEIVE_STORES,
-    postcode,
-    stores: json.stores,
+    stores,
     receivedAt: Date.now()
   };
 }
@@ -24,15 +25,15 @@ export function fetchStores(postcode) {
   return (dispatch) => {
     dispatch(requestStores(postcode));
 
-    const baseURL = (window.location.hostname === 'localhost') ?
-      'http://localhost:3000':
-      'http://knakwortel.nl'
+    // const baseURL = (window.location.hostname === 'localhost') ?
+    //   'http://localhost:3000':
+    //   'http://knakwortel.nl'
 
-    const dataPath = 'data/stores.json';
-    const dataURL = `${baseURL}/${dataPath}`;
+    // const dataPath = 'data/stores.json';
+    // const dataURL = `${baseURL}/${dataPath}`;
 
-    return fetch(dataURL)
-      .then(response => response.json())
-      .then(json => dispatch(receiveStores(postcode, json)))
+    return request(`${apiUrl}/shops`)
+      // .then(response => response.json())
+      .then(response => dispatch(receiveStores(response.body.shops)))
   }
 }

@@ -1,5 +1,5 @@
 import { JsonController, Post, Param, Get, Body, Put, NotFoundError, HttpCode, Delete, Authorized} from 'routing-controllers'
-import Order from './entity';
+import {Order, Size}  from './entities';
 
 @JsonController()
 export default class OrderController {
@@ -21,6 +21,16 @@ export default class OrderController {
       const order = await Order.findOne(id)
       if (!order) throw new NotFoundError ('Order not found') 
       return Order.merge(order, update).save()
+  }
+
+  @Put('/sizes/:id([0-9]+)')
+  async updateSize(
+     @Body() update: Partial<Size>,
+     @Param('id') id: number 
+  ) {
+      const size = await Size.findOne(id)
+      if (!size) throw new NotFoundError ('Size not found') 
+      return Size.merge(size, update).save()
   }
 
   @Authorized()
