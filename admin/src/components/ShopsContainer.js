@@ -13,6 +13,7 @@ class ShopsContainer extends React.PureComponent {
       ...this.state,
       newShops: result
     })
+    // console.log(result)
     this.props.addShops(result) // works but turned off for now
 
   }
@@ -28,13 +29,15 @@ class ShopsContainer extends React.PureComponent {
         const lineArray = []
         // Reading line by line
         allLines.forEach( (line) => {
-          const lineValues = line.split(",")
+          const lineValues = line.match(/([^,]+),([^,]+),([^,]+),([^,]+),(.*),([^,]+),([^,]+)/)
           const lineObj = {
-            name: lineValues[0],
-            address: lineValues[1],
-            zipcode: lineValues[2],
-            latitude: lineValues[3],
-            longitude: lineValues[4]
+            storeName: lineValues[1],
+            address: lineValues[2],
+            postcode: lineValues[3],
+            city: lineValues[4],
+            mapUrl: lineValues[5],
+            latitude: lineValues[6],
+            longitude: lineValues[7]
           }
             lineArray.push(lineObj)
         })
