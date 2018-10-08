@@ -14,7 +14,7 @@ export class ShopsController {
     }
     const savedShops: any = []
     shops.forEach(async (shop) => {
-      if (shop.name) {
+      if (shop.storeName) {
         const newShop = await Shop.create(shop)
         newShop.save()
         savedShops.push(newShop)

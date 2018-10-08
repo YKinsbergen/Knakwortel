@@ -14,6 +14,7 @@ function shopsFetched(shops) {
 }
 
 function newShopsFetched(shops) {
+  
   return {
     type: NEW_SHOPS_FETCHED,
     payload: shops

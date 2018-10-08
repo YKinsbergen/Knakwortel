@@ -11,7 +11,7 @@ export default function Shops(props) {
       <div class="pt-3 pb-2 mb-3">
         <h2>Shops (Verkooppunten)</h2>
         <input type="file" name="shopsCsv" id="shopsCsv" onChange={props.addShopsOnChange}/>
-          <p className="text-muted"><small>Voeg batch van shops toe via CSV file (format: naam,adres,1234XX,latitude,longitude)</small></p>
+          <p className="text-muted"><small>Voeg batch van shops toe via CSV file (format: naam,adres,1234XX,stad,googleMaps URL,latitude,longitude)</small></p>
 
       </div>
           <div class="table-responsive">
