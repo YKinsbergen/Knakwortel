@@ -1,9 +1,29 @@
 // src/admins/entity.ts
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-import { IsEmail, IsString, MinLength, MaxLength, IsNumber} from 'class-validator';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm'
+import { IsEmail, IsString, MinLength, MaxLength, IsNumber, IsBoolean} from 'class-validator';
+
 
 @Entity()
-export default class Order extends BaseEntity {
+export class Size extends BaseEntity {
+    
+    @PrimaryGeneratedColumn()
+    id?: number
+
+    @IsString()
+    @Column('text', {nullable:true})
+    name: string
+
+    @OneToMany(_ => Order, order => order.size)
+    orders: Order[]
+
+    @IsBoolean()
+    @Column('boolean', {default: true})
+    available: boolean
+    
+}
+
+@Entity()
+export class Order extends BaseEntity {
     
     @PrimaryGeneratedColumn()
     id?: number
@@ -43,10 +63,10 @@ export default class Order extends BaseEntity {
     @MinLength(2)
     @Column('text', {nullable:false})
     city: string
-
+    
     @IsString()
-    @Column ('text', {nullable:false})
-    size: string
+    @ManyToOne(_ => Size, size => size.orders, {eager:true})
+    size: Size
 
     @Column('boolean', {default: false})
     paymentSucces: boolean

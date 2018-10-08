@@ -8,7 +8,7 @@ import { Recipe, Topping, ToppingType } from './recipes/entity'
 import {Page, PageTitle, PageContent} from './pages/entities'
 import {Shop} from './shops/entity'
 import Image from './images/entity'
-import Order from './sweaterorders/entity'
+import {Order, Size} from './sweaterorders/entities'
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -43,7 +43,8 @@ export default () =>
         PageContent,
         Image,
         Shop,
-        Order
+        Order,
+        Size
       ],
       synchronize: true,
       logging: true,
