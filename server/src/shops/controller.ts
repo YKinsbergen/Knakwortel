@@ -1,9 +1,10 @@
-import { JsonController, Get, BadRequestError, Body, Post} from "routing-controllers";
+import { JsonController, Get, BadRequestError, Body, Post, Authorized} from "routing-controllers";
 import {Shop} from './entity'
 
 @JsonController()
 export class ShopsController {
 
+  @Authorized()
   @Post('/shops')
   async newShop(
     @Body() shops: any,//object[]
@@ -13,7 +14,7 @@ export class ShopsController {
     }
     const savedShops: any = []
     shops.forEach(async (shop) => {
-      if (shop.name) {
+      if (shop.storeName) {
         const newShop = await Shop.create(shop)
         newShop.save()
         savedShops.push(newShop)

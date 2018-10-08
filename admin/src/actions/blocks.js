@@ -1,5 +1,7 @@
 import request from 'superagent'
 import {apiUrl} from '../constants'
+import {isExpired} from '../jwt'
+import {logout} from './admins'
 
 export const BLOCKS_FETCHED = 'BLOCKS_FETCHED'
 export const BLOCK_FETCHED = 'BLOCK_FETCHED'
@@ -42,22 +44,28 @@ export const loadBlock = (blockId) => (dispatch, getState) => {
 }
 
 export const updateBlock = (blockId, data) => (dispatch, getState) => {
-  // const state = getState()
-  // const jwt = state.currentUser.jwt
+  const state = getState()
+  const jwt = state.currentUser.jwt
  
-  // if (isExpired(jwt)) return dispatch(logout())
+  if (isExpired(jwt)) return dispatch(logout())
 
   request
     .put(`${apiUrl}/contents/${blockId}`)
-    // .set('Authorization', `Bearer ${jwt}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => dispatch(blockUpdateSuccess(response.body)))
     .catch(console.error)
 }
 
-export const updateBlockImage = (blockId, url) => () => {
+export const updateBlockImage = (blockId, url) => (dispatch, getState) => {
+  const state = getState()
+  const jwt = state.currentUser.jwt
+ 
+  if (isExpired(jwt)) return dispatch(logout())
+
   request
     .put(`${apiUrl}/contents/${blockId}/image`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send({url})
     .then(result => console.log(result.body))
     .catch(err => {

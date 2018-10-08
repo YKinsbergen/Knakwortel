@@ -1,11 +1,11 @@
-import { JsonController, Post, BodyParam, Param, Get, Body, Put, NotFoundError, BadRequestError } from 'routing-controllers'
+import { JsonController, Post, BodyParam, Param, Get, Body, Put, NotFoundError, BadRequestError, Authorized } from 'routing-controllers'
 import Admin from './entity';
 
 @JsonController()
 export default class AdminController {
 
   // Wellicht een optie om een nieuw password aan te vragen. 
-  //@Authorized()
+  @Authorized()
   @Post('/admins')
   async signup(
     @BodyParam('email') email: string,
@@ -23,6 +23,7 @@ export default class AdminController {
     return admin
   }
 
+  @Authorized()
   @Put('/admins/:id')
   async updateAdmin(
      @Body() update: Partial<Admin>,

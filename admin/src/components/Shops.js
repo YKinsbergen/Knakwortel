@@ -11,7 +11,7 @@ export default function Shops(props) {
       <div class="pt-3 pb-2 mb-3">
         <h2>Shops (Verkooppunten)</h2>
         <input type="file" name="shopsCsv" id="shopsCsv" onChange={props.addShopsOnChange}/>
-          <p className="text-muted"><small>Voeg batch van shops toe via CSV file (format: naam,adres,1234XX,latitude,longitude)</small></p>
+          <p className="text-muted"><small>Voeg batch van shops toe via CSV file (format: naam,adres,1234XX,stad,googleMaps URL,latitude,longitude)</small></p>
 
       </div>
           <div class="table-responsive">
@@ -30,11 +30,11 @@ export default function Shops(props) {
                 {props.shops.map(shop => 
                 <tr key={shop.id}>
                   <td>link..</td>
-                  <td>{shop.name}</td>
+                  <td>{shop.storeName}</td>
                   
                   <td>{shop.address}</td>
 
-                  <td>{shop.zipcode}</td>
+                  <td>{shop.postcode}</td>
 
                   <td>{shop.latitude}</td>
                   <td>{shop.longitude}</td>

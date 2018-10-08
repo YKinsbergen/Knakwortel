@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode} from "routing-controllers";
+import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode, Authorized} from "routing-controllers";
 import {Page, PageContent} from './entities'
 import Image from '../images/entity'
 
@@ -60,7 +60,7 @@ export class PagesController {
         return pageContent
     }
 
-    //@Authorized
+    @Authorized()
     @HttpCode(201)
     @Put('/contents/:id([0-9]+)')
     async updatePageContent(
@@ -74,6 +74,7 @@ export class PagesController {
         return PageContent.merge(content, update).save()
     }
 
+    @Authorized()
     @HttpCode(201)
     @Put('/contents/:id([0-9]+)/image')
     async updatePageContentImage(
