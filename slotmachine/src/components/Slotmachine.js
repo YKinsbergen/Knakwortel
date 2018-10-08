@@ -67,13 +67,27 @@ export default function Slotmachine(props) {
     })
   }
 
+  // Gets topping urls from flattened array of toppings
+  const getToppingArrayUrls = (recipes) => {
+    return recipes
+    .map(recipe => {
+      return recipe.toppings
+    })
+    .map(array => {
+      return array
+      .map(topping => {
+        return topping.image.url
+      })
+    })
+  }
+
   // Function to reduce the nested array into one
   const concatNestedArrays = (array) => {
     let result = [].concat.apply([], array);
     return result
   }
   
-  // Gets topping names from flattened array of toppings and removes repeats
+  // Gets topping names from flattened array of toppings
   const getSauceToppingArrayNames = (toppings) => {
     return toppings.map(topping => {
       return topping.name
@@ -101,6 +115,13 @@ export default function Slotmachine(props) {
   const rouletteName = (h, a, n, t) => {
     return setTimeout(() => {
       h.innerHTML = a[n].name
+    }, t)
+  }
+  // Same as above but gets image url
+  // i = img
+  const rouletteUrl = (i, a, n, t) => {
+    return setTimeout(() => {
+      i.src=`${a[n]}`
     }, t)
   }
 
@@ -154,7 +175,10 @@ export default function Slotmachine(props) {
             const allToppings = concatNestedArrays(
               getToppingNameArrays(recipesWithSauce)
               )
-            
+
+            const allToppingsUrl = concatNestedArrays(
+              getToppingArrayUrls(recipes)
+              )
 
             // No sauce
             const rRecipeNoSauceName = (RecipeName(recipesNoSauce, rNumNoSauce))
@@ -177,8 +201,10 @@ export default function Slotmachine(props) {
                 )
             const rNumSauces = rNum(sauces)
 
+            // h = header, i = img
             const h1 = document.getElementById("recipe-header1")
             const h2 = document.getElementById("recipe-header2")
+            const i2 = document.getElementById("recipe-span2")
             const h3 = document.getElementById("recipe-header3")
             const h4 = document.getElementById("recipe-header4")
 
@@ -198,16 +224,23 @@ export default function Slotmachine(props) {
                 return h1.innerHTML = rRecipeNoSauceName
               }, 1500),
               // Second header
-              roulette(h2, allToppings, 8, 100),
               roulette(h2, allToppings, 4, 150),
+              rouletteUrl(i2, allToppingsUrl, 4, 150),
               roulette(h2, allToppings, 3, 200),
+              rouletteUrl(i2, allToppingsUrl, 3, 200),
               roulette(h2, allToppings, 0, 300),
+              rouletteUrl(i2, allToppingsUrl, 0, 300),
               roulette(h2, allToppings, 2, 500),
+              rouletteUrl(i2, allToppingsUrl, 2, 500),
               roulette(h2, allToppings, 3, 700),
+              rouletteUrl(i2, allToppingsUrl, 3, 700),
               roulette(h2, allToppings, 1, 850),
+              rouletteUrl(i2, allToppingsUrl, 1, 850),
               roulette(h2, allToppings, 2, 1100),
+              rouletteUrl(i2, allToppingsUrl, 2, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeNoSauceToppings[0].name
+                return h2.innerHTML = rRecipeNoSauceToppings[0].name,
+                i2.src=`${rRecipeNoSauceToppings[0].image.url}`
               }, 1500),
               // Third header
               roulette(h3, allToppings, 10, 80),
@@ -411,6 +444,7 @@ export default function Slotmachine(props) {
       <p>Main ingredients</p>
       <div className="column">
           <h4 id="recipe-header2">1</h4>
+          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/augurk.png" id="recipe-span2"/>
       </div>
       <div className="column">
           <h4 id="recipe-header3">2</h4>

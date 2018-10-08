@@ -7,7 +7,7 @@ import { Recipe } from "./entity";
 export class RecipeController {
     @Get('/recipes')
     allRecipes = async() => {
-        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingTypes"]})
+        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingTypes", "toppings.image"]})
         return {recipes}
     }
 
