@@ -1,5 +1,7 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, 
+
     JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn,  } from 'typeorm';
+
 import Image from '../images/entity';
 
 @Entity()
