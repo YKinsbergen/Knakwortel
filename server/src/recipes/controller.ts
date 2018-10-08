@@ -21,6 +21,12 @@ export class RecipeController {
         return recipe
     }
 
+    @Get('/toppings')
+    async getAllToppings() {
+        const toppings = await Topping.find()
+        return {toppings}
+    }
+
     // @Authorized()
     @Post('/recipes')
     @HttpCode(201)
