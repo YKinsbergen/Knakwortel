@@ -67,13 +67,27 @@ export default function Slotmachine(props) {
     })
   }
 
+  // Gets topping urls from flattened array of toppings
+  const getToppingArrayUrls = (recipes) => {
+    return recipes
+    .map(recipe => {
+      return recipe.toppings
+    })
+    .map(array => {
+      return array
+      .map(topping => {
+        return topping.image.url
+      })
+    })
+  }
+
   // Function to reduce the nested array into one
   const concatNestedArrays = (array) => {
     let result = [].concat.apply([], array);
     return result
   }
   
-  // Gets topping names from flattened array of toppings and removes repeats
+  // Gets topping names from flattened array of toppings
   const getSauceToppingArrayNames = (toppings) => {
     return toppings.map(topping => {
       return topping.name
@@ -84,6 +98,19 @@ export default function Slotmachine(props) {
   // Sets inherently cannot have repeating values
   const removeRepeats = (array) => {
     return Array.from(new Set(array));
+ }
+
+ const removeRepeatsObjects = (array) => {
+   return array.reduce((p, c) => {
+    var id = [c.id].join('|')
+
+    if (p.temp.indexOf(id) === -1) {
+      p.out.push(c);
+      p.temp.push(id);
+    }
+    return p;
+
+   }, { temp: [], out: [] }).out
  }
  
   // Random number
@@ -101,6 +128,13 @@ export default function Slotmachine(props) {
   const rouletteName = (h, a, n, t) => {
     return setTimeout(() => {
       h.innerHTML = a[n].name
+    }, t)
+  }
+  // Same as above but gets image url
+  // i = img
+  const rouletteUrl = (i, a, n, t) => {
+    return setTimeout(() => {
+      i.src=`${a[n]}`
     }, t)
   }
 
@@ -129,13 +163,33 @@ export default function Slotmachine(props) {
 
   return (
     <div className="slotmachine-wrapper">
-      <h2>Slot machine v2.0</h2>
+      <h2>Slot machine</h2>
 
       {/* Render the conditional filter text */}
       {conditionalRenderNoFilters()}
       {conditionalRenderSauceFilter()}
       {conditionalRenderVegetableFilter()}
       {conditionalRenderWithSauceFilter()}
+
+      <div className="filter-wrapper">
+        <button id="sauce-filter-btn" className="filter-btn" 
+          onClick={() => {
+            filterSauce()
+            }}>Filter sauce
+        </button>
+
+        <button id="vegetable-filter-btn" className="filter-btn" 
+          onClick={() => {
+            filterVegetable()
+            }}>Filter vegetable
+        </button>
+
+        <button id="withsauce-filter-btn" className="filter-btn" 
+          onClick={() => {
+            filterWithSauce()
+            }}>Filter no sauce
+        </button>
+      </div>
 
       <div className="start-wrapper">
         <button className="start-btn" 
@@ -154,7 +208,10 @@ export default function Slotmachine(props) {
             const allToppings = concatNestedArrays(
               getToppingNameArrays(recipesWithSauce)
               )
-            
+
+            const allToppingsUrl = concatNestedArrays(
+              getToppingArrayUrls(recipes)
+              )
 
             // No sauce
             const rRecipeNoSauceName = (RecipeName(recipesNoSauce, rNumNoSauce))
@@ -176,11 +233,16 @@ export default function Slotmachine(props) {
                   )
                 )
             const rNumSauces = rNum(sauces)
+            const sauceObjectArray = removeRepeatsObjects(concatNestedArrays(getSauceToppingArray(recipesWithSauce)))
 
+            // h = header, i = img
             const h1 = document.getElementById("recipe-header1")
             const h2 = document.getElementById("recipe-header2")
+            const i2 = document.getElementById("recipe-img2")
             const h3 = document.getElementById("recipe-header3")
+            const i3 = document.getElementById("recipe-img3")
             const h4 = document.getElementById("recipe-header4")
+            const i4 = document.getElementById("recipe-img4")
 
             // No sauces filter
             if (filters.sauceFilter === true) {
@@ -198,40 +260,65 @@ export default function Slotmachine(props) {
                 return h1.innerHTML = rRecipeNoSauceName
               }, 1500),
               // Second header
-              roulette(h2, allToppings, 8, 100),
               roulette(h2, allToppings, 4, 150),
+              rouletteUrl(i2, allToppingsUrl, 4, 150),
               roulette(h2, allToppings, 3, 200),
+              rouletteUrl(i2, allToppingsUrl, 3, 200),
               roulette(h2, allToppings, 0, 300),
+              rouletteUrl(i2, allToppingsUrl, 0, 300),
               roulette(h2, allToppings, 2, 500),
+              rouletteUrl(i2, allToppingsUrl, 2, 500),
               roulette(h2, allToppings, 3, 700),
+              rouletteUrl(i2, allToppingsUrl, 3, 700),
               roulette(h2, allToppings, 1, 850),
+              rouletteUrl(i2, allToppingsUrl, 1, 850),
               roulette(h2, allToppings, 2, 1100),
+              rouletteUrl(i2, allToppingsUrl, 2, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeNoSauceToppings[0].name
+                return h2.innerHTML = rRecipeNoSauceToppings[0].name,
+                i2.src=`${rRecipeNoSauceToppings[0].image.url}`
               }, 1500),
               // Third header
               roulette(h3, allToppings, 10, 80),
-              roulette(h3, allToppings, 4, 150),
-              roulette(h3, allToppings, 3, 200),
-              roulette(h3, allToppings, 0, 300),
+              rouletteUrl(i3, allToppingsUrl, 10, 80),
+              roulette(h3, allToppings, 5, 150),
+              rouletteUrl(i3, allToppingsUrl, 5, 150),
+              roulette(h3, allToppings, 1, 200),
+              rouletteUrl(i3, allToppingsUrl, 1, 200),
+              roulette(h3, allToppings, 5, 300),
+              rouletteUrl(i3, allToppingsUrl, 5, 300),
               roulette(h3, allToppings, 2, 520),
-              roulette(h3, allToppings, 3, 600),
-              roulette(h3, allToppings, 1, 800),
-              roulette(h3, allToppings, 2, 1200),
+              rouletteUrl(i3, allToppingsUrl, 2, 520),
+              roulette(h3, allToppings, 4, 600),
+              rouletteUrl(i3, allToppingsUrl, 4, 600),
+              roulette(h3, allToppings, 9, 800),
+              rouletteUrl(i3, allToppingsUrl, 9, 800),
+              roulette(h3, allToppings, 10, 1200),
+              rouletteUrl(i3, allToppingsUrl, 10, 1200),
               setTimeout(() => {
-                return h3.innerHTML = rRecipeNoSauceToppings[1].name
+                return h3.innerHTML = rRecipeNoSauceToppings[1].name,
+                i3.src=`${rRecipeNoSauceToppings[1].image.url}`
               }, 1500),
               // Fourth header
               roulette(h4, allToppings, 12, 130),
+              rouletteUrl(i4, allToppingsUrl, 12, 130),
               roulette(h4, allToppings, 3, 150),
+              rouletteUrl(i4, allToppingsUrl, 3, 150),
               roulette(h4, allToppings, 6, 200),
+              rouletteUrl(i4, allToppingsUrl, 6, 200),
               roulette(h4, allToppings, 1, 350),
+              rouletteUrl(i4, allToppingsUrl, 1, 350),
               roulette(h4, allToppings, 0, 500),
+              rouletteUrl(i4, allToppingsUrl, 0, 500),
               roulette(h4, allToppings, 7, 700),
+              rouletteUrl(i4, allToppingsUrl, 7, 700),
               roulette(h4, allToppings, 6, 900),
+              rouletteUrl(i4, allToppingsUrl, 6, 900),
               roulette(h4, allToppings, 5, 1300),
+              rouletteUrl(i4, allToppingsUrl, 5, 1300),
               setTimeout(() => {
-                return h4.innerHTML = rRecipeNoSauceToppings[2].name
+                return h4.innerHTML = rRecipeNoSauceToppings[2].name,
+                i4.src=`${rRecipeNoSauceToppings[2].image.url}`
               }, 1500)
             }
 
@@ -251,40 +338,65 @@ export default function Slotmachine(props) {
                 return h1.innerHTML = rRecipeWithSauceName
               }, 1500),
               // Second header
-              roulette(h2, allToppings, 8, 100),
-              roulette(h2, allToppings, 4, 150),
-              roulette(h2, allToppings, 3, 200),
-              roulette(h2, allToppings, 0, 300),
-              roulette(h2, allToppings, 2, 500),
-              roulette(h2, allToppings, 3, 700),
-              roulette(h2, allToppings, 1, 850),
-              roulette(h2, allToppings, 2, 1100),
+              roulette(h2, allToppings, 8, 150),
+              rouletteUrl(i2, allToppingsUrl, 8, 150),
+              roulette(h2, allToppings, 1, 200),
+              rouletteUrl(i2, allToppingsUrl, 1, 200),
+              roulette(h2, allToppings, 5, 300),
+              rouletteUrl(i2, allToppingsUrl, 5, 300),
+              roulette(h2, allToppings, 1, 500),
+              rouletteUrl(i2, allToppingsUrl, 1, 500),
+              roulette(h2, allToppings, 9, 700),
+              rouletteUrl(i2, allToppingsUrl, 9, 700),
+              roulette(h2, allToppings, 2, 850),
+              rouletteUrl(i2, allToppingsUrl, 2, 850),
+              roulette(h2, allToppings, 3, 1100),
+              rouletteUrl(i2, allToppingsUrl, 3, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeWithSauceToppings[0].name
+                return h2.innerHTML = rRecipeWithSauceToppings[0].name,
+                i2.src=`${rRecipeWithSauceToppings[0].image.url}`
               }, 1500),
               // Third header
               roulette(h3, allToppings, 10, 80),
-              roulette(h3, allToppings, 4, 150),
-              roulette(h3, allToppings, 3, 200),
-              roulette(h3, allToppings, 0, 300),
+              rouletteUrl(i3, allToppingsUrl, 10, 80),
+              roulette(h3, allToppings, 5, 150),
+              rouletteUrl(i3, allToppingsUrl, 5, 150),
+              roulette(h3, allToppings, 1, 200),
+              rouletteUrl(i3, allToppingsUrl, 1, 200),
+              roulette(h3, allToppings, 5, 300),
+              rouletteUrl(i3, allToppingsUrl, 5, 300),
               roulette(h3, allToppings, 2, 520),
-              roulette(h3, allToppings, 3, 600),
-              roulette(h3, allToppings, 1, 800),
-              roulette(h3, allToppings, 2, 1200),
+              rouletteUrl(i3, allToppingsUrl, 2, 520),
+              roulette(h3, allToppings, 4, 600),
+              rouletteUrl(i3, allToppingsUrl, 4, 600),
+              roulette(h3, allToppings, 9, 800),
+              rouletteUrl(i3, allToppingsUrl, 9, 800),
+              roulette(h3, allToppings, 10, 1200),
+              rouletteUrl(i3, allToppingsUrl, 10, 1200),
               setTimeout(() => {
-                return h3.innerHTML = rRecipeWithSauceToppings[1].name
+                return h3.innerHTML = rRecipeWithSauceToppings[1].name,
+                i3.src=`${rRecipeWithSauceToppings[1].image.url}`
               }, 1500),
               // Fourth header
               roulette(h4, allToppings, 12, 130),
+              rouletteUrl(i4, allToppingsUrl, 12, 130),
               roulette(h4, allToppings, 3, 150),
+              rouletteUrl(i4, allToppingsUrl, 3, 150),
               roulette(h4, allToppings, 6, 200),
+              rouletteUrl(i4, allToppingsUrl, 6, 200),
               roulette(h4, allToppings, 1, 350),
+              rouletteUrl(i4, allToppingsUrl, 1, 350),
               roulette(h4, allToppings, 0, 500),
+              rouletteUrl(i4, allToppingsUrl, 0, 500),
               roulette(h4, allToppings, 7, 700),
+              rouletteUrl(i4, allToppingsUrl, 7, 700),
               roulette(h4, allToppings, 6, 900),
+              rouletteUrl(i4, allToppingsUrl, 6, 900),
               roulette(h4, allToppings, 5, 1300),
+              rouletteUrl(i4, allToppingsUrl, 5, 1300),
               setTimeout(() => {
-                return h4.innerHTML = rRecipeWithSauceToppings[2].name
+                return h4.innerHTML = rRecipeWithSauceToppings[2].name,
+                i4.src=`${rRecipeWithSauceToppings[2].image.url}`
               }, 1500)
             }
 
@@ -302,23 +414,23 @@ export default function Slotmachine(props) {
               roulette(h2, sauces, 0, 850),
               roulette(h2, sauces, 1, 1100),
               // Third header
-              roulette(h3, sauces, 3, 100),
+              roulette(h3, sauces, 1, 100),
               roulette(h3, sauces, 2, 150),
               roulette(h3, sauces, 1, 200),
               roulette(h3, sauces, 0, 300),
               roulette(h3, sauces, 1, 500),
               roulette(h3, sauces, 2, 700),
-              roulette(h3, sauces, 3, 850),
+              roulette(h3, sauces, 1, 850),
               roulette(h3, sauces, 2, 1100),
               // Fourth header
-              roulette(h4, sauces, 2, 100),
-              roulette(h4, sauces, 3, 150),
+              roulette(h4, sauces, 1, 100),
+              roulette(h4, sauces, 0, 150),
               roulette(h4, sauces, 2, 200),
               roulette(h4, sauces, 1, 300),
               roulette(h4, sauces, 0, 500),
               roulette(h4, sauces, 2, 700),
               roulette(h4, sauces, 0, 850),
-              roulette(h4, sauces, 3, 1100),
+              roulette(h4, sauces, 1, 1100),
               setTimeout(() => {
                 if (rNumSauces === 0) {
                 return h2.innerHTML = getToppingName(sauces, rNumSauces),
@@ -334,16 +446,6 @@ export default function Slotmachine(props) {
                   return h2.innerHTML = getToppingName(sauces, rNumSauces-1), 
                   h3.innerHTML = getToppingName(sauces, rNumSauces),
                   h4.innerHTML = getToppingName(sauces, rNumSauces-2)
-                }
-                else if (rNumSauces === 3) {
-                  return h2.innerHTML = getToppingName(sauces, rNumSauces), 
-                  h3.innerHTML = getToppingName(sauces, rNumSauces-2),
-                  h4.innerHTML = getToppingName(sauces, rNumSauces-1)
-                }
-                else {
-                  return h2.innerHTML = getToppingName(sauces, rNumSauces-2), 
-                  h3.innerHTML = getToppingName(sauces, rNumSauces),
-                  h4.innerHTML = getToppingName(sauces, rNumSauces-1)
                 }
               }, 1500)
             }
@@ -408,54 +510,21 @@ export default function Slotmachine(props) {
           <h4 id="recipe-header1" className="animation">Recipe</h4>
       </div>
 
-      <p>Main ingredients</p>
+      <p id="slots-header">Main ingredients</p>
       <div className="column">
+          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/sla.png" id="recipe-img2"/>
           <h4 id="recipe-header2">1</h4>
       </div>
       <div className="column">
+          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/augurk.png" id="recipe-img3"/>
           <h4 id="recipe-header3">2</h4>
       </div> 
       <div className="column">
+          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/ketchup.png" id="recipe-img4"/>
           <h4 id="recipe-header4">3</h4>
       </div> 
 
-      <div id="link-div" className="link-wrapper">
-        {renderLinkToRecipeDetails()}
-      </div> 
-      {/* remove br tag in future, replace space with css */}
-      <br/>
-
-      <div className="filter-wrapper">
-        <button id="sauce-filter-btn" className="filter-btn" 
-          onClick={() => {
-            // const btn = document.getElementById("sauce-filter-btn")
-            filterSauce()
-            // State has a delay, so the inverse needs to be true
-            // if (!filters.sauceFilter === true) return btn.innerText = 'Filter sauce on'
-            // return btn.innerText = 'Filter sauce off'
-            }}>Filter sauce
-        </button>
-
-        <button id="vegetable-filter-btn" className="filter-btn" 
-          onClick={() => {
-            // const btn = document.getElementById("vegetable-filter-btn")
-            filterVegetable()
-            // State has a delay, so the inverse needs to be true
-            // if (!filters.vegetableFilter === true) return btn.innerText = 'Filter vegetable on'
-            // return btn.innerText = 'Filter vegetable off'
-            }}>Filter vegetable
-        </button>
-
-        <button id="withsauce-filter-btn" className="filter-btn" 
-          onClick={() => {
-            // const btn = document.getElementById("withsauce-filter-btn")
-            filterWithSauce()
-            // State has a delay, so the inverse needs to be true
-            // if (!filters.withSauceFilter === true) return btn.innerText = 'Filter with sauce on'
-            // return btn.innerText = 'Filter with sauce off'
-            }}>Filter no sauce
-        </button>
-      </div>
+      {renderLinkToRecipeDetails()}
     </div>
   )
 }

@@ -38,9 +38,9 @@ class SlotmachineContainer extends React.Component {
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
-    return <Link id="link-details" to={`/recipes/${recipeId.value}`}>
+    return <div className="link-div"><Link id="link-details" to={`/recipes/${recipeId.value}`}>
     Recipe details
-    </Link>
+    </Link></div>
   }
 
   render() {

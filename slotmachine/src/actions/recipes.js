@@ -1,10 +1,10 @@
 // src/actions/recipes.js
 import request from 'superagent'
+import {baseUrl} from '../constants'
 
 export const RECIPES_FETCHED = 'RECIPES_FETCHED'
 export const RECIPE_FETCHED = 'RECIPE_FETCHED'
 
-const baseUrl = 'http://localhost:4000'
 
 const recipesFetched = recipes => ({
     type: RECIPES_FETCHED,
