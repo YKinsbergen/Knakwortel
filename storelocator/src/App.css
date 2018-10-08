@@ -1,0 +1,15 @@
+.App-header h1 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.search-form {
+  justify-content: center;
+}

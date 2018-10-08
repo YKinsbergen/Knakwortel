@@ -8,19 +8,25 @@ export class Shop extends BaseEntity {
   id?: number
 
   @Column('text', {nullable: false})
-  name: string
+  storeName: string
 
   @Column('text', {nullable: false})
   address: string
 
   @Column('text', {nullable: false})
-  zipcode: string
+  city: string
+
+  @Column('text', {nullable: false})
+  postcode: string
 
   @Column('double precision', {nullable: true})
   latitude: number
 
   @Column('double precision', {nullable: true})
   longitude: number
+
+  @Column('text', {nullable: false})
+  mapUrl: string
 
 
 }

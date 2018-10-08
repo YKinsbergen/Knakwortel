@@ -1,8 +1,10 @@
 // src/index.ts
 import 'reflect-metadata'
-import {Action, createKoaServer, BadRequestError} from "routing-controllers"
+import {Action, useKoaServer, BadRequestError} from "routing-controllers"
 import setupDb from './db'
 import { verify } from './jwt'
+import * as Koa from 'koa'
+import {Server} from 'http'
 import AdminController from './admins/controller';
 import { RecipeController } from './recipes/controller';
 import LoginController from './logins/controller';
@@ -15,7 +17,25 @@ import Admin from './admins/entity'
 
 const port = process.env.PORT || 4000
 
-const app = createKoaServer({
+const app = new Koa()
+const server = new Server(app.callback())
+
+// function corsWhiteList(action: Action) {
+//     const requestOrigin = action.request.headers.origin
+//     console.log('******ORIGIN: ', requestOrigin)
+//     const whitelist = [
+//       // 'http://localhost',
+//       'https://knakwortel-website.herokuapp.com/',
+//       'https://knakwortel-admin.herokuapp.com/'
+//     ]
+//     if (whitelist.includes(requestOrigin)) {
+//       return false
+//     } else {
+//       return false
+//     }
+// }
+
+useKoaServer(app, {
   cors: true,
   controllers: [
     AdminController,
@@ -56,6 +76,7 @@ const app = createKoaServer({
 
 setupDb()
   .then(_ =>
-    app.listen(port, () => console.log(`Listening on port ${port}`))
+    server.listen(port, () => {
+      console.log(`Listening on port ${port}`)})
   )
   .catch(err => console.error(err))
