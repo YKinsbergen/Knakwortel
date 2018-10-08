@@ -1,6 +1,7 @@
-// src/advertisements/entity.ts
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, 
-    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+
+    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn,  } from 'typeorm';
+
 import Image from '../images/entity';
 
 @Entity()
@@ -15,7 +16,7 @@ export class Recipe extends BaseEntity {
     description: string
 
     @ManyToMany(() => Topping)
-    @JoinTable({name: "RecipeConfigurations"})
+    @JoinTable({name: "recipe_configurations"})
     toppings: Topping[]
 }
 

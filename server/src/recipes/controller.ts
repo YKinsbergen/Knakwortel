@@ -1,6 +1,9 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Delete, NotFoundError, Param } from "routing-controllers";
-import { Recipe } from "./entity";
+
+import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam,  } from "routing-controllers";
+import { Recipe, Topping } from "./entity";
+
+
 
 
 @JsonController()
@@ -18,9 +21,25 @@ export class RecipeController {
         return recipe
     }
 
+    // @Authorized()
+    @Post('/recipes')
+    @HttpCode(201)
+    async createRecipe(
+      @BodyParam('name') name: string,
+      @BodyParam('description') description: string,
+      @BodyParam('toppings') toppings: string[]
+    ) {
+        const toppingEntities = await Promise.all(
+            toppings.map(toppingId => Topping.findOne(toppingId))
+        )
 
+        const recipe = await Recipe.create({name, description, toppings: toppingEntities})
+        
 
-    //@Authorized()
+        return recipe.save()
+    }
+
+    @Authorized()
     @Delete('/recipes')
     async deleteRecipe(
         @Param('id') id: number,
