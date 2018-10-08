@@ -30,11 +30,11 @@ export default function Shops(props) {
                 {props.shops.map(shop => 
                 <tr key={shop.id}>
                   <td>link..</td>
-                  <td>{shop.name}</td>
+                  <td>{shop.storeName}</td>
                   
                   <td>{shop.address}</td>
 
-                  <td>{shop.zipcode}</td>
+                  <td>{shop.postcode}</td>
 
                   <td>{shop.latitude}</td>
                   <td>{shop.longitude}</td>
