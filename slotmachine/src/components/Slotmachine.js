@@ -67,6 +67,12 @@ export default function Slotmachine(props) {
     })
   }
 
+  // Function to reduce the nested array into one
+  const concatNestedArrays = (array) => {
+    let result = [].concat.apply([], array);
+    return result
+  }
+
   // Gets topping urls from flattened array of toppings
   const getToppingArrayUrls = (recipes) => {
     return recipes
@@ -80,6 +86,12 @@ export default function Slotmachine(props) {
       })
     })
   }
+  // Gets topping names from flattened array of toppings
+  const getSauceToppingArrayNames = (toppings) => {
+    return toppings.map(topping => {
+      return topping.name
+    })
+  }
   // Gets image urls from flattened array of sauces
   const getSauceArrayUrls = (sauces) => {
     return sauces
@@ -87,20 +99,6 @@ export default function Slotmachine(props) {
       return sauce.image.url
     })
   }
-
-  // Function to reduce the nested array into one
-  const concatNestedArrays = (array) => {
-    let result = [].concat.apply([], array);
-    return result
-  }
-  
-  // Gets topping names from flattened array of toppings
-  const getSauceToppingArrayNames = (toppings) => {
-    return toppings.map(topping => {
-      return topping.name
-    })
-  }
-
   
   // Remove repeating elements from an array by creating a 'Set'
   // Sets inherently cannot have repeating values
@@ -203,8 +201,8 @@ export default function Slotmachine(props) {
         <button className="start-btn" 
         onClick={
           () => {
-            // This random number is stored so that the number is stored
-            // and can be used in different functions.
+            // This random number is stored so that the number can be used in
+            // different functions without randomizing for each call
             const randomNum = rNum(recipes)
             const rNumNoSauce = rNum(recipesNoSauce)
             const rNumWithSauce = rNum(recipesWithSauce)
@@ -241,8 +239,14 @@ export default function Slotmachine(props) {
                   )
                 )
             const rNumSauces = rNum(sauces)
-            const sauceUrls = getSauceArrayUrls(removeRepeatsObjects(concatNestedArrays(getSauceToppingArray(recipesWithSauce))))
-            console.log(sauces)
+            const sauceUrls = getSauceArrayUrls(
+              removeRepeatsObjects(
+                concatNestedArrays(
+                  getSauceToppingArray(
+                    recipesWithSauce)
+                    )
+                  )
+                )
 
             // h = header, i = img
             const h1 = document.getElementById("recipe-header1")
