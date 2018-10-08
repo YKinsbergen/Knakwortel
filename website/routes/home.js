@@ -20,12 +20,17 @@ router.get('/', async (ctx, next) => {
 })
 
 async function instagramPhotos() {
-  const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')
-  const jsonObject = userPageSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+  try {
+    const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')
+    const jsonObject = userPageSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
 
-  const userInfo = JSON.parse(jsonObject)
-  const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
-  return mediaArray
+    const userInfo = JSON.parse(jsonObject)
+    const mediaArray = userInfo.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
+    return mediaArray
+  }
+  catch(er) {
+    return er
+  }
 }
 
 module.exports = router
