@@ -1,6 +1,6 @@
 // src/advertisements/controller.ts
 import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam,  } from "routing-controllers";
-import { Recipe } from "./entity";
+import { Recipe, Topping } from "./entity";
 
 
 @JsonController()
@@ -24,24 +24,16 @@ export class RecipeController {
     async createRecipe(
       @BodyParam('name') name: string,
       @BodyParam('description') description: string,
-      @BodyParam('toppings') toppings: any
+      @BodyParam('toppings') toppings: string[]
     ) {
-        console.log(toppings)
-        const recipe = await Recipe.create({name, description})
-        recipe.save()
-        // toppings.forEach(async (topp) => {
-        //     try {
-        //         const topping = await Topping.findOne(parseInt(topp))
-        //         if (!topping) throw new NotFoundError('Topping doesnt exist')
-        //         console.log('*****TOPPING',topping)
-        //         const recConfig = await RecipeConfiguration.create({recipe, topping})
-        //         recConfig.save()
-        //     } catch(err) {
-        //         console.log(err)
-        //     }
-        // })
+        const toppingEntities = await Promise.all(
+            toppings.map(toppingId => Topping.findOne(toppingId))
+        )
 
-        return recipe
+        const recipe = await Recipe.create({name, description, toppings: toppingEntities})
+        
+
+        return recipe.save()
     }
 
     @Authorized()
