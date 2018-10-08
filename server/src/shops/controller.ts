@@ -1,4 +1,4 @@
-import { JsonController, Get, BadRequestError, Body, Post, Authorized, Param} from "routing-controllers";
+import { JsonController, Get, BadRequestError, Body, Post, Authorized, Delete, Param, NotFoundError} from "routing-controllers";
 import {Shop} from './entity'
 
 @JsonController()
@@ -40,8 +40,13 @@ export class ShopsController {
     return shops
   }
 
-
-
-
+  @Delete('/shops/:id')
+  async deleteShop(
+    @Param('id') id: number
+  ) {
+    const shop = await Shop.findOne(id)
+    if (!shop) throw new NotFoundError('Shop doesnt exist')
+    return Shop.delete(shop)
+  }
 
 }
