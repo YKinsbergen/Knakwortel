@@ -12,55 +12,55 @@ block content
               h1=bestel.headline
               p=bestel.body 
                 a(href="#")  bericht.
-              form(class="needs-validation" novalidate )
+              form(class="needs-validation" novalidate method="post" action="/trui-order")
                 .row
                   .col-lg-4.py-2
-                    label(for="bedrijfsnaam") Bedrijfsnaam (optioneel)
-                    input(type="text" class="form-control" id="bedrijfsnaam" placeholder="" value="")
+                    label(for="company") Bedrijfsnaam (optioneel)
+                    input(type="text" class="form-control" id="company" name="company" placeholder="" value="")
                   .col-lg-4.py-2
                     label(for="naam") Naam
-                    input(type="text" class="form-control" id="naam" placeholder="" value="" required)
+                    input(type="text" class="form-control" id="naam" name="name" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Naam is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="email") Email
-                    input(type="email" class="form-control" id="email" placeholder="" value="" required)
+                    input(type="email" class="form-control" id="email" name="email" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Email is een verplicht veld.
 
                 .row
                   .col-lg-4.py-2
                     label(for="straat") Straat
-                    input(type="text" class="form-control" id="straat" placeholder="" value="" required)
+                    input(type="text" class="form-control" id="straat" name="street" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Straat is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="huisnummer") Huisnummer
-                    input(type="number" class="form-control" id="huisnummer" placeholder="" value="" required)
+                    input(type="number" class="form-control" id="huisnummer" name="houseNumber" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Huisnummer is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="toevoeging") Toevoeging (optioneel)
-                    input(type="number" class="form-control" id="toevoeging" placeholder="" value="")
+                    input(type="number" class="form-control" id="toevoeging"  name="addition" placeholder="" value="")
 
                 .row
                   .col-lg-4.py-2
                     label(for="postcode") Postcode
-                    input(type="text" class="form-control" id="postcode" placeholder="" value="" required)
+                    input(type="text" class="form-control" id="postcode" name="zipcode" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Postcode is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="plaats") Plaats
-                    input(type="text" class="form-control" id="plaats" placeholder="" value="" required)
+                    input(type="text" class="form-control" id="plaats" name="city" placeholder="" value="" required)
                     div(class="invalid-feedback")
                       Valid Plaats is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="maat") Maat
-                    select(class="custom-select d-block w-100" id="maat" required)
+                    select(class="custom-select d-block w-100" id="maat" name="sizeId" required)
                       option(value="") Kies je maat:
-                      option Small
-                      option Medium
-                      option Large
+                      option(value=1) Small
+                      option(value=2) Medium
+                      option(value=3) Large
                 .row
                   .col-lg-4.offset-lg-8
                     button(class="btn btn-outline controleer" type="submit") Controleer bestelling
