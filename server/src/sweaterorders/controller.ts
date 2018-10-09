@@ -18,6 +18,7 @@ export default class OrderController {
      @Body() update: Partial<Order>,
      @Param('id') id: number 
   ) {
+      console.log(update)
       const order = await Order.findOne(id)
       if (!order) throw new NotFoundError ('Order not found') 
       return Order.merge(order, update).save()
