@@ -33,9 +33,10 @@ router.get('/trui', async (ctx, next) => {
   await next()
 })
 
-router.post('/trui-order', parseBody(), async (ctx, next) => {
-  const { company, name, email, street, houseNumber, addition, zipcode, city, sizeId } = ctx.request.body
+router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
+  const { company, name, email, street, houseNumber, addition, zipcode, city, size } = ctx.request.body
   console.log(ctx.request.body)
+  
 
     axios.post(`${apiUrl}/orders`, ctx.request.body
     )
@@ -43,12 +44,10 @@ router.post('/trui-order', parseBody(), async (ctx, next) => {
       console.log("hi");
     });
 
-  ctx.render('trui-order-success', { company, name, email, street, houseNumber, addition, zipcode, city, sizeId })
+  ctx.render('trui-order-success', { company, name, email, street, houseNumber, addition, zipcode, city, size })
 
   await next()
 })
-
-
 
 
 async function instagramPhotos() {

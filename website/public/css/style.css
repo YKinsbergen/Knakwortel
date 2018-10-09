@@ -52,7 +52,7 @@ h3 {
   height: 100vh;
 }
 
-.home h1 {
+.home h1, .geknakt h1 {
 font-size: 4rem;
 line-height: 1.2;
 }
@@ -61,7 +61,7 @@ line-height: 1.2;
   font-size: 1.25rem;
 }
 
-.bestel {
+.bestel, .geknakt {
   padding-top: 100px;
   height: 100vh;
 }
@@ -77,7 +77,7 @@ line-height: 1.2;
 }
 
 @media (max-width: 768px) {
-  .home h1, .bestel h1 {
+  .home h1, .bestel h1, .geknakt h1 {
     font-size: 3rem;
   }
   .btn {

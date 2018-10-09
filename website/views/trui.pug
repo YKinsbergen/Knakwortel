@@ -12,7 +12,7 @@ block content
               h1=bestel.headline
               p=bestel.body 
                 a(href="#")  bericht.
-              form(class="needs-validation" novalidate method="post" action="/trui-order")
+              form(class="needs-validation" novalidate method="post" action="/trui-bestellen")
                 .row
                   .col-lg-4.py-2
                     label(for="company") Bedrijfsnaam (optioneel)
@@ -56,7 +56,7 @@ block content
                       Valid Plaats is een verplicht veld.
                   .col-lg-4.py-2
                     label(for="maat") Maat
-                    select(class="custom-select d-block w-100" id="maat" name="sizeId" required)
+                    select(class="custom-select d-block w-100" id="maat" name="size" required)
                       option(value="") Kies je maat:
                       option(value=1) Small
                       option(value=2) Medium
