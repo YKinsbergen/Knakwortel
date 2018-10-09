@@ -173,10 +173,11 @@ export default function Slotmachine(props) {
   return (
     <div className="slotmachine-wrapper">
       {/* Render the conditional filter text */}
-      {conditionalRenderNoFilters()}
+      {/* {conditionalRenderNoFilters()}
       {conditionalRenderSauceFilter()}
       {conditionalRenderVegetableFilter()}
-      {conditionalRenderWithSauceFilter()}
+      {conditionalRenderWithSauceFilter()} */}
+      <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
 
       <div className="filter-wrapper">
         <button id="sauce-filter-btn" className="filter-btn" 
@@ -209,6 +210,8 @@ export default function Slotmachine(props) {
           onClick={() => {
             if (filters.withSauceFilter === false) {
               document.getElementById("withsauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("sauce-filter-btn").removeAttribute("style")
+              document.getElementById("vegetable-filter-btn").removeAttribute("style")
               filterWithSauce()
             }
             else {
@@ -280,7 +283,7 @@ export default function Slotmachine(props) {
             const i4 = document.getElementById("recipe-img4")
 
             // No sauces filter
-            if (filters.sauceFilter === true) {
+            if (filters.sauceFilter === false && filters.vegetableFilter === true) {
               // return rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 0),
               // rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 100),
               // rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 150),
@@ -359,7 +362,7 @@ export default function Slotmachine(props) {
             }
 
             // Only with sauce
-            if (filters.withSauceFilter === true) {
+            if (filters.sauceFilter === true && filters.vegetableFilter === true) {
               // return rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 0),
               // rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 100),
               // rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 150),
@@ -438,7 +441,7 @@ export default function Slotmachine(props) {
             }
 
             // Only sauces
-            else if (filters.vegetableFilter === true) {
+            else if (filters.sauceFilter === true && filters.vegetableFilter === false) {
               // First header
               // return h1.innerHTML = 'Sauces',
               // Second header

@@ -19,7 +19,7 @@ class SlotmachineContainer extends React.Component {
   conditionalRenderNoFilters = () => {
     const {sauceFilter, vegetableFilter, withSauceFilter} = this.props.filters
     return (sauceFilter || vegetableFilter || withSauceFilter) ?
-    null : <h2 id="main-header">Broodje knakwortel met...</h2>
+    null : <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
   }
 
   conditionalRenderSauceFilter = () => {
