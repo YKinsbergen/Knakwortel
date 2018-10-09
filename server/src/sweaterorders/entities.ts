@@ -1,5 +1,5 @@
 // src/admins/entity.ts
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm'
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, CreateDateColumn } from 'typeorm'
 import { IsEmail, IsString, MinLength, MaxLength, IsNumber, IsBoolean} from 'class-validator';
 
 
@@ -27,6 +27,9 @@ export class Order extends BaseEntity {
     
     @PrimaryGeneratedColumn()
     id?: number
+
+    @CreateDateColumn()
+    created: Date
 
     @IsString()
     @Column('text', {nullable:true})
@@ -71,4 +74,7 @@ export class Order extends BaseEntity {
     @Column('boolean', {default: false})
     paymentSucces: boolean
 
+    @IsString()
+    @Column('date', {nullable:true})
+    sendDate: Date
 }

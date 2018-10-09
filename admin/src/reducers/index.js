@@ -5,6 +5,7 @@ import blocks from './blocks'
 import block from './block'
 import images from './images'
 import shops from './shops'
+import orders from './orders'
 import recipes from './recipes'
 
 
@@ -15,5 +16,6 @@ export default combineReducers({
   block,
   images,
   shops,
+  orders,
   recipes
 })
