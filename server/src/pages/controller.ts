@@ -89,7 +89,9 @@ export class PagesController {
 
         if (!content) throw new NotFoundError('Cannot find page content')
 
-        return content.image.id = image.id,
-        PageContent.merge(content, update).save()
+
+        return content.image = image,
+            PageContent.merge(content, update).save()
+
     }
 }
