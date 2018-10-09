@@ -16,30 +16,30 @@ class SlotmachineContainer extends React.Component {
   conditionalRenderNoFilters = () => {
     const {sauceFilter, vegetableFilter, withSauceFilter} = this.props.filters
     return (sauceFilter || vegetableFilter || withSauceFilter) ?
-    <span></span> : <span>Roll any recipe</span>
+    <span></span> : <span>Ik wil een broodje knakwortel...</span>
   }
 
   conditionalRenderSauceFilter = () => {
     const {filters} = this.props
     return filters.sauceFilter ? 
-    <span>Only rolling recipes without sauce </span> : <span></span>
+    <span>Ik wil een broodje knakwortel zonder saus </span> : <span></span>
   }
   conditionalRenderVegetableFilter = () => {
     const {filters} = this.props
     return filters.vegetableFilter ? 
-    <span>Only rolling sauces</span> : <span></span>
+    <span>Ik wil een broodje knakwortel met alleen saus</span> : <span></span>
   }
   conditionalRenderWithSauceFilter = () => {
     const {filters} = this.props
     return filters.withSauceFilter ? 
-    <span>Only rolling recipes with sauce</span> : <span></span>
+    <span>Ik wil een broodje knakwortel met saus</span> : <span></span>
   }
 
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
     return <div className="link-div"><Link id="link-details" to={`/recipes/${recipeId.value}`}>
-    Recipe details
+    Recept details
     </Link></div>
   }
 

@@ -5,7 +5,7 @@ import Admin from './entity';
 export default class AdminController {
 
   // Wellicht een optie om een nieuw password aan te vragen. 
-  @Authorized()
+  //@Authorized()
   @Post('/admins')
   async signup(
     @BodyParam('email') email: string,
