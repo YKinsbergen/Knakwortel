@@ -1,6 +1,6 @@
 // src/advertisements/controller.ts
 
-import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam,  } from "routing-controllers";
+import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam, Put } from "routing-controllers";
 import { Recipe, Topping } from "./entity";
 
 
@@ -31,6 +31,24 @@ export class RecipeController {
     @Post('/recipes')
     @HttpCode(201)
     async createRecipe(
+      @BodyParam('name') name: string,
+      @BodyParam('description') description: string,
+      @BodyParam('toppings') toppings: string[]
+    ) {
+        const toppingEntities = await Promise.all(
+            toppings.map(toppingId => Topping.findOne(toppingId))
+        )
+
+        const recipe = await Recipe.create({name, description, toppings: toppingEntities})
+        
+
+        return recipe.save()
+    }
+
+    @Authorized()
+    @Put('/recipes/:id')
+    @HttpCode(201)
+    async updateRecipe(
       @BodyParam('name') name: string,
       @BodyParam('description') description: string,
       @BodyParam('toppings') toppings: string[]
