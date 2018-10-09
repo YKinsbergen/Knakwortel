@@ -5,10 +5,11 @@ block content
   section(class="home text-center d-flex")
       div(class="container my-auto home-text")
         if (start)
-          img(class="img-fluid" src=start.image.url)
-          h1 Knakwortel
+          img(class="img-fluid mt-5" src=start.image.url)
+          h1.mt-4 Knakwortel
           h2=start.headline
           p=start.body
+          img(src="/lib/scroll-down.svg")
   
   section
     .container(class="text-center")
@@ -106,9 +107,13 @@ block content
                 span(class="carousel-control-next-icon" aria-hidden="true")
                 span(class="sr-only") Next
 
-  section.section.text-center
-    h1 Test
-          
+  //- - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
+  //- section.section.text-center
+  //-   h1 Veelgestelde vragen
+  //-   if (faqArray)
 
+
+
+          
 
 

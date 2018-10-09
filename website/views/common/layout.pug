@@ -9,14 +9,14 @@ html
     link(rel="icon" href="images/favicon.ico")
 
   body
-    nav(class="navbar navbar-expand-md navbar-light fixed-top")
+    nav(class="navbar navbar-expand-md navbar-light fixed-top p-0")
       div(class="container")
         a.navbar-brand(href="/")
           img.nav-logo(src="/lib/knakwortel-logo.svg" alt="Knakwortel")
         button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation")
           span.navbar-toggler-icon
         .collapse.navbar-collapse(id="navbarsExample04")
-          ul.navbar-nav.justify-content-around
+          ul.navbar-nav.justify-content-end
             li.nav-item.dropdown
               a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Knakwortel
               .dropdown-menu(aria-labelledby="navbarDropdown")
@@ -33,8 +33,7 @@ html
               a.nav-link(href='#') FAQ
             li.nav-item
               a.nav-link(href='#') Knakwortel voor je evenement
-            li.nav-item
-              a.nav-link(href='#') EN | NL
+
 
     block content
 
