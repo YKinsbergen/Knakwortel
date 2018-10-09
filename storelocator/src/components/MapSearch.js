@@ -11,7 +11,6 @@ class MapSearch extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state.postcode)
   }
 
   onSubmit = (event) => {
