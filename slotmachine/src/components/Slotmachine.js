@@ -184,6 +184,7 @@ export default function Slotmachine(props) {
           onClick={() => {
             if (filters.sauceFilter === false) {
               document.getElementById("sauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
               filterSauce()
             }
             else {
@@ -197,6 +198,7 @@ export default function Slotmachine(props) {
           onClick={() => {
             if (filters.vegetableFilter === false) {
               document.getElementById("vegetable-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
               filterVegetable()
             }
             else {

@@ -13,12 +13,14 @@ export default (state = initialState, action = {}) => {
       case FILTER_SAUCE:
         return (state.sauceFilter) ?
         {...state, sauceFilter: false} 
-        : {...state, sauceFilter: true}
+        : {...state, sauceFilter: true,
+          withSauceFilter: false}
       // Only vegetables
       case FILTER_VEGETABLE:
         return (state.vegetableFilter) ?
         {...state, vegetableFilter: false} 
-        : {...state, vegetableFilter: true}
+        : {...state, vegetableFilter: true,
+          withSauceFilter: false}
       case FILTER_WITHSAUCE:
       // Only recipes that have sauce in them
       return (state.withSauceFilter) ?
