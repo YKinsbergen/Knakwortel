@@ -3,13 +3,12 @@ extends ./common/layout.pug
 block content
   - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
   section(class="home text-center d-flex")
-      div(class="container my-auto")
+      div(class="container my-auto home-text")
         if (start)
           img(class="img-fluid" src=start.image.url)
-          h1=start.headline
+          h1 Knakwortel
+          h2=start.headline
           p=start.body
-          h3
-            a(class="icon style4 major fa-angle-down")
   
   section
     .container(class="text-center")

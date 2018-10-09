@@ -44,17 +44,23 @@ h3 {
 	background-repeat: repeat;
 }
 
-/* .container, .container-fluid {
+.container, .container-fluid {
   border: 1px solid black;
-} */
+}
 
 .home {
-  height: 100vh;
+  min-height: 100vh;
 }
+
+/* .home-text{
+  height: 100%;
+} */
+
 
 .home h1, .geknakt h1 {
 font-size: 4rem;
 line-height: 1.2;
+letter-spacing: 8%;
 }
 
 .home p {
