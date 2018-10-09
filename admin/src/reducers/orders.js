@@ -1,6 +1,5 @@
 import { ORDERS_FETCHED, SET_SENDDATE_SUCCESS  } from '../actions/orders'
 
-
 const reducer = (state = null, action= {}) => {
     switch(action.type) {
       case ORDERS_FETCHED:

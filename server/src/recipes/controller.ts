@@ -1,6 +1,9 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Body, HttpCode, Post, Delete, NotFoundError, Param } from "routing-controllers";
-import { Recipe } from "./entity";
+
+import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam, Put } from "routing-controllers";
+import { Recipe, Topping } from "./entity";
+
+
 
 
 @JsonController()
@@ -18,17 +21,50 @@ export class RecipeController {
         return recipe
     }
 
-    //@Authorized()
+    @Get('/toppings')
+    async getAllToppings() {
+        const toppings = await Topping.find()
+        return {toppings}
+    }
+
+    @Authorized()
     @Post('/recipes')
     @HttpCode(201)
     async createRecipe(
-      @Body() recipe: Recipe
+      @BodyParam('name') name: string,
+      @BodyParam('description') description: string,
+      @BodyParam('toppings') toppings: string[]
     ) {
+        const toppingEntities = await Promise.all(
+            toppings.map(toppingId => Topping.findOne(toppingId))
+        )
+
+        const recipe = await Recipe.create({name, description, toppings: toppingEntities})
+        
+
         return recipe.save()
     }
 
-    //@Authorized()
-    @Delete('/recipes')
+    @Authorized()
+    @Put('/recipes/:id')
+    @HttpCode(201)
+    async updateRecipe(
+      @BodyParam('name') name: string,
+      @BodyParam('description') description: string,
+      @BodyParam('toppings') toppings: string[]
+    ) {
+        const toppingEntities = await Promise.all(
+            toppings.map(toppingId => Topping.findOne(toppingId))
+        )
+
+        const recipe = await Recipe.create({name, description, toppings: toppingEntities})
+        
+
+        return recipe.save()
+    }
+
+    @Authorized()
+    @Delete('/recipes/:id')
     async deleteRecipe(
         @Param('id') id: number,
     ) {
