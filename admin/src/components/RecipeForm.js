@@ -13,11 +13,24 @@ export default function RecipeForm(props) {
         </div>
 
         <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">Omschrijving:(min. char 10)</label>
+          <label htmlFor="description" className="col-sm-2 col-form-label">Bereiding:(min. char 10)</label>
             <div className="col-sm-10">
               <textarea id="description" type="text" name="description" onChange={props.handleChange} className="form-control" />
             </div>
         </div>
+        <div className="form-group row">
+          <label htmlFor="description" className="col-sm-2 col-form-label">Afbeelding:</label>
+            <div className="col-sm-10">
+            <input type="file" onChange={props.fileSelectHandler}/>
+            </div>
+        </div>
+
+        <div className="form-group row">
+          <label htmlFor="name" className="col-sm-2 col-form-label">Youtube url:</label>
+            <div className="col-sm-10">
+              <input id="name" type="text" name="youtubeUrl" onChange={props.handleChange} className="form-control" />
+            </div>
+        </div>        
 
         <div className="form-group row">
           <label htmlFor="body" className="col-sm-2 col-form-label">Toppings: (min. 3)</label>

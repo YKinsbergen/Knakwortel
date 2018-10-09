@@ -52,7 +52,7 @@ export const loadToppings = () => (dispatch) => {
     })
 }
 
-export const addRecipe = (name, description, toppingIdArr) => (dispatch, getState) => {
+export const addRecipe = (name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
  
@@ -61,7 +61,7 @@ export const addRecipe = (name, description, toppingIdArr) => (dispatch, getStat
   request
     .post(`${apiUrl}/recipes/`)
     .set('Authorization', `Bearer ${jwt}`)
-    .send({name, description, toppings:toppingIdArr})
+    .send({name, description, toppings:toppingIdArr,uploadedFileCloudinaryUrl, youtubeUrl})
     .then(response => dispatch(addRecipeSuccess(response.body)))
     .catch(console.error)
 
