@@ -51,7 +51,7 @@ export class PageContent extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column('text', {nullable: true, unique: true})
+    @Column('text', {nullable: true})
     tag: string
 
     @Column('text', {nullable: false})

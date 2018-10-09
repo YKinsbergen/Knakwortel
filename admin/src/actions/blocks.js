@@ -6,6 +6,7 @@ import {logout} from './admins'
 export const BLOCKS_FETCHED = 'BLOCKS_FETCHED'
 export const BLOCK_FETCHED = 'BLOCK_FETCHED'
 export const BLOCK_UPDATE_SUCCESS = 'BLOCK_UPDATE_SUCCESS'
+export const BLOCK_IMAGE_UPDATE_SUCCESS = 'BLOCK_IMAGE_UPDATE_SUCCESS'
 
 
 const blocksFetched = blocks => ({
@@ -22,6 +23,13 @@ const blockUpdateSuccess = block => ({
   type: BLOCK_UPDATE_SUCCESS,
   payload: block
 })
+
+const blockImageUpdateSuccess = (block) => {
+  return {
+    type: BLOCK_IMAGE_UPDATE_SUCCESS,
+    payload: block
+  }
+}
 
 export const loadBlocks = () => (dispatch) => {
  
@@ -67,7 +75,7 @@ export const updateBlockImage = (blockId, url) => (dispatch, getState) => {
     .put(`${apiUrl}/contents/${blockId}/image`)
     .set('Authorization', `Bearer ${jwt}`)
     .send({url})
-    .then(result => console.log(result.body))
+    .then(result => dispatch(blockImageUpdateSuccess(result.body)))
     .catch(err => {
       if (err.status === 400) {
         console.error(err)

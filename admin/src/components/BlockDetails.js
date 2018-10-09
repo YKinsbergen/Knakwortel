@@ -14,7 +14,7 @@ export default function BlockDetails(props) {
         <div class="row">
 
           <div class="col-md-6">
-            <img class="detail-img img-fluid" src={props.block.image.url} alt=""/>
+            {props.block.image && <img class="detail-img img-fluid" src={props.block.image.url} alt=""/>}
             
             <input type="file" onChange={props.fileSelectHandler}/>
           </div>

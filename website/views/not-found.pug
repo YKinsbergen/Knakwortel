@@ -1,10 +1,9 @@
 extends ./common/layout.pug
 
 block content
-  section.section
-    .container
-      h1.title.is-1 Error: 404
-      p.subtitle.is-1 Not Found
-
-      .notification
-        p=message
+  section(class="geknakt d-flex text-center my-auto")
+    div(class="container my-auto")
+      h1 Oeps, de website is geknakt!
+      p=title+ " "
+        span=error
+      img(src="/lib/Knakwortel.svg" alt="Geknakte wortel")

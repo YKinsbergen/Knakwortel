@@ -19,6 +19,37 @@ router.get('/', async (ctx, next) => {
   await next()
 })
 
+router.get('/trui', async (ctx, next) => {
+  const pageId = 2
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  console.log(page)
+  ctx.render('trui', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
+
+router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
+  const { company, name, email, street, houseNumber, addition, zipcode, city, size } = ctx.request.body
+  console.log(ctx.request.body)
+  
+
+    axios.post(`${apiUrl}/orders`, ctx.request.body
+    )
+    .catch(function (error) {
+      console.log("hi");
+    });
+
+  ctx.render('trui-order-success', { company, name, email, street, houseNumber, addition, zipcode, city, size })
+
+  await next()
+})
+
+
 async function instagramPhotos() {
   try {
     const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')

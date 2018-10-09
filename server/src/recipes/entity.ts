@@ -9,11 +9,18 @@ export class Recipe extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column()
+    @Column('text', {nullable: true})
     name: string
 
-    @Column()
+    @Column('text', {nullable: true})
     description: string
+
+    @Column('text', {nullable: true})
+    youtubeUrl: string
+
+    @OneToOne(_ => Image)
+    @JoinColumn()
+    image: Image
 
     @ManyToMany(() => Topping)
     @JoinTable({name: "recipe_configurations"})
