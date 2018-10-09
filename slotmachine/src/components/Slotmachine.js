@@ -181,19 +181,40 @@ export default function Slotmachine(props) {
       <div className="filter-wrapper">
         <button id="sauce-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterSauce()
+            if (filters.sauceFilter === false) {
+              document.getElementById("sauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              filterSauce()
+            }
+            else {
+              document.getElementById("sauce-filter-btn").removeAttribute("style")
+              filterSauce()
+            }
             }}>SAUS
         </button>
 
         <button id="vegetable-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterVegetable()
+            if (filters.vegetableFilter === false) {
+              document.getElementById("vegetable-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              filterVegetable()
+            }
+            else {
+              document.getElementById("vegetable-filter-btn").removeAttribute("style")
+              filterVegetable()
+            }
             }}>TOPPINGS
         </button>
 
         <button id="withsauce-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterWithSauce()
+            if (filters.withSauceFilter === false) {
+              document.getElementById("withsauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              filterWithSauce()
+            }
+            else {
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
+              filterWithSauce()
+            }
             }}>DOE EENS GEK
         </button>
       </div>

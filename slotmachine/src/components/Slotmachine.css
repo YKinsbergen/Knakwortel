@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Dosis:700');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 .slotmachine-wrapper {
@@ -6,16 +6,16 @@
 }
 
 #main-header {
-  font-size: 45px;
+  font-size: 40px;
   font-family: 'Dosis';
-  font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   margin: 0 auto;
   margin-top: 5%;
   margin-bottom: 1%;
 }
 
 .start-btn {
+  font-family: 'lato';
   font-size: 35px;
   height: 55px;
   width: 206px;
@@ -36,6 +36,7 @@
 }
 
 .filter-btn {
+  font-family: 'lato';
   font-size: 20px;
   height: 52px;
   width: 206px;
@@ -52,26 +53,6 @@
 .filter-btn:hover {
   color: white;
   background-color: #F6813A;
-  transition: 0.2s;
-}
-
-.link-div {
-  width: 300px;
-  height: 200px;
-  margin: 0 auto;
-}
-
-#link-details {
-  font-family: 'Dosis';
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #F6813A;
-  font-size: 35px;
-  transition: 0.2s;
-}
-
-#link-details:hover {
-  font-size: 40px;
   transition: 0.2s;
 }
 
@@ -93,7 +74,7 @@
   width: 28%;
   margin-left: 1%;
   margin-right: 1%;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
 }
 
 #recipe-header1 {
@@ -102,18 +83,21 @@
 }
 
 #recipe-header2 {
+  font-size: 2.5vw;
   font-family: 'lato';
   font-weight: normal;
   margin-top: 0;
   margin-bottom: 1%;
 }
 #recipe-header3 {
+  font-size: 2.5vw;
   font-family: 'lato';
   font-weight: normal;
   margin-top: 0;
   margin-bottom: 1%;
 }
 #recipe-header4 {
+  font-size: 2.5vw;
   font-family: 'lato';
   font-weight: normal;
   margin-top: 0;
@@ -134,6 +118,28 @@
 
 .slot-img {
   max-height: 215px;
+  max-width: 100%;
   margin-bottom: 1%;
   overflow: auto;
+}
+
+.link-div {
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+
+#link-details {
+  font-family: 'Dosis';
+  text-decoration: none;
+  letter-spacing: 3px;
+  color: #F6813A;
+  font-size: 35px;
+  transition: 0.2s;
+}
+
+#link-details:hover {
+  font-size: 40px;
+  transition: 0.2s;
 }

@@ -5,6 +5,7 @@ html, body {
 }
 
 .App {
+  font-family: 'lato';
   text-align: center;
   font-size: 30px;
   color: black;
