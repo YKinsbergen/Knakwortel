@@ -1,6 +1,7 @@
-// src/advertisements/entity.ts
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, 
-    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+
+    JoinTable, ManyToMany, OneToMany, ManyToOne, OneToOne, JoinColumn,  } from 'typeorm';
+
 import Image from '../images/entity';
 
 @Entity()
@@ -8,14 +9,21 @@ export class Recipe extends BaseEntity {
     @PrimaryGeneratedColumn()
     id?: number
 
-    @Column()
+    @Column('text', {nullable: true})
     name: string
 
-    @Column()
+    @Column('text', {nullable: true})
     description: string
 
+    @Column('text', {nullable: true})
+    youtubeUrl: string
+
+    @OneToOne(_ => Image)
+    @JoinColumn()
+    image: Image
+
     @ManyToMany(() => Topping)
-    @JoinTable({name: "RecipeConfigurations"})
+    @JoinTable({name: "recipe_configurations"})
     toppings: Topping[]
 }
 
@@ -36,25 +44,25 @@ export class Topping extends BaseEntity {
     image: Image
 }
 
-@Entity()
-export class RecipeConfigurations extends BaseEntity {
-    @Column({ type: 'text' })
-    ingredient: string
+// @Entity()
+// export class RecipeConfigurations extends BaseEntity {
+//     @Column({ type: 'text' })
+//     ingredient: string
     
-    @PrimaryColumn('int')
-    recipeId: number
+//     @PrimaryColumn('int')
+//     recipeId: number
     
-    @PrimaryColumn('int')
-    toppingId: number
+//     @PrimaryColumn('int')
+//     toppingId: number
     
-    @OneToOne(() => Recipe)
-    @JoinColumn()
-    recipe: Recipe
+//     @OneToOne(() => Recipe)
+//     @JoinColumn()
+//     recipe: Recipe
     
-    @OneToOne(() => Topping)
-    @JoinColumn()
-    topping: Topping
-}
+//     @OneToOne(() => Topping)
+//     @JoinColumn()
+//     topping: Topping
+// }
 
 @Entity()
 export class ToppingType extends BaseEntity {

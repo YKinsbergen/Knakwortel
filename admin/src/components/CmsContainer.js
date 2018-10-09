@@ -9,6 +9,7 @@ import BlockDetailsContainer from './BlockDetailsContainer';
 import ContentContainer from './ContentContainer';
 import ShopsContainer from './ShopsContainer'
 import LogoutPage from './logout/LogoutPage'
+import RecipesContainer from './RecipesContainer'
 
 class CmsContainer extends Component {
   render() {
@@ -29,6 +30,7 @@ class CmsContainer extends Component {
                 <Route exact path="/dashboard/content" component={ContentContainer} />
                 <Route exact path="/dashboard/content/:id" component={BlockDetailsContainer} />
                 <Route exact path="/dashboard/shops" component={ShopsContainer} />
+                <Route exact path="/dashboard/recipes" component={RecipesContainer} />
                 <Route path="/logout" component={LogoutPage} />
               </main>
             </div>

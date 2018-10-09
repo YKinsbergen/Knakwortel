@@ -52,9 +52,13 @@ class BlockDetailsContainer extends React.Component {
   
   // Image upload handlers
   uploadPresetPrompt = () => {
-    let form = prompt("Please enter your preset")
-    if (form !== null) {
-      return form
+    if (process.env.REACT_APP_CDN_CODE) {
+      return process.env.REACT_APP_CDN_CODE
+    } else {
+      let form = prompt("Please enter your preset")
+      if (form !== null) {
+        return form
+      }
     }
   }
 
@@ -83,8 +87,7 @@ class BlockDetailsContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.block !== this.props.block) {
-      console.log("hello")
-      this.props.loadBlocks()
+      this.props.loadBlock(Number(this.props.match.params.id))
     }
   }
 
@@ -93,10 +96,6 @@ class BlockDetailsContainer extends React.Component {
     if (!this.props.block) return <h2>Loading...</h2>
     const {authenticated, blocks, block, match} = this.props
 
-    // if (!authenticated) return (
-		// 	<Redirect to="/login" />
-    // ) 
-    //Straks weer aanzetten om achter inlogmuur te krijgen!
 
     return (<BlockDetails
       block={block}

@@ -4,13 +4,14 @@
 
 .start-btn {
   font-size: 30px;
-  border: none;
+  border: solid orange 2px;
   border-radius: 5px;
   margin: 1% 1% 1% 1%;
 }
 
 .start-btn:hover {
-  background-color: lightblue;
+  color: white;
+  background-color: orange;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -21,7 +22,7 @@
 
 .filter-btn {
   font-size: 25px;
-  border: none;
+  border: solid orange 2px;
   border-radius: 5px;
   margin: auto 1%;
   margin-top: 0.5%;
@@ -31,7 +32,8 @@
 }
 
 .filter-btn:hover {
-  background-color: lightblue;
+  color: white;
+  background-color: orange;
   transition: 0.2s;
 }
 
@@ -49,7 +51,7 @@
 
 
 #link-details {
-  color: white;
+  color: orange;
   font-size: 35px;
   transition: 0.2s;
 }
@@ -61,16 +63,16 @@
 
 /* Columns */
 .column-name {
-  background-color: rgb(203, 54, 0);
-  border: solid black 3px;
+  background-color: white;
+  border: dashed black 3px;
   border-radius: 10px;
   width: 28%;
   margin: 0 auto;
   margin-bottom: 0;
 }
 .column {
-  background-color: rgb(203, 54, 0);
-  border: solid black 3px;
+  background-color: white;
+  border: dashed black 3px;
   border-radius: 10px;
   float: left;
   width: 28%;
