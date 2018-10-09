@@ -7,7 +7,7 @@ export default function RecipeDetails(props) {
   return (
     <div>
       <button id="go-back-btn">
-        <Link to="/" id="go-back-link">Go back</Link>
+        <Link to="/" id="go-back-link">Ga terug</Link>
       </button>
       <h2>{recipe.name}</h2>
       <h3><i>{recipe.description}</i></h3>

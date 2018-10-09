@@ -1,14 +1,14 @@
 html, body {
   width: 100%;
   height: 100%;
-  background-color: darkslategrey;
+  background-color: white;
 }
 
 .App {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
-  color: white;
+  color: black;
 }
 
 .column {
