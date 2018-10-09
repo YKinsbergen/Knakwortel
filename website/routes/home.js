@@ -19,6 +19,18 @@ router.get('/', async (ctx, next) => {
   await next()
 })
 
+router.get('/recipes/:id', async (ctx, next) => {
+  const recipeId = this.params
+  const recipeRequest = await axios(`${apiUrl}/recipes/${recipeId}`)
+  
+  const recipe = recipeRequest.data
+  ctx.render('recipedetails', 
+    { 
+      recipe,
+    })
+  await next()
+})
+
 async function instagramPhotos() {
   try {
     const userPageSource = await axios.get('https://www.instagram.com/knakwortel/')
