@@ -6,6 +6,7 @@ import {logout} from './admins'
 export const RECIPES_FETCHED = 'RECIPES_FETCHED'
 export const TOPPINGS_FETCHED = 'TOPPINGS_FETCHED'
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS'
+export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS'
 
 function recipesFetched(recipes) {
   return {
@@ -25,6 +26,13 @@ function addRecipeSuccess(recipe) {
   return {
     type: ADD_RECIPE_SUCCESS,
     payload: recipe
+  }
+}
+
+function deleteRecipeSuccess(id) {
+  return {
+    type: DELETE_RECIPE_SUCCESS,
+    payload: id
   }
 }
 
@@ -55,6 +63,20 @@ export const addRecipe = (name, description, toppingIdArr) => (dispatch, getStat
     .set('Authorization', `Bearer ${jwt}`)
     .send({name, description, toppings:toppingIdArr})
     .then(response => dispatch(addRecipeSuccess(response.body)))
+    .catch(console.error)
+
+}
+
+export const deleteRecipe = (id) => (dispatch, getState) => {
+  const state = getState()
+  const jwt = state.currentUser.jwt
+ 
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .delete(`${apiUrl}/recipes/${id}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(response => dispatch(deleteRecipeSuccess(response.body)))
     .catch(console.error)
 
 }
