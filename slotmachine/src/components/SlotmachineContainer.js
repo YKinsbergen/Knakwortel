@@ -42,7 +42,7 @@ class SlotmachineContainer extends React.Component {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
     return <div className="link-div"><Link id="link-details" to={`/recipes/${recipeId.value}`}>
-    Receptdetails <img id="go-to-icon" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1539092849/scroll_back.png" /></Link></div>
+    Receptdetails <img id="go-to-icon" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1539096413/scroll_back_1.png" /></Link></div>
   }
 
   render() {

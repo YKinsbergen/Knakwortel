@@ -10,7 +10,7 @@
   font-family: 'Dosis';
   letter-spacing: 1px;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 2%;
   margin-bottom: 1%;
 }
 
@@ -25,11 +25,13 @@
   transition: 0.2s;
 }
 
+@media (hover: hover) {
 .start-btn:hover {
   color: white;
   background-color: #F6813A;
   transition: 0.2s;
   cursor: pointer;
+}
 }
 
 .filter-wrapper {
@@ -51,10 +53,12 @@
   cursor: pointer;
 }
 
+@media (hover: hover) {
 .filter-btn:hover {
   color: white;
   background-color: #F6813A;
   transition: 0.2s;
+}
 }
 
 /* Columns */
