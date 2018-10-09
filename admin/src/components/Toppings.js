@@ -2,7 +2,7 @@
 import React from 'react'
 import './Dashboard.css'
 import { Link } from 'react-router-dom'
-import ToppingsForm from './RecipeForm'
+import ToppingForm from './ToppingForm'
 
 
 
@@ -15,8 +15,8 @@ export default function Toppings(props) {
         <button onClick={props.onAdd}>Nieuwe topping</button>
 
       </div>
-      {/* {props.addMode === true && <RecipeForm toppingCheckboxes={props.toppingCheckboxes} toppings={props.toppings} handleToppingsChange={props.handleToppingsChange}
-      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler}/>} */}
+      {props.addMode === true && <ToppingForm
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} toppingTypes={props.toppingTypes}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>

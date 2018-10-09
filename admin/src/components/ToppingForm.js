@@ -13,11 +13,16 @@ export default function ToppingForm(props) {
         </div>
 
         <div className="form-group row">
-          <label htmlFor="name" className="col-sm-2 col-form-label">Topping type:</label>
+          <label htmlFor="toppingType" className="col-sm-2 col-form-label">Topping type:</label>
             <div className="col-sm-10" onChange={props.handleChange} className="form-control" >
-              <select name="toppingType">*
-                <option value="1">Sauce</option>
-                <option value="2">Vegetable</option>
+              <select name="toppingType">
+                {props.toppingTypes.length > 0 && 
+                props.toppingTypes.map(type => {
+                  return (
+                    <option value={type.id} key={type.id}>{type.name}</option>
+                  )
+                })
+                }
               </select>
             </div>
         </div>      

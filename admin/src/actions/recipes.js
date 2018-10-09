@@ -7,6 +7,8 @@ export const RECIPES_FETCHED = 'RECIPES_FETCHED'
 export const TOPPINGS_FETCHED = 'TOPPINGS_FETCHED'
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS'
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS'
+export const TOPPING_TYPES_FETCHED = 'TOPPING_TYPES_FETCHED'
+export const ADD_TYPE_SUCCESS = 'ADD_TYPE_SUCCESS'
 
 function recipesFetched(recipes) {
   return {
@@ -36,6 +38,19 @@ function deleteRecipeSuccess(id) {
   }
 }
 
+function toppingTypesFetched(types) {
+  return {
+    type: TOPPING_TYPES_FETCHED,
+    payload: types
+  }
+}
+
+function addToppingSuccess(topping) {
+  return {
+    type: ADD_TYPE_SUCCESS,
+    payload: topping
+  }
+}
 
 
 export const loadRecipes = () => (dispatch) => {
@@ -52,6 +67,13 @@ export const loadToppings = () => (dispatch) => {
     })
 }
 
+export const loadToppingTypes = () => (dispatch) => {
+  request(`${apiUrl}/toppingtypes`)
+    .then(response => {
+      dispatch(toppingTypesFetched(response.body))
+    })
+}
+
 export const addRecipe = (name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
@@ -64,7 +86,6 @@ export const addRecipe = (name, description, toppingIdArr, uploadedFileCloudinar
     .send({name, description, toppings:toppingIdArr,uploadedFileCloudinaryUrl, youtubeUrl})
     .then(response => dispatch(addRecipeSuccess(response.body)))
     .catch(console.error)
-
 }
 
 export const deleteRecipe = (id) => (dispatch, getState) => {
@@ -79,4 +100,18 @@ export const deleteRecipe = (id) => (dispatch, getState) => {
     .then(response => dispatch(deleteRecipeSuccess(response.body)))
     .catch(console.error)
 
+}
+
+export const addTopping = (name, toppingType, uploadedFileCloudinaryUrl) => (dispatch, getState) => {
+  const state = getState()
+  const jwt = state.currentUser.jwt
+ 
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .post(`${apiUrl}/toppings/`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send({name, toppingType, uploadedFileCloudinaryUrl})
+    .then(response => dispatch(addToppingSuccess(response.body)))
+    .catch(console.error)
 }

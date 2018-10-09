@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, addRecipe} from '../actions/recipes'
+import {loadRecipes, loadToppings, addRecipe, loadToppingTypes} from '../actions/recipes'
 import Toppings from './Toppings'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -14,6 +14,7 @@ class ToppingsContainer extends React.PureComponent {
   componentDidMount() {
     this.props.loadRecipes()
     this.props.loadToppings()
+    this.props.loadToppingTypes()
   }
 
   onAdd = () => {
@@ -32,19 +33,14 @@ class ToppingsContainer extends React.PureComponent {
   handleSubmit = (event) => {
     event.preventDefault()
     const name = this.state.name
-    const description = this.state.description
-    const toppingIdArr = this.chosenToppingsToArray()
+    const toppingType = this.state.toppingType
+    
     const uploadedFileCloudinaryUrl = this.state.uploadedFileCloudinaryUrl
-    const youtubeUrl = this.state.youtubeUrl || ''
-
-    if (toppingIdArr.length < 3 || name.length < 3 || description.length < 10 ) {
-      //error 
-    } else {
-      this.props.addRecipe(name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl)
-      this.setState({
-        addMode: false
-      })
-    }
+    
+    this.props.addTopping(name, toppingType,uploadedFileCloudinaryUrl)
+    this.setState({
+      addMode: false
+    })
   }
 
   // Image upload handlers
@@ -91,6 +87,7 @@ class ToppingsContainer extends React.PureComponent {
     console.log(this.state)
     return <Toppings 
               toppings={this.props.recipes.toppings}
+              toppingTypes={this.props.recipes.toppingTypes}
               addMode={this.state.addMode}
               onAdd={this.onAdd}
               handleChange={this.handleChange}
@@ -107,7 +104,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
-  addRecipe
+  addRecipe,
+  loadToppingTypes
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToppingsContainer)
