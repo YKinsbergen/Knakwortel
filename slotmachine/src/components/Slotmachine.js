@@ -606,15 +606,15 @@ export default function Slotmachine(props) {
 
       <div className="column">
           <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/sla.png" id="recipe-img2"/>
-          <h4 id="recipe-header2">Sla</h4>
+          <h4 id="recipe-header2">sla</h4>
       </div>
       <div className="column">
           <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/augurk.png" id="recipe-img3"/>
-          <h4 id="recipe-header3">Augurk</h4>
+          <h4 id="recipe-header3">augurk</h4>
       </div> 
       <div className="column">
           <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/ketchup.png" id="recipe-img4"/>
-          <h4 id="recipe-header4">Ketchup</h4>
+          <h4 id="recipe-header4">ketchup</h4>
       </div> 
 
       {renderLinkToRecipeDetails()}
