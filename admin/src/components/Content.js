@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 
 export default function Dashboard(props) {
+  console.log('props.blocks: ',props.blocks)
+  console.log('props.blocks.pageContents: ',props.blocks.pageContents)
   return (
     <div>
       <div class="pt-3 pb-2 mb-3">
