@@ -23,7 +23,7 @@ export default function Recipes(props) {
                 <tr>
                   <th>#</th>
                   <th>Naam</th>
-                  <th>Omschrijving</th>
+                  <th>Bereiding</th>
                   <th>Toppings</th>
                 </tr>
               </thead>
