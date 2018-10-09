@@ -16,7 +16,7 @@ export default function Recipes(props) {
 
       </div>
       {props.addMode === true && <RecipeForm toppingCheckboxes={props.toppingCheckboxes} toppings={props.toppings} handleToppingsChange={props.handleToppingsChange}
-      handleChange={props.handleChange} handleSubmit={props.handleSubmit}/>}
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
