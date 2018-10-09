@@ -46,11 +46,15 @@ class RecipesContainer extends React.PureComponent {
     const name = this.state.name
     const description = this.state.description
     const toppingIdArr = this.chosenToppingsToArray()
-    this.props.addRecipe(name, description, toppingIdArr)
+    if (toppingIdArr.length < 3 || name.length < 3 || description.length < 10 ) {
+      //error 
+    } else {
+      this.props.addRecipe(name, description, toppingIdArr)
+      this.setState({
+        addMode: false
+      })
+    }
 
-    this.setState({
-      addMode: false
-    })
   }
 
   componentDidUpdate = () => {

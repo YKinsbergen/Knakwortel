@@ -1,4 +1,8 @@
-import { RECIPES_FETCHED, TOPPINGS_FETCHED  } from '../actions/recipes'
+import { 
+  RECIPES_FETCHED,
+  TOPPINGS_FETCHED,
+  ADD_RECIPE_SUCCESS
+  } from '../actions/recipes'
 
 const initialState = {
   list: [],
@@ -16,6 +20,11 @@ const reducer = (state = initialState, action= {}) => {
         return {
           ...state,
           toppings: action.payload.toppings
+        }
+      case ADD_RECIPE_SUCCESS:
+        return {
+          ...state,
+          list: [action.payload, ...state.list]
         }
       default:
         return state

@@ -27,7 +27,7 @@ export class RecipeController {
         return {toppings}
     }
 
-    // @Authorized()
+    @Authorized()
     @Post('/recipes')
     @HttpCode(201)
     async createRecipe(
@@ -46,7 +46,7 @@ export class RecipeController {
     }
 
     @Authorized()
-    @Delete('/recipes')
+    @Delete('/recipes/:id')
     async deleteRecipe(
         @Param('id') id: number,
     ) {
