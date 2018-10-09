@@ -3,17 +3,16 @@ extends ./common/layout.pug
 block content
   - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
   section(class="home text-center d-flex")
-      div(class="container my-auto")
-        div(class="row")
+      div(class="container my-auto home-text")
         if (start)
-          img(class="img-fluid" src=start.image.url)
-          h1=start.headline
+          img(class="img-fluid mt-5" src=start.image.url)
+          h1.mt-4 Knakwortel
+          h2=start.headline
           p=start.body
-          h3
-            a(class="icon style4 major fa-angle-down")
+          img(src="/lib/scroll-down.svg")
   
   section
-    .container-fluid(class="text-center")
+    .container(class="text-center")
       h2 de knakwortel
     
     - const begin = page.pageContents.find(contentBlock => contentBlock.tag === 'begin')
@@ -30,7 +29,7 @@ block content
     .container-fluid.my-5
       .row
         if (boer)
-          .col-md-4.offset-md-1.order-md-5
+          .col-md-4.offset-md-1.order-md-2.text-right
             h3=boer.headline
             p=boer.body
           .col-md-6.order-md-1
@@ -50,21 +49,33 @@ block content
     .container-fluid.my-5
       .row
         if (ah)
-          .col-md-4.offset-md-1.order-md-2
+          .col-md-4.offset-md-1.order-md-2.text-right
             h3=ah.headline
             p=ah.body
           .col-md-6.order-md-1
             img(class="img-fluid story-img" src=ah.image.url)
     
+    - const test = page.pageContents.find(contentBlock => contentBlock.tag === 'test')
+    .container-fluid.my-5
+      .row
+        if (test)
+          .col-md-4.offset-md-1
+            h3=test.headline
+            p=test.body
+          .col-md-6.offset-md-1
+            img(class="img-fluid story-img" src=test.image.url)    
+
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
     .container-fluid.my-5
       .row
         if (trui)
-          .col-md-4.offset-md-1
+          .col-md-4.offset-md-1.order-md-2.text-right
             h3=trui.headline
             p=trui.body
-          .col-md-6.offset-md-1
-            img(class="img-fluid story-img" src=trui.image.url)    
+            a(href="/trui")
+              button(class="btn btn-outline") Bestellen
+          .col-md-6.order-md-1
+            img(class="img-fluid story-img" src=trui.image.url) 
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.section.text-center
@@ -72,7 +83,7 @@ block content
       h2 #KNAKWORTEL
       .row
         .col-md-8.offset-md-2
-          div(id="carouselExampleIndicators" data-ride="carousel" class="carousel slide")
+          div(id="carouselExampleIndicators" data-ride="carousel" data-interval="false" class="carousel slide")
             ol(class="carousel-indicators")
               li(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
               li(data-target="#carouselExampleIndicators" data-slide-to="1")
@@ -96,9 +107,13 @@ block content
                 span(class="carousel-control-next-icon" aria-hidden="true")
                 span(class="sr-only") Next
 
-  section.section.text-center
-    h1 Test
-          
+  //- - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
+  //- section.section.text-center
+  //-   h1 Veelgestelde vragen
+  //-   if (faqArray)
 
+
+
+          
 
 

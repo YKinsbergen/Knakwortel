@@ -6,6 +6,9 @@ import { filterSauce, filterVegetable, filterWithSauce } from '../actions/filter
 import { dispatchRecipeId } from '../actions/recipeId'
 import Slotmachine from './Slotmachine'
 
+// sauceFilter = saus
+// vegetableFilter = toppings
+
 class SlotmachineContainer extends React.Component {
   componentWillMount() {
     if (!this.props.recipes) this.props.loadRecipes()
@@ -16,31 +19,30 @@ class SlotmachineContainer extends React.Component {
   conditionalRenderNoFilters = () => {
     const {sauceFilter, vegetableFilter, withSauceFilter} = this.props.filters
     return (sauceFilter || vegetableFilter || withSauceFilter) ?
-    <span></span> : <span>Ik wil een broodje knakwortel...</span>
+    null : <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
   }
 
   conditionalRenderSauceFilter = () => {
     const {filters} = this.props
     return filters.sauceFilter ? 
-    <span>Ik wil een broodje knakwortel zonder saus </span> : <span></span>
+    <h4 id="main-header">Broodje knakwortel zonder saus </h4> : null
   }
   conditionalRenderVegetableFilter = () => {
     const {filters} = this.props
     return filters.vegetableFilter ? 
-    <span>Ik wil een broodje knakwortel met alleen saus</span> : <span></span>
+    <h4 id="main-header">Broodje knakwortel met alleen saus</h4> : null
   }
   conditionalRenderWithSauceFilter = () => {
     const {filters} = this.props
     return filters.withSauceFilter ? 
-    <span>Ik wil een broodje knakwortel met saus</span> : <span></span>
+    <h4 id="main-header">Broodje knakwortel met saus</h4> : null
   }
 
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
     return <div className="link-div"><Link id="link-details" to={`/recipes/${recipeId.value}`}>
-    Recept details
-    </Link></div>
+    Receptdetails <img id="go-to-icon" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1539096413/scroll_back_1.png" /></Link></div>
   }
 
   render() {
