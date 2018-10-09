@@ -24,7 +24,7 @@ export class RecipeController {
 
     @Get('/toppings')
     async getAllToppings() {
-        const toppings = await Topping.find()
+        const toppings = await Topping.find({relations: ['image', 'toppingTypes']})
         return {toppings}
     }
 
