@@ -169,7 +169,7 @@ export default function Slotmachine(props) {
 
   return (
     <div className="slotmachine-wrapper">
-      <h2>Slot machine</h2>
+      <h2>Creaties</h2>
 
       {/* Render the conditional filter text */}
       {conditionalRenderNoFilters()}
@@ -181,19 +181,19 @@ export default function Slotmachine(props) {
         <button id="sauce-filter-btn" className="filter-btn" 
           onClick={() => {
             filterSauce()
-            }}>Filter sauce
+            }}>Zonder saus
         </button>
 
         <button id="vegetable-filter-btn" className="filter-btn" 
           onClick={() => {
             filterVegetable()
-            }}>Filter vegetable
+            }}>Alleen saus
         </button>
 
         <button id="withsauce-filter-btn" className="filter-btn" 
           onClick={() => {
             filterWithSauce()
-            }}>Filter no sauce
+            }}>Met saus
         </button>
       </div>
 
@@ -571,15 +571,15 @@ export default function Slotmachine(props) {
               }, 1500)
             }
             }}>
-          Start
+          Spin
         </button>
       </div>
 
       <div className="column-name">
-          <h4 id="recipe-header1" className="animation">Recipe</h4>
+          <h4 id="recipe-header1" className="animation">Recept</h4>
       </div>
 
-      <p id="slots-header">Main ingredients</p>
+      <p id="slots-header">Hoofdingrediënten</p>
       <div className="column">
           <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/sla.png" id="recipe-img2"/>
           <h4 id="recipe-header2">1</h4>
