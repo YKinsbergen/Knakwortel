@@ -27,6 +27,7 @@ class MapSearch extends Component {
       postcode: event
     })
     this.props.loadStoresByPostcode(event)
+  }
 
   render() {
     return (
@@ -44,10 +45,6 @@ class MapSearch extends Component {
             </label>
             <input className="btn btn-primary mr-2 mb-4" type="submit" value="Zoek" id="submit-button"/>
           </form>
-
-        <label className="sr-only" htmlFor="search-box">Postcode</label>
-        <input type="text" name="postcode" onChange={this.handleChange} id="search-box" maxLength="6" className="search-box form-control mr-2 mb-4" placeholder="Postcode" />
-        <button className="btn btn-primary mr-2 mb-4" onClick={this.onFindStoresClick}>Zoek</button>
       </div>
     );
   }
