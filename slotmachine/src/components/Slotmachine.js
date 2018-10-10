@@ -612,8 +612,8 @@ export default function Slotmachine(props) {
               rouletteUrl(i3, randomToppingsUrls, 3, 330),
               roulette(h3, randomToppings, 2, 530),
               rouletteUrl(i3, randomToppingsUrls, 2, 530),
-              roulette(h3, randomToppings, 3, 950),
-              rouletteUrl(i3, randomToppingsUrls, 3, 950),
+              roulette(h3, randomToppings, 4, 950),
+              rouletteUrl(i3, randomToppingsUrls, 4, 950),
               setTimeout(() => {
                 return h3.innerHTML = rRecipeRandomToppings[1].name,
                 i3.src=`${rRecipeRandomToppings[1].image.url}`
