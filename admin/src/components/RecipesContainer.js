@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, addRecipe} from '../actions/recipes'
+import {loadRecipes, loadToppings, addRecipe, deleteRecipe} from '../actions/recipes'
 import Recipes from './Recipes'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -55,7 +55,9 @@ class RecipesContainer extends React.PureComponent {
     } else {
       this.props.addRecipe(name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl)
       this.setState({
-        addMode: false
+        addMode: false,
+        toppings: {},
+        uploadedFileCloudinaryUrl: null
       })
     }
   }
@@ -129,6 +131,7 @@ class RecipesContainer extends React.PureComponent {
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
               submitBtnDisabled={this.state.uploadedFileCloudinaryUrl !== null && this.state.uploadedFileCloudinaryUrl.length === 0}
+              deleteRecipe={this.props.deleteRecipe}
             />
   }
 }
@@ -140,7 +143,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
-  addRecipe
+  addRecipe,
+  deleteRecipe
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer)

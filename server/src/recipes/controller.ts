@@ -51,7 +51,7 @@ export class RecipeController {
 
         let image: any = null
 
-        if (imageUrl.length > 1) {
+        if (imageUrl && imageUrl.length > 1) {
             image = await Image.create({
                 url: imageUrl,
                 altText: name
@@ -114,9 +114,11 @@ export class RecipeController {
     async deleteRecipe(
         @Param('id') id: number,
     ) {
+
         const recipeToDelete = await Recipe.findOne(id)
         if (!recipeToDelete) throw new NotFoundError('Cannot find recipe')
-        return Recipe.delete(recipeToDelete)
+        recipeToDelete.remove()
+        return recipeToDelete
     }
     
 }

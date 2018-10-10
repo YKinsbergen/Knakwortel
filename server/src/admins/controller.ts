@@ -5,7 +5,7 @@ import Admin from './entity';
 export default class AdminController {
 
   // Wellicht een optie om een nieuw password aan te vragen. 
-  //@Authorized()
+  @Authorized()
   @Post('/admins')
   async signup(
     @BodyParam('email') email: string,
@@ -34,7 +34,7 @@ export default class AdminController {
       return Admin.merge(admin, update).save()
   }
 
-  //@Authorized()
+  @Authorized()
   @Get('/admins/:id([0-9]+)')
   getAdmin(
     @Param('id') id: number
@@ -42,7 +42,7 @@ export default class AdminController {
     return Admin.findOne(id)
   }
 
-  //@Authorized()
+  @Authorized()
   @Get('/admins')
   allAdmins() {
     return Admin.find()
