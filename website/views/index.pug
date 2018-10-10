@@ -33,6 +33,16 @@ block content
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
             h3=product.headline
             p=product.body
+            div(class="d-flex justify-content-between mt-5")
+              div(class="icon-div") 
+                img(src="/lib/klaar-in-3-min-icon.svg")
+                p <small>Klaar in 3 minuten</small>
+              div(class="icon-div") 
+                img(src="/lib/klaar-in-3-min-icon.svg")
+                p <small>100% Plantaardig</small>
+              div(class="icon-div") 
+                img(src="/lib/barbecue-icon.svg")
+                p <small>Ook voor op de barbecue</small>
           .col-md-6.order-md-1
             img(class="img-fluid story-img" src=product.image.url alt=product.image.altText)
 
@@ -72,9 +82,12 @@ block content
               p !{newBody}
             a(href="/winkelzoeker")
               button(class="btn btn-outline") Verkooplocaties
+            div.mt-3
+              p <a class="link" href="https://www.ah.nl/producten/product/wi443461/knakwortel" target="_blank">Bestel online bij Albert Heijn</a>
+              p <a class="link" href="https://www.hanos.nl/nl/" target="_blank">Bestel online bij Hanos</a>
           .col-md-6.offset-md-1
-            img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText)    
-
+            img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText) 
+            
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
     .container-fluid(id="trui")
       .row
@@ -105,7 +118,8 @@ block content
   //- INSTAGRAM FEED CONTENT BLOK
   section.text-center.my-5(id="instagram")
     .container(class="instagram-container")
-      h2 #KNAKWORTEL #ofjewortellust
+      h2 Kijk, dit doen we nog meer 
+      h3 Laat ons weten wat jij doet met Knakwortel via <a class="link" href="https://www.instagram.com/explore/tags/knakwortel/" target="_blank">#knakwortel</a>, <a class="link" href="https://www.instagram.com/explore/tags/ofjewortellust/" target="_blank">#ofjewortellust</a> of <a class="link" href="https://instagram.com/knakwortel/" target="_blank">@knakwortel</a>
       div(id="carouselExampleIndicators" data-ride="carousel" data-interval="false" class="carousel slide")
         ol(class="carousel-indicators")
           li(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")

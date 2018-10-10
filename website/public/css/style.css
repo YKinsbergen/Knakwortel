@@ -183,7 +183,7 @@ h3 {
  }
 
  .scroll-home {
-  margin-top: 30px;
+  margin-top: 15px;
  }
 
  .card {
@@ -245,4 +245,13 @@ h3 {
    margin-right: auto;
     display: block;
   }
+}
+
+.link, .link:hover {
+  color: #F6813A;
+}
+
+.icon-div {
+  height: 100px;
+  width: 100px;
 }
