@@ -127,9 +127,8 @@ h3 {
 
 .btn {
   border: 3px solid #F6813A;
-  border-radius: 0%;
+  border-radius: 4px;
   background-color: white;
-  /* color: #F6813A */
 }
 
 .btn:active, .btn:focus, .btn:hover {

@@ -5,8 +5,8 @@ block content
   section(class="home text-center d-flex wortelstory")
       div(class="container home-text")
         if (start)
-          img(class="img-fluid mt-5" src=start.image.url)
-          h1.mt-4 Knakwortel
+          img(class="img-fluid" src=start.image.url)
+          h1 Knakwortel
           h2=start.headline
           p=start.body
           a(href="/#story")
@@ -63,20 +63,20 @@ block content
             img(class="img-fluid story-img" src=fabriek.image.url alt=fabriek.image.altText)
     
     - const ah = page.pageContents.find(contentBlock => contentBlock.tag === 'ah')
-    .container-fluid
+    .container-fluid(id="verkrijgbaar")
       .row
         if (ah)
           .col-md-4.offset-md-1.align-self-center
             h3=ah.headline
             - const newBody = ah.body.replace(/\n/g, `<br/>`)
               p !{newBody}
-            a(href="https://knakwortel-storelocator.herokuapp.com/" target="_blank")
-              button(class="btn btn-outline") AH Winkels
+            a(href="/winkelzoeker")
+              button(class="btn btn-outline") Verkooplocaties
           .col-md-6.offset-md-1
             img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText)    
 
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
-    .container-fluid
+    .container-fluid(id="trui")
       .row
         if (trui)
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
