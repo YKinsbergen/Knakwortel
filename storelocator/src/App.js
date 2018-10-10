@@ -8,9 +8,6 @@ class App extends Component {
     console.log(`apiUrl: ${apiUrl}`)
     return (
       <div className="App container">
-        <div className="App-header">
-          <h1>Winkelzoeker</h1>
-        </div>
         <LocatorContainer />
       </div>
     );
