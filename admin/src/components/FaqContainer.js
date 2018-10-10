@@ -30,6 +30,7 @@ class FaqContainer extends PureComponent {
     const tag = this.state.tag
     const headline = this.state.headline
     const body = this.state.body
+    
        
     this.props.addBlock({tag, headline, body})
     this.setState({

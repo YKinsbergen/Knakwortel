@@ -25,10 +25,13 @@ const blockUpdateSuccess = block => ({
   payload: block
 })
 
-const blockAddSuccess = block => ({
-  type: BLOCK_ADD_SUCCESS,
-  payload: block
-})
+const blockAddSuccess = block => {
+  console.log('-----', block)
+  return {
+    type: BLOCK_ADD_SUCCESS,
+    payload: block
+  }
+}
 
 const blockImageUpdateSuccess = (block) => {
   return {
@@ -71,7 +74,7 @@ export const updateBlock = (blockId, data) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-export const addBlock = ({tag, headline, body}) => (dispatch, getState) => {
+export const addBlock = (data) => (dispatch, getState) => {
   
   const state = getState()
   const jwt = state.currentUser.jwt
@@ -81,7 +84,7 @@ export const addBlock = ({tag, headline, body}) => (dispatch, getState) => {
   request
     .post(`${apiUrl}/contents/`)
     .set('Authorization', `Bearer ${jwt}`)
-    .send({tag, headline, body})
+    .send(data)
     .then(response => dispatch(blockAddSuccess(response.body)))
     .catch(console.error)
 }

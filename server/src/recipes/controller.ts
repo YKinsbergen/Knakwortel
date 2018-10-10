@@ -61,7 +61,6 @@ export class RecipeController {
         }
 
         const recipe = await Recipe.create({name, description, toppings: toppingEntities, youtubeUrl, image})
-        
 
         return recipe.save()
     }
