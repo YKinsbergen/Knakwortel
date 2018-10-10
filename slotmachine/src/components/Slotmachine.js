@@ -193,8 +193,6 @@ export default function Slotmachine(props) {
 
   return (
     <div className="slotmachine-wrapper">
-      <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
-
       <div className="filter-wrapper">
         <button id="sauce-filter-btn" className="filter-btn" 
           onClick={() => {
@@ -326,7 +324,7 @@ export default function Slotmachine(props) {
               && filters.vegetableFilter === false 
               && filters.withSauceFilter === false) {
                 return document.getElementById("no-filters-popup").innerText = 
-                'Kan geen recepten vinden met die parameters'
+                'Kan geen recepten vinden met die ingrediënten'
               }
 
             // No sauces filter

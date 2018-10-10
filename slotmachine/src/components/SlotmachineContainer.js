@@ -15,17 +15,11 @@ class SlotmachineContainer extends React.Component {
     return 
   }
 
-  // Render different text based on which filters are on / off
-  conditionalRenderNoFilters = () => {
-    const {sauceFilter, vegetableFilter, withSauceFilter} = this.props.filters
-    return (sauceFilter || vegetableFilter || withSauceFilter) ?
-    null : <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
-  }
-
+  // Render different link based on rolled id
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
-    return <div className="link-div"><a href={`/recepten/${recipeId.value}`} target="_parent" id="link-details">
+    return <div className="link-div"><a href={`https://knakwortel-website.herokuapp.com/recepten/${recipeId.value}`} target="_parent" id="link-details">
     Receptdetails <img id="go-to-icon" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1539096413/scroll_back_1.png" /></a></div>
   }
 
@@ -40,7 +34,7 @@ class SlotmachineContainer extends React.Component {
       filterWithSauce,
     } = this.props
     
-    if (!recipes) return 'Loading...'
+    if (!recipes) return 'Recepten aan het laden...'
     return (
       <div>
         <Slotmachine recipes={recipes} 
