@@ -2,7 +2,8 @@ import {
   RECIPES_FETCHED,
   TOPPINGS_FETCHED,
   ADD_RECIPE_SUCCESS,
-  TOPPING_TYPES_FETCHED
+  TOPPING_TYPES_FETCHED,
+  ADD_TOPPING_SUCCESS
   } from '../actions/recipes'
 
 const initialState = {
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action= {}) => {
         return {
           ...state,
           toppingTypes: action.payload.toppingTypes
+        }
+      case ADD_TOPPING_SUCCESS:
+        return {
+          ...state,
+          toppings: [action.payload, ...state.toppings]
         }
       default:
         return state

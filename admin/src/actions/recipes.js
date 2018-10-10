@@ -8,7 +8,7 @@ export const TOPPINGS_FETCHED = 'TOPPINGS_FETCHED'
 export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS'
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS'
 export const TOPPING_TYPES_FETCHED = 'TOPPING_TYPES_FETCHED'
-export const ADD_TYPE_SUCCESS = 'ADD_TYPE_SUCCESS'
+export const ADD_TOPPING_SUCCESS = 'ADD_TOPPING_SUCCESS'
 
 function recipesFetched(recipes) {
   return {
@@ -47,7 +47,7 @@ function toppingTypesFetched(types) {
 
 function addToppingSuccess(topping) {
   return {
-    type: ADD_TYPE_SUCCESS,
+    type: ADD_TOPPING_SUCCESS,
     payload: topping
   }
 }

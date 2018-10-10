@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, addRecipe, loadToppingTypes} from '../actions/recipes'
+import {loadRecipes, loadToppings, loadToppingTypes, addTopping} from '../actions/recipes'
 import Toppings from './Toppings'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -104,8 +104,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
-  addRecipe,
-  loadToppingTypes
+  loadToppingTypes,
+  addTopping
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToppingsContainer)

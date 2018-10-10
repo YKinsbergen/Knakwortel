@@ -33,7 +33,7 @@ export default function Toppings(props) {
                   <td>link..</td>
                   <td>{topping.name}</td>
                   
-                  <td>{topping.toppingTypes.name}</td>
+                  <td>{topping.toppingType.name}</td>
 
                   <td>{topping.image && <img className=" thumbnails img-thumbnail img-fluid" src={topping.image.url} alt={topping.image.altText}/>}</td>
                 </tr>  

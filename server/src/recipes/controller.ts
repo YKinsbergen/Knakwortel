@@ -11,20 +11,20 @@ import Image from '../images/entity'
 export class RecipeController {
     @Get('/recipes')
     allRecipes = async() => {
-        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingTypes", "toppings.image", "image"]})
+        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingType", "toppings.image", "image"]})
         return {recipes}
     }
 
     @Get('/recipes/:id')
     async getRecipe(
     @Param('id') id: number) { 
-        const recipe = await Recipe.findOne(id, {relations: ["toppings", "toppings.toppingTypes", "image"]})
+        const recipe = await Recipe.findOne(id, {relations: ["toppings", "toppings.toppingType", "image"]})
         return recipe
     }
 
     @Get('/toppings')
     async getAllToppings() {
-        const toppings = await Topping.find({relations: ['image', 'toppingTypes']})
+        const toppings = await Topping.find({relations: ['image', 'toppingType']})
         return {toppings}
     }
 
@@ -83,7 +83,7 @@ export class RecipeController {
             }).save()
         }
 
-        const recipe = await Topping.create({name , image})
+        const recipe = await Topping.create({name , toppingType, image})
         
 
         return recipe.save()
