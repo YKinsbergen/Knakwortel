@@ -54,7 +54,9 @@ h3 {
   min-height: 100vh;
 }
 
-
+.ev {
+  height: 70%;
+}
 
 .home h1 {
   font-size: 5.5rem;
@@ -112,6 +114,9 @@ h3 {
   }
   .btn {
     background-color: white;
+  }
+  .offerte {
+    margin-bottom: 10px;
   }
 }
 
@@ -183,4 +188,9 @@ h3 {
 
  .story-container, .instagram-container, .home-text {
   padding-top: 70px;
+ }
+
+ .karretje-evenement {
+   padding-top: 30px;
+   padding-bottom: 30px;
  }
