@@ -12,6 +12,7 @@ import OrderContainer from './OrderContainer'
 import LogoutPage from './logout/LogoutPage'
 import RecipesContainer from './RecipesContainer'
 import ToppingsContainer from './ToppingsContainer'
+import FaqContainer from './FaqContainer'
 
 class CmsContainer extends Component {
   render() {
@@ -35,6 +36,7 @@ class CmsContainer extends Component {
                 <Route exact path="/dashboard/bestellingen" component={OrderContainer} />
                 <Route exact path="/dashboard/recipes" component={RecipesContainer} />
                 <Route exact path="/dashboard/toppings" component={ToppingsContainer} />
+                <Route exact path="/dashboard/faq" component={FaqContainer} />
                 <Route path="/logout" component={LogoutPage} />
               </main>
             </div>

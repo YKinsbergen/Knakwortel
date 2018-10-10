@@ -20,6 +20,12 @@ export default function Sidebar(props) {
                     Content
                   </Link>
                 </li>
+                <li class="nav-item">
+                  <Link to='/dashboard/faq' class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    FAQ
+                  </Link>
+                </li>
                 {/* <li class="nav-item">
                   <Link to='/dashboard/afbeeldingen' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>

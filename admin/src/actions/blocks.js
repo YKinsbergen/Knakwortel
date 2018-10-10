@@ -7,6 +7,7 @@ export const BLOCKS_FETCHED = 'BLOCKS_FETCHED'
 export const BLOCK_FETCHED = 'BLOCK_FETCHED'
 export const BLOCK_UPDATE_SUCCESS = 'BLOCK_UPDATE_SUCCESS'
 export const BLOCK_IMAGE_UPDATE_SUCCESS = 'BLOCK_IMAGE_UPDATE_SUCCESS'
+export const BLOCK_ADD_SUCCESS = 'BLOCK_ADD_SUCCESS'
 
 
 const blocksFetched = blocks => ({
@@ -23,6 +24,14 @@ const blockUpdateSuccess = block => ({
   type: BLOCK_UPDATE_SUCCESS,
   payload: block
 })
+
+const blockAddSuccess = block => {
+  console.log('-----', block)
+  return {
+    type: BLOCK_ADD_SUCCESS,
+    payload: block
+  }
+}
 
 const blockImageUpdateSuccess = (block) => {
   return {
@@ -62,6 +71,21 @@ export const updateBlock = (blockId, data) => (dispatch, getState) => {
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => dispatch(blockUpdateSuccess(response.body)))
+    .catch(console.error)
+}
+
+export const addBlock = (data) => (dispatch, getState) => {
+  
+  const state = getState()
+  const jwt = state.currentUser.jwt
+ 
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .post(`${apiUrl}/contents/`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => dispatch(blockAddSuccess(response.body)))
     .catch(console.error)
 }
 

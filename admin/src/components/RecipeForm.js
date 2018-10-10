@@ -15,7 +15,7 @@ export default function RecipeForm(props) {
         <div className="form-group row">
           <label htmlFor="description" className="col-sm-2 col-form-label">Bereiding:(min. char 10)</label>
             <div className="col-sm-10">
-              <textarea id="description" type="text" name="description" onChange={props.handleChange} className="form-control" />
+              <textarea id="description" type="text" name="description" onChange={props.handleChange} rows="5" className="form-control" />
             </div>
         </div>
         <div className="form-group row">
