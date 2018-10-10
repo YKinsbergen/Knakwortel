@@ -13,6 +13,13 @@ export default function Recipes(props) {
       <div class="pt-3 pb-2 mb-3">
         <h2>Recepten</h2>
         <button onClick={props.onAdd}>Nieuw recept</button>
+        <p className="text-muted"><small>Op de pagina wordt naast het recept een 
+          YouTube-filmpje geladen (Let op! Alleen embedded video's werken, 
+          bv: "https://www.youtube.com/embed/4F4RqMWScyw". 
+          Klik in YouTube op 'share', kies 'embed' en plak alleen de link in het 
+          invoervak). Als er geen video is, wordt een afbeelding geladen. 
+          De voorgeprogrammeerde afbeelding is jullie wortelbroodje zonder toppings. 
+          Die zie je als geen filmpje/afbeelding is toegevoegd. </small></p>
 
       </div>
       {props.addMode === true && <RecipeForm toppingCheckboxes={props.toppingCheckboxes} toppings={props.toppings} handleToppingsChange={props.handleToppingsChange}
