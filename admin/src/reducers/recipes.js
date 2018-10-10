@@ -5,6 +5,7 @@ import {
   TOPPING_TYPES_FETCHED,
   ADD_TOPPING_SUCCESS,
   DELETE_RECIPE_SUCCESS,
+  DELETE_TOPPING_SUCCESS
 
   } from '../actions/recipes'
 
@@ -48,6 +49,13 @@ const reducer = (state = initialState, action= {}) => {
           ...state,
           list: recExlDel
         }
+      case DELETE_TOPPING_SUCCESS:
+        const newTopList = [...state.toppings]
+        const topExlDel = newTopList.filter(top => top.id !== action.payload.id)
+        return {
+          ...state,
+          toppings: topExlDel
+        }        
       default:
         return state
     }
