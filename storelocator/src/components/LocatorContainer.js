@@ -36,7 +36,7 @@ class LocatorContainer extends Component {
 
     console.log("resultInfos", resultInfos)
     
-    if (!this.props.storesFound[0]) return <div id="loading-wrapper"><h2 id="loading-header">loading stores...</h2></div>
+    if (!this.props.storesFound[0]) return <div id="loading-wrapper"><h2 id="loading-header">Winkels aan het laden...</h2></div>
     return (
       <div>
         <MapSearch onSearchPostcode={this.props.actions.fetchStores} 

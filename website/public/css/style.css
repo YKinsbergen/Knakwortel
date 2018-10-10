@@ -81,7 +81,7 @@ h3 {
   letter-spacing: 8%;
 }
 
-.bestel, .geknakt, .receptdetail {
+.bestel, .geknakt {
   padding-top: 100px;
   height: 100vh;
 }
@@ -190,7 +190,56 @@ h3 {
   padding-top: 70px;
  }
 
+<<<<<<< HEAD
  .karretje-evenement {
    padding-top: 30px;
    padding-bottom: 30px;
  }
+=======
+ /* Recept details */
+ #receptdetail-header {
+   font-size: 60px;
+   text-align: center;
+   display: inline-block;
+   margin: 0 auto; 
+  }
+  
+ #receptdetail-description {
+   font-size: 20px;
+   text-align: center;
+   overflow-wrap: break-word;
+ }
+
+ .img-receptdetail {
+   max-width: 100%;
+   width: 65%;
+   height: auto;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ .receptdetail {
+  padding-top: 100px;
+ }
+
+ .video-receptdetail {
+   max-width: 100%;
+   width: 100%;
+   height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+   display: block;
+ }
+
+ @media screen and (min-width: 800px) {
+  .video-receptdetail {
+    max-width: 100%;
+    width: 60%;
+    height: 550px;
+   margin-left: auto;
+   margin-right: auto;
+    display: block;
+  }
+}
+>>>>>>> 685f6cbd4591b40a6c02d521742d6b23d4a0026c
