@@ -35,6 +35,10 @@ export class ShopsController {
   async getShopsByPostcode(
     @Param('postcode') postcode: string
   ) {
+    const shopsByCity = await Shop.find({
+      where: {city: postcode}
+    })
+
     const shops = await Shop.find({
       where: {postcode: Like(postcode.substr(0, 2)+"%")}
   })
@@ -45,10 +49,15 @@ export class ShopsController {
       where: {postcode: Like((Number(postcode.substr(0, 2)) - 3)+"%")}
     })
 
-    if (!shops) throw new BadRequestError(`Can't find any shops`)
+    if (!shops && !shopsPlusThree && !shopsMinusThree && !shopsByCity) throw new BadRequestError(`Can't find any shops`)
 
+    // If the search is a city
+    let hasNumber = /\d/
+    if (hasNumber.test(postcode) === false) {
+      return shopsByCity
+    }
     // If dutch postal code
-    if (postcode.length > 4) {
+    else if (postcode.length > 4) {
       let result: any = []
       result.push(shops.filter(shop => {
         return shop.postcode.length > 4

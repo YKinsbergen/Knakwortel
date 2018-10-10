@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './LocatorContainer.css'
 
 import Results from './Results';
 import MapSearch from './MapSearch';
@@ -11,6 +12,11 @@ import * as actions from '../actions/actions';
 
 class LocatorContainer extends Component {
   componentWillMount() {
+    if (!this.props.storesFound[0]) this.props.actions.fetchStores()
+    return
+  }
+
+  componentDidUpdate() {
     if (!this.props.storesFound[0]) this.props.actions.fetchStores()
     return
   }
@@ -29,7 +35,8 @@ class LocatorContainer extends Component {
     })
 
     console.log("resultInfos", resultInfos)
-
+    
+    if (!this.props.storesFound[0]) return <div id="loading-wrapper"><h2 id="loading-header">loading stores...</h2></div>
     return (
       <div>
         <MapSearch onSearchPostcode={this.props.actions.fetchStores} 
