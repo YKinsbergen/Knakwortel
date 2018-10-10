@@ -374,8 +374,8 @@ export default function Slotmachine(props) {
                 i3.src=`${rRecipeNoSauceToppings[1].image.url}`
               }, 1500),
               // Fourth header
-              roulette(h4, allToppings, 12, 130),
-              rouletteUrl(i4, allToppingsUrl, 12, 130),
+              roulette(h4, allToppings, 11, 130),
+              rouletteUrl(i4, allToppingsUrl, 11, 130),
               roulette(h4, allToppings, 3, 150),
               rouletteUrl(i4, allToppingsUrl, 3, 150),
               roulette(h4, allToppings, 6, 200),
@@ -441,8 +441,8 @@ export default function Slotmachine(props) {
                 i3.src=`${rRecipeWithSauceToppings[1].image.url}`
               }, 1500),
               // Fourth header
-              roulette(h4, allToppings, 12, 130),
-              rouletteUrl(i4, allToppingsUrl, 12, 130),
+              roulette(h4, allToppings, 10, 130),
+              rouletteUrl(i4, allToppingsUrl, 10, 130),
               roulette(h4, allToppings, 3, 150),
               rouletteUrl(i4, allToppingsUrl, 3, 150),
               roulette(h4, allToppings, 6, 200),
@@ -554,8 +554,8 @@ export default function Slotmachine(props) {
               rouletteUrl(i2, randomToppingsUrls, 2, 200),
               roulette(h2, randomToppings, 1, 300),
               rouletteUrl(i2, randomToppingsUrls, 1, 300),
-              roulette(h2, randomToppings, 3, 500),
-              rouletteUrl(i2, randomToppingsUrls, 3, 500),
+              roulette(h2, randomToppings, 2, 500),
+              rouletteUrl(i2, randomToppingsUrls, 2, 500),
               roulette(h2, randomToppings, 1, 800),
               rouletteUrl(i2, randomToppingsUrls, 1, 800),
               roulette(h2, randomToppings, 2, 1100),
@@ -566,16 +566,16 @@ export default function Slotmachine(props) {
                 i2.src=`${rRecipeRandomToppings[0].image.url}`
               }, 1500),
               // Third header
-              roulette(h3, randomToppings, 3, 130),
-              rouletteUrl(i3, randomToppingsUrls, 3, 130),
+              roulette(h3, randomToppings, 2, 130),
+              rouletteUrl(i3, randomToppingsUrls, 2, 130),
               roulette(h3, randomToppings, 1, 230),
               rouletteUrl(i3, randomToppingsUrls, 1, 230),
-              roulette(h3, randomToppings, 3, 330),
-              rouletteUrl(i3, randomToppingsUrls, 3, 330),
+              roulette(h3, randomToppings, 0, 330),
+              rouletteUrl(i3, randomToppingsUrls, 0, 330),
               roulette(h3, randomToppings, 2, 530),
               rouletteUrl(i3, randomToppingsUrls, 2, 530),
-              roulette(h3, randomToppings, 4, 950),
-              rouletteUrl(i3, randomToppingsUrls, 4, 950),
+              roulette(h3, randomToppings, 1, 950),
+              rouletteUrl(i3, randomToppingsUrls, 1, 950),
               setTimeout(() => {
                 return h3.innerHTML = rRecipeRandomToppings[1].name,
                 i3.src=`${rRecipeRandomToppings[1].image.url}`
@@ -583,8 +583,8 @@ export default function Slotmachine(props) {
               // Fourth header
               roulette(h4, randomToppings, 1, 100),
               rouletteUrl(i4, randomToppingsUrls, 1, 100),
-              roulette(h4, randomToppings, 3, 150),
-              rouletteUrl(i4, randomToppingsUrls, 3, 150),
+              roulette(h4, randomToppings, 2, 150),
+              rouletteUrl(i4, randomToppingsUrls, 2, 150),
               roulette(h4, randomToppings, 1, 400),
               rouletteUrl(i4, randomToppingsUrls, 1, 400),
               roulette(h4, randomToppings, 0, 700),
