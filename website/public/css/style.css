@@ -236,6 +236,10 @@ h3 {
    display: block;
  }
 
+ .contactballon{
+   width: 100%;
+ }
+
  @media screen and (min-width: 800px) {
   .video-receptdetail {
     max-width: 100%;
