@@ -38,15 +38,51 @@ export class ShopsController {
     const shops = await Shop.find({
       where: {postcode: Like(postcode.substr(0, 2)+"%")}
   })
-    const shops2 = await Shop.find({
-      where: {postcode: Like((Number(postcode.substr(0, 2)) + 1)+"%")}
+    const shopsPlusThree = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) + 3)+"%")}
     })
-    const shops3 = await Shop.find({
-      where: {postcode: Like((Number(postcode.substr(0, 2)) - 1)+"%")}
+    const shopsMinusThree = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) - 3)+"%")}
     })
 
     if (!shops) throw new BadRequestError(`Can't find any shops`)
-    return shops.concat(shops2).concat(shops3)
+
+    // If dutch postal code
+    if (postcode.length > 4) {
+      let result: any = []
+      result.push(shops.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+      result.push(shopsPlusThree.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+      result.push(shopsMinusThree.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+  
+      return [].concat.apply([], result);
+    }
+    // If belgic postal code
+    else if (postcode.length < 5) {
+      let result: any = []
+      result.push(shops.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+      result.push(shopsPlusThree.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+      result.push(shopsMinusThree.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+
+      return [].concat.apply([], result);
+    }
   }
 
   @Delete('/shops/:id')
