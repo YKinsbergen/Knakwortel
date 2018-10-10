@@ -1,70 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:700');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .slotmachine-wrapper {
-  margin-top: -20px;
+  margin-top: 0;
+}
+
+#main-header {
+  font-size: 40px;
+  font-family: 'Dosis';
+  letter-spacing: 1px;
+  margin: 0 auto;
+  margin-top: 6%;
+  margin-bottom: 1%;
 }
 
 .start-btn {
+  color: #F6813A;
+  font-family: 'lato';
   font-size: 30px;
-  border: solid orange 2px;
-  border-radius: 5px;
-  margin: 1% 1% 1% 1%;
+  height: 52px;
+  width: 206px;
+  border: solid #F6813A 3px;
+  border-radius: 2px;
+  margin: 0 auto 4%;
+  transition: 0.2s;
 }
 
+@media (hover: hover) {
 .start-btn:hover {
   color: white;
-  background-color: orange;
+  background-color: #F6813A;
   transition: 0.2s;
   cursor: pointer;
+}
 }
 
 .filter-wrapper {
-  margin-bottom: 0;
+  margin-bottom: 1%;
 }
 
 .filter-btn {
-  font-size: 25px;
-  border: solid orange 2px;
-  border-radius: 5px;
-  margin: auto 1%;
-  margin-top: 0.5%;
-  margin-bottom: 0.5%; 
+  font-family: 'lato';
+  font-size: 20px;
+  height: 52px;
+  width: 206px;
+  border: solid #F6813A 3px;
+  border-radius: 3px;
+  margin: 2% auto 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  position: relative;
   transition: 0.2s;
   cursor: pointer;
 }
 
+@media (hover: hover) {
 .filter-btn:hover {
   color: white;
-  background-color: orange;
+  background-color: #F6813A;
   transition: 0.2s;
 }
-
-.link-div {
-  position: absolute;
-  width: 300px;
-  height: 200px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  top: 50%;
-  margin: -100px 0 0 -150px;
-  margin-top: 24.5%;
-}
-
-
-#link-details {
-  color: orange;
-  font-size: 35px;
-  transition: 0.2s;
-}
-
-#link-details:hover {
-  font-size: 40px;
-  transition: 0.2s;
 }
 
 /* Columns */
 .column-name {
   background-color: white;
-  border: dashed black 3px;
+  border: double black 3px;
   border-radius: 10px;
   width: 28%;
   margin: 0 auto;
@@ -72,30 +73,38 @@
 }
 .column {
   background-color: white;
-  border: dashed black 3px;
+  border: dashed;
+  border-color: rgb(140, 138, 138);
+  border-width: 2px;
   border-radius: 10px;
-  float: left;
+  display: inline-block;
+  height: 50%;
   width: 28%;
-  margin-left: 4%;
-  margin-bottom: 2%;
-}
-
-#recipe-header1 {
-  font-size: 40px;
-  font-style: italic;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  margin-bottom: 3%;
 }
 
 #recipe-header2 {
+  font-size: 2.5vw;
+  font-family: 'lato';
+  font-weight: normal;
   margin-top: 0;
-  margin-bottom: 0.5%;
+  margin-bottom: 1%;
 }
 #recipe-header3 {
+  font-size: 2.5vw;
+  font-family: 'lato';
+  font-weight: normal;
   margin-top: 0;
-  margin-bottom: 0.5%;
+  margin-bottom: 1%;
 }
 #recipe-header4 {
+  font-size: 2.5vw;
+  font-family: 'lato';
+  font-weight: normal;
   margin-top: 0;
-  margin-bottom: 0.5%;
+  margin-bottom: 1%;
 }
 
 #slots-header {
@@ -108,4 +117,36 @@
   content: "";
   display: table;
   clear: both;
+}
+
+.slot-img {
+  max-height: 215px;
+  max-width: 100%;
+  margin-bottom: 1%;
+  overflow: auto;
+}
+
+.link-div {
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+
+#link-details {
+  font-size: 30px;
+  font-family: 'Dosis';
+  text-decoration: none;
+  letter-spacing: 3px;
+  color: black;
+  transition: 0.2s;
+}
+
+#link-details:hover {
+  font-size: 35px;
+  transition: 0.2s;
+}
+
+#go-to-icon {
+  width: 4%;
 }

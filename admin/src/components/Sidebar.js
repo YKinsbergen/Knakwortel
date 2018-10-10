@@ -20,26 +20,34 @@ export default function Sidebar(props) {
                     Content
                   </Link>
                 </li>
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <Link to='/dashboard/afbeeldingen' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
                     Afbeeldingen
                   </Link>
-                </li>
+                </li> */}
                 <li class="nav-item">
                   <Link to='/dashboard/shops' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
-                    Shops
+                    Winkels
                   </Link>
                 </li>
                 <li class="nav-item">
                   <Link to='/dashboard/bestellingen' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
                     Bestellingen
-                  </Link>                                      
+                  </Link>
+                </li>
+                <li class="nav-item">                                      
                   <Link to='/dashboard/recipes' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
-                    Recipes
+                    Recepten
+                  </Link>
+                </li>
+                <li class="nav-item">                                      
+                  <Link to='/dashboard/toppings' class="nav-link" href="#">
+                    <span data-feather="shopping-cart"></span>
+                    Toppings
                   </Link>
                 </li>
               </ul>

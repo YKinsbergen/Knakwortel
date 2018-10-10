@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, addRecipe} from '../actions/recipes'
+import {loadRecipes, loadToppings, addRecipe, deleteRecipe} from '../actions/recipes'
 import Recipes from './Recipes'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -9,7 +9,7 @@ class RecipesContainer extends React.PureComponent {
   state = {
     addMode: false,
     toppings: {},
-    uploadedFileCloudinaryUrl: ''
+    uploadedFileCloudinaryUrl: null
   }
 
   componentDidMount() {
@@ -24,7 +24,6 @@ class RecipesContainer extends React.PureComponent {
   }
 
   handleChange = event => {
-
     this.setState({ 
       ...this.state, 
       [event.target.name]: event.target.value 
@@ -56,7 +55,9 @@ class RecipesContainer extends React.PureComponent {
     } else {
       this.props.addRecipe(name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl)
       this.setState({
-        addMode: false
+        addMode: false,
+        toppings: {},
+        uploadedFileCloudinaryUrl: null
       })
     }
   }
@@ -78,9 +79,12 @@ class RecipesContainer extends React.PureComponent {
   }
 
   fileUploadHandler(file, uploadPreset) {
+    this.setState({
+      uploadedFileCloudinaryUrl: ''
+    })
     let upload = request.post(CDN_UPLOAD_URL)
                       .field('upload_preset', uploadPreset)
-                      .field('file', file);
+                      .field('file', file)
     upload.end((err, response) => {
       if (err) {
         console.error(err);
@@ -126,6 +130,8 @@ class RecipesContainer extends React.PureComponent {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
+              submitBtnDisabled={this.state.uploadedFileCloudinaryUrl !== null && this.state.uploadedFileCloudinaryUrl.length === 0}
+              deleteRecipe={this.props.deleteRecipe}
             />
   }
 }
@@ -137,7 +143,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
-  addRecipe
+  addRecipe,
+  deleteRecipe
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer)

@@ -1,25 +1,12 @@
 html, body {
-  width: 100%;
-  height: 100%;
+  max-width:  1280px;
+  max-height: 720px;
   background-color: white;
 }
 
 .App {
+  font-family: 'lato';
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
   font-size: 30px;
   color: black;
-}
-
-.column {
-  background-color: purple;
-  float: left;
-  width: 33.33%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
 }

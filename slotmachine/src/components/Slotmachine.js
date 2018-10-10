@@ -2,6 +2,9 @@ import * as React from 'react'
 import './Slotmachine.css'
 import { Link } from 'react-router-dom'
 
+// sauceFilter = saus
+// vegetableFilter = toppings
+
 export default function Slotmachine(props) {
   const {recipes, 
     filters, 
@@ -10,10 +13,6 @@ export default function Slotmachine(props) {
     dispatchRecipeId,
     filterSauce, 
     filterVegetable, 
-    conditionalRenderNoFilters,
-    conditionalRenderSauceFilter,
-    conditionalRenderVegetableFilter,
-    conditionalRenderWithSauceFilter,
     filterWithSauce
   } = props
   
@@ -21,7 +20,7 @@ export default function Slotmachine(props) {
   const filterRecipesNoSauce = (recipes) => {
     return recipes.filter(recipe => {
       return (!recipe.toppings.map(topping => {
-        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        if (topping.toppingType.name.includes('Vegetable') === true) return true
         return false
       }).includes(false))
     })
@@ -30,14 +29,26 @@ export default function Slotmachine(props) {
   const filterRecipesWithSauce = (recipes) => {
     return recipes.filter(recipe => {
       return (recipe.toppings.map(topping => {
-        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        if (topping.toppingType.name.includes('Other') === true) return true
+        else if (topping.toppingType.name.includes('Vegetable') === true) return true
+        return false
+      }).includes(false))
+    })
+  }
+  // Only get recipes that have random in the toppings list
+  const filterRecipesRandomToppings = (recipes) => {
+    return recipes.filter(recipe => {
+      return (!recipe.toppings.map(topping => {
+        if (topping.toppingType.name.includes('Other') === true) return true
         return false
       }).includes(false))
     })
   }
 
+  
   const recipesNoSauce = filterRecipesNoSauce(recipes)
   const recipesWithSauce = filterRecipesWithSauce(recipes)
+  const recipesRandomToppings = filterRecipesRandomToppings(recipes)
 
   // Get all the topping names
   // Returns an array of arrays
@@ -62,7 +73,20 @@ export default function Slotmachine(props) {
     .map(array => {
       return array
       .filter(topping => {
-        return (topping.toppingTypes.name === 'Sauce')
+        return (topping.toppingType.name === 'Sauce')
+      })
+    })
+  }
+  // Get all toppings of type random
+  const getRandomToppingArray = (recipes) => {
+    return recipes
+    .map(recipe => {
+      return recipe.toppings
+    })
+    .map(array => {
+      return array
+      .filter(topping => {
+        return (topping.toppingType.name === 'Other')
       })
     })
   }
@@ -169,32 +193,52 @@ export default function Slotmachine(props) {
 
   return (
     <div className="slotmachine-wrapper">
-      <h2>Creaties</h2>
-
-      {/* Render the conditional filter text */}
-      {conditionalRenderNoFilters()}
-      {conditionalRenderSauceFilter()}
-      {conditionalRenderVegetableFilter()}
-      {conditionalRenderWithSauceFilter()}
+      <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
 
       <div className="filter-wrapper">
         <button id="sauce-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterSauce()
-            }}>Zonder saus
+            if (filters.sauceFilter === false) {
+              document.getElementById("sauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
+              filterSauce()
+            }
+            else {
+              document.getElementById("sauce-filter-btn").removeAttribute("style")
+              filterSauce()
+            }
+            }}>SAUS
         </button>
 
         <button id="vegetable-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterVegetable()
-            }}>Alleen saus
+            if (filters.vegetableFilter === false) {
+              document.getElementById("vegetable-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
+              filterVegetable()
+            }
+            else {
+              document.getElementById("vegetable-filter-btn").removeAttribute("style")
+              filterVegetable()
+            }
+            }}>TOPPINGS
         </button>
 
         <button id="withsauce-filter-btn" className="filter-btn" 
           onClick={() => {
-            filterWithSauce()
-            }}>Met saus
-        </button>
+            if (filters.withSauceFilter === false) {
+              document.getElementById("withsauce-filter-btn").setAttribute("style", "background-color: #F6813A; color: white")
+              document.getElementById("sauce-filter-btn").removeAttribute("style")
+              document.getElementById("vegetable-filter-btn").removeAttribute("style")
+              filterWithSauce()
+            }
+            else {
+              document.getElementById("withsauce-filter-btn").removeAttribute("style")
+              filterWithSauce()
+            }
+            }}>DOE EENS GEK
+        </button> <br/>
+        <span id="no-filters-popup"></span>
       </div>
 
       <div className="start-wrapper">
@@ -206,6 +250,7 @@ export default function Slotmachine(props) {
             const randomNum = rNum(recipes)
             const rNumNoSauce = rNum(recipesNoSauce)
             const rNumWithSauce = rNum(recipesWithSauce)
+            const rNumRandom = rNum(recipesRandomToppings)
 
             // All
             const rRecipeName = RecipeName(recipes, randomNum)
@@ -248,8 +293,27 @@ export default function Slotmachine(props) {
                   )
                 )
 
+            // Doe eens gek (random toppings)
+            const randomToppings = getSauceToppingArrayNames(
+              removeRepeatsObjects(
+                concatNestedArrays(
+                  getRandomToppingArray(recipes)
+                  )
+                )
+              )
+            const rNumRandomToppings = rNum(randomToppings)
+            const randomToppingsUrls = getSauceArrayUrls(
+              removeRepeatsObjects(
+                concatNestedArrays(
+                  getRandomToppingArray(recipes)
+                  )
+                )
+              )
+            const rRecipeRandomToppingName = RecipeName(recipesRandomToppings, rNumRandom)
+            const rRecipeRandomToppingId = RecipeId(recipesRandomToppings, rNumRandom)
+            const rRecipeRandomToppings = RecipeToppings(recipesRandomToppings, rNumRandom)
+
             // h = header, i = img
-            const h1 = document.getElementById("recipe-header1")
             const h2 = document.getElementById("recipe-header2")
             const i2 = document.getElementById("recipe-img2")
             const h3 = document.getElementById("recipe-header3")
@@ -257,22 +321,18 @@ export default function Slotmachine(props) {
             const h4 = document.getElementById("recipe-header4")
             const i4 = document.getElementById("recipe-img4")
 
+            // If no filters
+            if (filters.sauceFilter === false 
+              && filters.vegetableFilter === false 
+              && filters.withSauceFilter === false) {
+                return document.getElementById("no-filters-popup").innerText = 
+                'Kan geen recepten vinden met die parameters'
+              }
+
             // No sauces filter
-            if (filters.sauceFilter === true) {
-              return rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 0),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 100),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 150),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 200),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 300),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 400),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 500),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 700),
-              rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 1000),
-              setTimeout(() => {
-                dispatchRecipeId(rRecipeNoSauceId)
-                return h1.innerHTML = rRecipeNoSauceName
-              }, 1500),
+            if (filters.sauceFilter === false && filters.vegetableFilter === true) {
               // Second header
+              return document.getElementById("no-filters-popup").innerText = null,
               roulette(h2, allToppings, 4, 150),
               rouletteUrl(i2, allToppingsUrl, 4, 150),
               roulette(h2, allToppings, 3, 200),
@@ -288,7 +348,8 @@ export default function Slotmachine(props) {
               roulette(h2, allToppings, 2, 1100),
               rouletteUrl(i2, allToppingsUrl, 2, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeNoSauceToppings[0].name,
+                return dispatchRecipeId(rRecipeNoSauceId),
+                h2.innerHTML = rRecipeNoSauceToppings[0].name,
                 i2.src=`${rRecipeNoSauceToppings[0].image.url}`
               }, 1500),
               // Third header
@@ -336,21 +397,9 @@ export default function Slotmachine(props) {
             }
 
             // Only with sauce
-            if (filters.withSauceFilter === true) {
-              return rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 0),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 100),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 150),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 200),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 300),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 400),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 500),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 700),
-              rouletteName(h1, recipesWithSauce, rNum(recipesWithSauce), 1000),
-              setTimeout(() => {
-                dispatchRecipeId(rRecipeWithSauceId)
-                return h1.innerHTML = rRecipeWithSauceName
-              }, 1500),
+            if (filters.sauceFilter === true && filters.vegetableFilter === true) {
               // Second header
+              return document.getElementById("no-filters-popup").innerText = null,
               roulette(h2, allToppings, 8, 150),
               rouletteUrl(i2, allToppingsUrl, 8, 150),
               roulette(h2, allToppings, 1, 200),
@@ -366,7 +415,8 @@ export default function Slotmachine(props) {
               roulette(h2, allToppings, 3, 1100),
               rouletteUrl(i2, allToppingsUrl, 3, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeWithSauceToppings[0].name,
+                return dispatchRecipeId(rRecipeWithSauceId),
+                h2.innerHTML = rRecipeWithSauceToppings[0].name,
                 i2.src=`${rRecipeWithSauceToppings[0].image.url}`
               }, 1500),
               // Third header
@@ -414,10 +464,9 @@ export default function Slotmachine(props) {
             }
 
             // Only sauces
-            else if (filters.vegetableFilter === true) {
-              // First header
-              return h1.innerHTML = 'Sauces',
+            else if (filters.sauceFilter === true && filters.vegetableFilter === false) {
               // Second header
+              return document.getElementById("no-filters-popup").innerText = null,
               roulette(h2, sauces, 0, 100),
               rouletteUrl(i2, sauceUrls, 0, 100),
               roulette(h2, sauces, 1, 150),
@@ -496,101 +545,73 @@ export default function Slotmachine(props) {
               }, 1500)
             }
 
-            // No filters
-            else {
-              // First header
-              return rouletteName(h1, recipes, rNum(recipes), 0),
-              rouletteName(h1, recipes, rNum(recipes), 100),
-              rouletteName(h1, recipes, rNum(recipes), 200),
-              rouletteName(h1, recipes, rNum(recipes), 400),
-              rouletteName(h1, recipes, rNum(recipes), 600),
-              rouletteName(h1, recipes, rNum(recipes), 850),
-              rouletteName(h1, recipes, rNum(recipes), 1100),
-              setTimeout(() => {
-                dispatchRecipeId(rRecipeId)
-                return h1.innerHTML = rRecipeName
-              }, 1500),
+            else if (filters.withSauceFilter === true) {
+              return document.getElementById("no-filters-popup").innerText = null,
               // Second header
-              roulette(h2, allToppings, 8, 150),
-              rouletteUrl(i2, allToppingsUrl, 8, 150),
-              roulette(h2, allToppings, 4, 200),
-              rouletteUrl(i2, allToppingsUrl, 4, 200),
-              roulette(h2, allToppings, 3, 300),
-              rouletteUrl(i2, allToppingsUrl, 3, 300),
-              roulette(h2, allToppings, 0, 500),
-              rouletteUrl(i2, allToppingsUrl, 0, 500),
-              roulette(h2, allToppings, 2, 700),
-              rouletteUrl(i2, allToppingsUrl, 2, 700),
-              roulette(h2, allToppings, 3, 850),
-              rouletteUrl(i2, allToppingsUrl, 3, 850),
-              roulette(h2, allToppings, 1, 1100),
-              rouletteUrl(i2, allToppingsUrl, 1, 1100),
+              roulette(h2, randomToppings, 0, 100),
+              rouletteUrl(i2, randomToppingsUrls, 0, 100),
+              roulette(h2, randomToppings, 2, 200),
+              rouletteUrl(i2, randomToppingsUrls, 2, 200),
+              roulette(h2, randomToppings, 1, 300),
+              rouletteUrl(i2, randomToppingsUrls, 1, 300),
+              roulette(h2, randomToppings, 3, 500),
+              rouletteUrl(i2, randomToppingsUrls, 3, 500),
+              roulette(h2, randomToppings, 1, 800),
+              rouletteUrl(i2, randomToppingsUrls, 1, 800),
+              roulette(h2, randomToppings, 2, 1100),
+              rouletteUrl(i2, randomToppingsUrls, 2, 1100),
               setTimeout(() => {
-                return h2.innerHTML = rRecipeToppings[0].name,
-                i2.src=`${rRecipeToppings[0].image.url}`
+                return dispatchRecipeId(rRecipeRandomToppingId),
+                h2.innerHTML = rRecipeRandomToppings[0].name,
+                i2.src=`${rRecipeRandomToppings[0].image.url}`
               }, 1500),
               // Third header
-              roulette(h3, allToppings, 1, 100),
-              rouletteUrl(i3, allToppingsUrl, 1, 100),
-              roulette(h3, allToppings, 5, 200),
-              rouletteUrl(i3, allToppingsUrl, 5, 200),
-              roulette(h3, allToppings, 0, 340),
-              rouletteUrl(i3, allToppingsUrl, 0, 340),
-              roulette(h3, allToppings, 11, 480),
-              rouletteUrl(i3, allToppingsUrl, 11, 480),
-              roulette(h3, allToppings, 9, 690),
-              rouletteUrl(i3, allToppingsUrl, 9, 690),
-              roulette(h3, allToppings, 7, 900),
-              rouletteUrl(i3, allToppingsUrl, 7, 900),
-              roulette(h3, allToppings, 8, 1150),
-              rouletteUrl(i3, allToppingsUrl, 8, 1150),
+              roulette(h3, randomToppings, 3, 130),
+              rouletteUrl(i3, randomToppingsUrls, 3, 130),
+              roulette(h3, randomToppings, 1, 230),
+              rouletteUrl(i3, randomToppingsUrls, 1, 230),
+              roulette(h3, randomToppings, 3, 330),
+              rouletteUrl(i3, randomToppingsUrls, 3, 330),
+              roulette(h3, randomToppings, 2, 530),
+              rouletteUrl(i3, randomToppingsUrls, 2, 530),
+              roulette(h3, randomToppings, 4, 950),
+              rouletteUrl(i3, randomToppingsUrls, 4, 950),
               setTimeout(() => {
-                return h3.innerHTML = rRecipeToppings[1].name,
-                i3.src=`${rRecipeToppings[1].image.url}`
+                return h3.innerHTML = rRecipeRandomToppings[1].name,
+                i3.src=`${rRecipeRandomToppings[1].image.url}`
               }, 1500),
               // Fourth header
-              roulette(h4, allToppings, 12, 130),
-              rouletteUrl(i4, allToppingsUrl, 12, 130),
-              roulette(h4, allToppings, 3, 150),
-              rouletteUrl(i4, allToppingsUrl, 3, 150),
-              roulette(h4, allToppings, 6, 200),
-              rouletteUrl(i4, allToppingsUrl, 7, 200),
-              roulette(h4, allToppings, 1, 350),
-              rouletteUrl(i4, allToppingsUrl, 1, 350),
-              roulette(h4, allToppings, 0, 500),
-              rouletteUrl(i4, allToppingsUrl, 0, 500),
-              roulette(h4, allToppings, 7, 700),
-              rouletteUrl(i4, allToppingsUrl, 7, 800),
-              roulette(h4, allToppings, 6, 900),
-              rouletteUrl(i4, allToppingsUrl, 6, 900),
-              roulette(h4, allToppings, 5, 1300),
-              rouletteUrl(i4, allToppingsUrl, 5, 1300),
+              roulette(h4, randomToppings, 1, 100),
+              rouletteUrl(i4, randomToppingsUrls, 1, 100),
+              roulette(h4, randomToppings, 3, 150),
+              rouletteUrl(i4, randomToppingsUrls, 3, 150),
+              roulette(h4, randomToppings, 1, 400),
+              rouletteUrl(i4, randomToppingsUrls, 1, 400),
+              roulette(h4, randomToppings, 0, 700),
+              rouletteUrl(i4, randomToppingsUrls, 0, 530),
+              roulette(h4, randomToppings, 1, 1200),
+              rouletteUrl(i4, randomToppingsUrls, 1, 1200),
               setTimeout(() => {
-                return h4.innerHTML = rRecipeToppings[2].name,
-                i4.src=`${rRecipeToppings[2].image.url}`
+                return h4.innerHTML = rRecipeRandomToppings[2].name,
+                i4.src=`${rRecipeRandomToppings[2].image.url}`
               }, 1500)
             }
             }}>
-          Spin
+          SPIN
         </button>
       </div>
 
-      <div className="column-name">
-          <h4 id="recipe-header1" className="animation">Recept</h4>
-      </div>
-
-      <p id="slots-header">Hoofdingrediënten</p>
       <div className="column">
-          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/sla.png" id="recipe-img2"/>
-          <h4 id="recipe-header2">1</h4>
+          <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/sla.png" id="recipe-img2"/>
+          <h4 id="recipe-header2">sla</h4>
       </div>
       <div className="column">
-          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/augurk.png" id="recipe-img3"/>
-          <h4 id="recipe-header3">2</h4>
+          <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/augurk.png" id="recipe-img3"/>
+          <h4 id="recipe-header3">augurk</h4>
       </div> 
       <div className="column">
-          <img src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/ketchup.png" id="recipe-img4"/>
-          <h4 id="recipe-header4">3</h4>
+          <img className="slot-img" src="https://res.cloudinary.com/dcannkqr7/image/upload/v1538989137/ketchup.png" id="recipe-img4"/>
+          <h4 id="recipe-header4">ketchup</h4>
       </div> 
 
       {renderLinkToRecipeDetails()}
