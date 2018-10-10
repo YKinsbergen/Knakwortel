@@ -54,7 +54,9 @@ h3 {
   min-height: 100vh;
 }
 
-
+.ev {
+  height: 70%;
+}
 
 .home h1 {
   font-size: 5.5rem;
@@ -89,7 +91,7 @@ h3 {
   /* height: 120vh; */
 }
 
-.bestel h1, .receptdetail h1{
+.bestel h1, .receptdetail h1, .trui-order-success h1{
   font-size: 2rem;
   line-height: 1.2;
   }
@@ -112,6 +114,9 @@ h3 {
   }
   .btn {
     background-color: white;
+  }
+  .offerte {
+    margin-bottom: 10px;
   }
 }
 
@@ -177,6 +182,10 @@ h3 {
   height: 25px;
  }
 
+ .scroll-home {
+  margin-top: 30px;
+ }
+
  .card {
    border: none;
  }
@@ -184,6 +193,12 @@ h3 {
  .story-container, .instagram-container, .home-text {
   padding-top: 70px;
  }
+
+ .karretje-evenement {
+   padding-top: 30px;
+   padding-bottom: 30px;
+ }
+
 
  /* Recept details */
  #receptdetail-header {
@@ -221,6 +236,10 @@ h3 {
    display: block;
  }
 
+ .contactballon{
+   width: 100%;
+ }
+
  @media screen and (min-width: 800px) {
   .video-receptdetail {
     max-width: 100%;
@@ -229,5 +248,30 @@ h3 {
    margin-left: auto;
    margin-right: auto;
     display: block;
+  }
+}
+
+/* Trui bestelling confirmatie */
+#trui-bestelling-h {
+  font-size: 50px;
+  text-align: center;
+  margin-left: 10%;
+  margin-bottom: auto;
+  display: inline-block;
+}
+
+.trui-bestelling-kar {
+  width: 50%;
+  height: auto;
+  display: inline-block;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .trui-bestelling-kar {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
