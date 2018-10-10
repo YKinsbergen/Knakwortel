@@ -22,22 +22,6 @@ class SlotmachineContainer extends React.Component {
     null : <h2 id="main-header">BROODJE KNAKWORTEL MET...</h2>
   }
 
-  conditionalRenderSauceFilter = () => {
-    const {filters} = this.props
-    return filters.sauceFilter ? 
-    <h4 id="main-header">Broodje knakwortel zonder saus </h4> : null
-  }
-  conditionalRenderVegetableFilter = () => {
-    const {filters} = this.props
-    return filters.vegetableFilter ? 
-    <h4 id="main-header">Broodje knakwortel met alleen saus</h4> : null
-  }
-  conditionalRenderWithSauceFilter = () => {
-    const {filters} = this.props
-    return filters.withSauceFilter ? 
-    <h4 id="main-header">Broodje knakwortel met saus</h4> : null
-  }
-
   renderLinkToRecipeDetails = () => {
     const {recipeId} = this.props
     if (recipeId.value === 0) return null
