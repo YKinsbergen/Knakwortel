@@ -37,6 +37,7 @@ h3 {
 }
 
 .footer {
+  /* position: fixed; */
   bottom: 0;
   height: 160px;
   width: 100vw;
@@ -53,9 +54,6 @@ h3 {
   min-height: 100vh;
 }
 
-/* .home-text{
-  height: 100%;
-} */
 
 
 .home h1 {
@@ -75,7 +73,7 @@ h3 {
   font-size: 1.5rem;
 }
 
-.geknakt h1  {
+.geknakt h1, .winkelzoeker h1  {
   font-size: 4rem;
   line-height: 1.2;
   letter-spacing: 8%;
@@ -84,6 +82,11 @@ h3 {
 .bestel, .geknakt, .receptdetail {
   padding-top: 100px;
   height: 100vh;
+}
+
+.winkelzoeker {
+  padding-top: 100px;
+  /* height: 120vh; */
 }
 
 .bestel h1, .receptdetail h1{
@@ -130,9 +133,8 @@ h3 {
 
 .btn {
   border: 3px solid #F6813A;
-  border-radius: 0%;
+  border-radius: 4px;
   background-color: white;
-  /* color: #F6813A */
 }
 
 .btn:active, .btn:focus, .btn:hover {
@@ -177,4 +179,8 @@ h3 {
 
  .card {
    border: none;
+ }
+
+ .story-container, .instagram-container, .home-text {
+  padding-top: 70px;
  }
