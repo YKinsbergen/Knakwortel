@@ -55,11 +55,13 @@ export class ShopsController {
       })
       )
       result.push(shopsPlusThree.filter(shop => {
-        return shop.postcode.length > 4
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
       result.push(shopsMinusThree.filter(shop => {
-        return shop.postcode.length > 4
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
   
@@ -73,11 +75,13 @@ export class ShopsController {
       })
       )
       result.push(shopsPlusThree.filter(shop => {
-        return shop.postcode.length < 5
+        return (shop.postcode.length < 5 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
       result.push(shopsMinusThree.filter(shop => {
-        return shop.postcode.length < 5
+        return (shop.postcode.length < 5
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
 
