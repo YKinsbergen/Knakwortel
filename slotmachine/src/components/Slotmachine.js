@@ -24,7 +24,7 @@ export default function Slotmachine(props) {
   const filterRecipesNoSauce = (recipes) => {
     return recipes.filter(recipe => {
       return (!recipe.toppings.map(topping => {
-        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        if (topping.toppingType.name.includes('Vegetable') === true) return true
         return false
       }).includes(false))
     })
@@ -33,7 +33,7 @@ export default function Slotmachine(props) {
   const filterRecipesWithSauce = (recipes) => {
     return recipes.filter(recipe => {
       return (recipe.toppings.map(topping => {
-        if (topping.toppingTypes.name.includes('Vegetable') === true) return true
+        if (topping.toppingType.name.includes('Vegetable') === true) return true
         return false
       }).includes(false))
     })
@@ -65,7 +65,7 @@ export default function Slotmachine(props) {
     .map(array => {
       return array
       .filter(topping => {
-        return (topping.toppingTypes.name === 'Sauce')
+        return (topping.toppingType.name === 'Sauce')
       })
     })
   }
