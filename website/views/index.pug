@@ -92,6 +92,15 @@ block content
     div
       if (schap)
         img(class="img-fluid img-block" src=schap.image.url alt=schap.image.altText)
+
+    - const receptenmachine = page.pageContents.find(contentBlock => contentBlock.tag === 'receptenmachine')
+    section
+      .container(class="story-container text-center")
+        div(class="container my-auto")
+          if (receptenmachine)
+            h1=receptenmachine.headline
+            p=receptenmachine.body
+            iframe(src=receptenmachine.iframeUrl frameborder="0" width="100%" height="600" scrolling="no")
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.text-center.my-5(id="instagram")
