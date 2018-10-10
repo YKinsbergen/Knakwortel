@@ -42,9 +42,11 @@ export class RecipeController {
       @BodyParam('description') description: string,
       @BodyParam('toppings') toppings: string[],
       @BodyParam('uploadedFileCloudinaryUrl') imageUrl: string,
-      @BodyParam('youtubeUrl') youtubeUrl: string
+      @BodyParam('youtubeUrl') youtubeUrl: any
 
     ) {
+        if (youtubeUrl === '') youtubeUrl = null
+
         const toppingEntities = await Promise.all(
             toppings.map(toppingId => Topping.findOne(toppingId))
         )
@@ -119,6 +121,18 @@ export class RecipeController {
         if (!recipeToDelete) throw new NotFoundError('Cannot find recipe')
         recipeToDelete.remove()
         return recipeToDelete
+    }
+
+    // @Authorized()
+    @Delete('/toppings/:id')
+    async deleteTopping(
+        @Param('id') id: number,
+    ) {
+
+        const toppingToDelete = await Topping.findOne(id)
+        if (!toppingToDelete) throw new NotFoundError('Cannot find recipe')
+        toppingToDelete.remove()
+        return toppingToDelete
     }
     
 }

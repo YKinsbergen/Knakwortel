@@ -37,6 +37,7 @@ h3 {
 }
 
 .footer {
+  /* position: fixed; */
   bottom: 0;
   height: 160px;
   width: 100vw;
@@ -53,10 +54,9 @@ h3 {
   min-height: 100vh;
 }
 
-/* .home-text{
-  height: 100%;
-} */
-
+.ev {
+  height: 70%;
+}
 
 .home h1 {
   font-size: 5.5rem;
@@ -75,15 +75,20 @@ h3 {
   font-size: 1.5rem;
 }
 
-.geknakt h1  {
+.geknakt h1, .winkelzoeker h1  {
   font-size: 4rem;
   line-height: 1.2;
   letter-spacing: 8%;
 }
 
-.bestel, .geknakt, .receptdetail {
+.bestel, .geknakt {
   padding-top: 100px;
   height: 100vh;
+}
+
+.winkelzoeker {
+  padding-top: 100px;
+  /* height: 120vh; */
 }
 
 .bestel h1, .receptdetail h1, .trui-order-success h1{
@@ -110,6 +115,9 @@ h3 {
   .btn {
     background-color: white;
   }
+  .offerte {
+    margin-bottom: 10px;
+  }
 }
 
 .carousel-control-prev-icon {
@@ -130,9 +138,8 @@ h3 {
 
 .btn {
   border: 3px solid #F6813A;
-  border-radius: 0%;
+  border-radius: 4px;
   background-color: white;
-  /* color: #F6813A */
 }
 
 .btn:active, .btn:focus, .btn:hover {
@@ -175,6 +182,67 @@ h3 {
   height: 25px;
  }
 
+ .scroll-home {
+  margin-top: 30px;
+ }
+
  .card {
    border: none;
  }
+
+ .story-container, .instagram-container, .home-text {
+  padding-top: 70px;
+ }
+
+ .karretje-evenement {
+   padding-top: 30px;
+   padding-bottom: 30px;
+ }
+
+
+ /* Recept details */
+ #receptdetail-header {
+   font-size: 60px;
+   text-align: center;
+   display: inline-block;
+   margin: 0 auto; 
+  }
+  
+ #receptdetail-description {
+   font-size: 20px;
+   text-align: center;
+   overflow-wrap: break-word;
+ }
+
+ .img-receptdetail {
+   max-width: 100%;
+   width: 65%;
+   height: auto;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ .receptdetail {
+  padding-top: 100px;
+ }
+
+ .video-receptdetail {
+   max-width: 100%;
+   width: 100%;
+   height: 230px;
+  margin-left: auto;
+  margin-right: auto;
+   display: block;
+ }
+
+ @media screen and (min-width: 800px) {
+  .video-receptdetail {
+    max-width: 100%;
+    width: 60%;
+    height: 550px;
+   margin-left: auto;
+   margin-right: auto;
+    display: block;
+  }
+}
