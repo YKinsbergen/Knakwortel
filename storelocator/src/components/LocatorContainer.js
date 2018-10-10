@@ -29,7 +29,7 @@ class LocatorContainer extends Component {
     })
 
     console.log("resultInfos", resultInfos)
-
+    
     return (
       <div>
         <MapSearch onSearchPostcode={this.props.actions.fetchStores} 
