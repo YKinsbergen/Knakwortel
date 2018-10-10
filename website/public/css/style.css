@@ -182,6 +182,10 @@ h3 {
   height: 25px;
  }
 
+ .scroll-home {
+  margin-top: 30px;
+ }
+
  .card {
    border: none;
  }

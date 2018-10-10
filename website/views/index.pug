@@ -6,11 +6,11 @@ block content
       div(class="container home-text")
         if (start)
           img(class="img-fluid" src=start.image.url)
-          h1 Knakwortel
+          h1(class="scroll-home") Knakwortel
           h2=start.headline
           p=start.body
           a(href="/#story")
-            img(src="/lib/scroll-down.svg")
+            img(class="scroll-home" src="/lib/scroll-down.svg")
   
   section.wortelstory(id="story")
     .container(class="story-container text-center")
@@ -94,7 +94,7 @@ block content
         img(class="img-fluid img-block" src=schap.image.url alt=schap.image.altText)
 
     - const receptenmachine = page.pageContents.find(contentBlock => contentBlock.tag === 'receptenmachine')
-    section
+    section(id="recepten")
       .container(class="story-container text-center")
         div(class="container my-auto")
           if (receptenmachine)
