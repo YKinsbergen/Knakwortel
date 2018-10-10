@@ -42,7 +42,7 @@ export default function Slotmachine(props) {
   const filterRecipesRandomToppings = (recipes) => {
     return recipes.filter(recipe => {
       return (!recipe.toppings.map(topping => {
-        if (topping.toppingType.name.includes('Random') === true) return true
+        if (topping.toppingType.name.includes('Other') === true) return true
         return false
       }).includes(false))
     })
@@ -88,7 +88,7 @@ export default function Slotmachine(props) {
     .map(array => {
       return array
       .filter(topping => {
-        return (topping.toppingType.name === 'Random')
+        return (topping.toppingType.name === 'Other')
       })
     })
   }
