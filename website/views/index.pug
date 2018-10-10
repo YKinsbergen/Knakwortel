@@ -156,6 +156,26 @@ block content
           a(class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next")
             span(class="carousel-control-next-icon" aria-hidden="true")
             span(class="sr-only") Next
+  
+  //- EVENEMENTEN CONTENT BLOCK
+  - const evenement = page.pageContents.find(contentBlock => contentBlock.tag === 'evenement')
+  section(id="evenement")
+    .container-fluid
+      .row
+        if (evenement)
+          .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
+            h2=evenement.headline
+            p=evenement.body
+            img(class="karretje-evenement" src="/lib/KAR_kar-neus rechts.svg")
+            p <strong>Ook kun je onze mooie Knakkar huren!</strong>
+            a(href="/#")
+              button(class="btn btn-outline offerte") Offerte aanvragen
+          .col-md-6.order-md-1
+            img(class="img-fluid ev" src=evenement.image.url)
+          
+            
+        
+  
 
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
   section.section.my-5(id="faq")
