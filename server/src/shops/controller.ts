@@ -36,20 +36,33 @@ export class ShopsController {
     @Param('postcode') postcode: string
   ) {
     const shopsByCity = await Shop.find({
-      where: {city: postcode}
+      where: {city: postcode.charAt(0).toUpperCase() + postcode.slice(1)}
     })
 
     const shops = await Shop.find({
       where: {postcode: Like(postcode.substr(0, 2)+"%")}
   })
+    const shopsPlusOne = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) + 1)+"%")}
+    })
+    const shopsPlusTwo = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) + 2)+"%")}
+    })
     const shopsPlusThree = await Shop.find({
       where: {postcode: Like((Number(postcode.substr(0, 2)) + 3)+"%")}
+    })
+
+    const shopsMinusOne = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) - 1)+"%")}
+    })
+    const shopsMinusTwo = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) - 2)+"%")}
     })
     const shopsMinusThree = await Shop.find({
       where: {postcode: Like((Number(postcode.substr(0, 2)) - 3)+"%")}
     })
 
-    if (!shops && !shopsPlusThree && !shopsMinusThree && !shopsByCity) throw new BadRequestError(`Can't find any shops`)
+    if (!shops) throw new BadRequestError(`Can't find any shops`)
 
     // If the search is a city
     let hasNumber = /\d/
@@ -60,7 +73,18 @@ export class ShopsController {
     else if (postcode.length > 4) {
       let result: any = []
       result.push(shops.filter(shop => {
-        return shop.postcode.length > 4
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
+      })
+      )
+      result.push(shopsPlusOne.filter(shop => {
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
+      })
+      )
+      result.push(shopsPlusTwo.filter(shop => {
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
       result.push(shopsPlusThree.filter(shop => {
@@ -73,14 +97,24 @@ export class ShopsController {
         && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
-  
+      result.push(shopsMinusTwo.filter(shop => {
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
+      })
+      )
+      result.push(shopsMinusOne.filter(shop => {
+        return ((shop.postcode.length > 4) 
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
+      })
+      )
       return [].concat.apply([], result);
     }
     // If belgic postal code
     else if (postcode.length < 5) {
       let result: any = []
       result.push(shops.filter(shop => {
-        return shop.postcode.length < 5
+        return ((shop.postcode.length < 5)
+        && ( (Number(shop.postcode.substr(0, 4)) - (Number(postcode.substr(0, 4)))) <  1000))
       })
       )
       result.push(shopsPlusThree.filter(shop => {
@@ -94,7 +128,7 @@ export class ShopsController {
       })
       )
 
-      return [].concat.apply([], result);
+      return console.log(((Number(postcode.substr(0, 2)) + 3)+"%"))
     }
   }
 
