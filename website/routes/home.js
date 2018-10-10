@@ -77,4 +77,18 @@ async function instagramPhotos() {
   }
 }
 
+router.get('/winkelzoeker', async (ctx, next) => {
+  const pageId = 40
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  // console.log(page)
+  ctx.render('winkelzoeker', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
+
 module.exports = router

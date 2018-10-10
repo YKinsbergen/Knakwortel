@@ -1,0 +1,10 @@
+extends ./common/layout.pug
+
+block content
+  - const winkelzoeker = page.pageContents.find(contentBlock => contentBlock.tag === 'winkelzoeker')
+  section(class="winkelzoeker d-flex text-center my-auto")
+    div(class="container my-auto")
+      if (winkelzoeker)
+        h1=winkelzoeker.headline
+        p=winkelzoeker.body
+        iframe(src=winkelzoeker.iframeUrl frameborder="0" width="100%" height="1000" scrolling="no")

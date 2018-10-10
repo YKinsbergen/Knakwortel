@@ -37,6 +37,7 @@ h3 {
 }
 
 .footer {
+  /* position: fixed; */
   bottom: 0;
   height: 160px;
   width: 100vw;
@@ -75,7 +76,7 @@ h3 {
   font-size: 1.5rem;
 }
 
-.geknakt h1  {
+.geknakt h1, .winkelzoeker h1  {
   font-size: 4rem;
   line-height: 1.2;
   letter-spacing: 8%;
@@ -84,6 +85,11 @@ h3 {
 .bestel, .geknakt, .receptdetail {
   padding-top: 100px;
   height: 100vh;
+}
+
+.winkelzoeker {
+  padding-top: 100px;
+  /* height: 120vh; */
 }
 
 .bestel h1, .receptdetail h1{
