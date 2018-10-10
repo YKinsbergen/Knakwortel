@@ -144,19 +144,19 @@ block content
             span(class="sr-only") Next
 
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
-  section.section.my-5
+  section.section.my-5(id="faq")
     .container
       h1.text-center Veelgestelde vragen
       if (faqArray)
         each item in faqArray
           - let id = item.id
           div(class="faq-box my-5")
-            div(class="question")
-              a(class="" data-toggle="collapse" href="#collapseExample" + id role="button" aria-expanded="false" aria-controls="collapseExample")
+            a(class="question" data-toggle="collapse" href="#collapseExample" + id role="button" aria-expanded="false" aria-controls="collapseExample")
+              div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
                 p=item.headline
-                img(src="/lib/scroll-down.svg")
+                img(class="scroll-down" src="/lib/faq-scroll-down.svg")
             div(class="collapse" id="collapseExample"+ id)
-              div(class="card card-body")
+              div(class="card p-3")
                 p=item.body
 
 

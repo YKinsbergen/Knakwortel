@@ -161,12 +161,20 @@ h3 {
 .img-block {
   width: 100%;
 }
- .question {
+ .question-wrapper {
    border-bottom: 1.5px dashed gray;
  }
 
- .question a, .question a:hover {
+ .question, .question:hover {
   color: black;
   text-decoration: none;
  }
 
+ .scroll-down {
+  width: 25px;
+  height: 25px;
+ }
+
+ .card {
+   border: none;
+ }
