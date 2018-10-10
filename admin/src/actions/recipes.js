@@ -9,6 +9,7 @@ export const ADD_RECIPE_SUCCESS = 'ADD_RECIPE_SUCCESS'
 export const DELETE_RECIPE_SUCCESS = 'DELETE_RECIPE_SUCCESS'
 export const TOPPING_TYPES_FETCHED = 'TOPPING_TYPES_FETCHED'
 export const ADD_TOPPING_SUCCESS = 'ADD_TOPPING_SUCCESS'
+export const DELETE_TOPPING_SUCCESS = 'DELETE_TOPPING_SUCCESS'
 
 function recipesFetched(recipes) {
   return {
@@ -34,6 +35,13 @@ function addRecipeSuccess(recipe) {
 function deleteRecipeSuccess(id) {
   return {
     type: DELETE_RECIPE_SUCCESS,
+    payload: id
+  }
+}
+
+function deleteToppingSuccess(id) {
+  return {
+    type: DELETE_TOPPING_SUCCESS,
     payload: id
   }
 }
@@ -88,6 +96,8 @@ export const addRecipe = (name, description, toppingIdArr, uploadedFileCloudinar
     .catch(console.error)
 }
 
+
+
 export const deleteRecipe = (id) => (dispatch, getState) => {
   const state = getState()
   const jwt = state.currentUser.jwt
@@ -98,6 +108,20 @@ export const deleteRecipe = (id) => (dispatch, getState) => {
     .delete(`${apiUrl}/recipes/${id}`)
     .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch(deleteRecipeSuccess(response.body)))
+    .catch(console.error)
+
+}
+
+export const deleteTopping = (id) => (dispatch, getState) => {
+  const state = getState()
+  const jwt = state.currentUser.jwt
+ 
+  if (isExpired(jwt)) return dispatch(logout())
+
+  request
+    .delete(`${apiUrl}/toppings/${id}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(response => dispatch(deleteToppingSuccess(response.body)))
     .catch(console.error)
 
 }

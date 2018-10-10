@@ -16,12 +16,13 @@ export default function Toppings(props) {
 
       </div>
       {props.addMode === true && <ToppingForm
-      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} toppingTypes={props.toppingTypes}/>}
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} toppingTypes={props.toppingTypes}submitBtnDisabled={props.submitBtnDisabled}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>id</th>
                   <th>Naam</th>
                   <th>Type</th>
                   <th>Afbeelding</th>
@@ -30,7 +31,8 @@ export default function Toppings(props) {
               <tbody>
                 {props.toppings.map(topping => 
                 <tr key={topping.id}>
-                  <td>link..</td>
+                  <td><button onClick={() => props.deleteTopping(topping.id)}>delete</button></td>
+                  <td>{topping.id}</td>
                   <td>{topping.name}</td>
                   
                   <td>{topping.toppingType.name}</td>

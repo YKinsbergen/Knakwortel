@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, loadToppingTypes, addTopping} from '../actions/recipes'
+import {loadRecipes, loadToppings, loadToppingTypes, addTopping, deleteTopping} from '../actions/recipes'
 import Toppings from './Toppings'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -93,6 +93,8 @@ class ToppingsContainer extends React.PureComponent {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
+              submitBtnDisabled={this.state.uploadedFileCloudinaryUrl.length === 0}
+              deleteTopping={this.props.deleteTopping}
             />
   }
 }
@@ -105,7 +107,8 @@ const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
   loadToppingTypes,
-  addTopping
+  addTopping,
+  deleteTopping
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToppingsContainer)

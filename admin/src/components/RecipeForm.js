@@ -26,9 +26,9 @@ export default function RecipeForm(props) {
         </div>
 
         <div className="form-group row">
-          <label htmlFor="name" className="col-sm-2 col-form-label">Youtube url:</label>
+          <label htmlFor="youtubeUrl" className="col-sm-2 col-form-label">Youtube url:</label>
             <div className="col-sm-10">
-              <input id="name" type="text" name="youtubeUrl" onChange={props.handleChange} className="form-control" />
+              <input id="youtubeUrl" type="text" name="youtubeUrl" onChange={props.handleChange} className="form-control" />
             </div>
         </div>        
 
@@ -51,7 +51,7 @@ export default function RecipeForm(props) {
 
       <div className="form-group row">
         <div className="col-sm-10">
-          <button type="submit" className="btn btn-primary">Opslaan</button>
+          <button type="submit" className="btn btn-primary" disabled={props.submitBtnDisabled}>Opslaan</button>
         </div>
         </div>
       </form>

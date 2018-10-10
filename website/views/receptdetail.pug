@@ -1,0 +1,17 @@
+extends ./common/layout.pug
+
+block content
+  section(class="receptdetail d-flex my-auto")
+      div(class="container-fluid my-auto")
+        .row   
+            h1=recipe.name
+
+            if recipe.youtubeUrl !== null 
+              iframe(width='640' height='390' src!=recipe.youtubeUrl frameborder='1')
+            else if recipe.image !== null
+              img(class="img-fluid" src=recipe.image.url)
+            else
+              img(class="img-fluid" src="/lib/knakwortel.jpg")
+            
+            -const newDes=recipe.description.replace(/\n/g, `<br/>`)
+            p !{newDes}

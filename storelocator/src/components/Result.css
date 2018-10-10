@@ -1,24 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
+
 .result-wrapper {
   margin-bottom: 1rem;
   padding: 0.6rem;
+  font-family: 'Lato', sans-serif;
 }
 
 @media (min-width: 768px) {
   .result-wrapper {
     margin-bottom: 0;
+    font-family: 'Lato', sans-serif;
   }
 }
 
 .result {
   font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
 }
 
 .result-details {
-  min-height: 170px;
+  min-height: 130px;
   margin-bottom: 1rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.card-title {
+  /* min-height: 170px; */
+  /* margin-bottom: 1rem; */
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Dosis', sans-serif;
+  font-size: 2em;
+}
+
+.card-text {
+  /* min-height: 170px; */
+  margin-bottom: 1rem;
+  font-family: 'Lato', sans-serif;
 }
 
 .result a {
   display: block;
   align-self: flex-end;
+  font-family: 'Lato', sans-serif;
+}
+
+#routebeschrijving {
+  /* margin-top: 10px; */
+  color: #F6813A;
 }

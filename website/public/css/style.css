@@ -75,18 +75,18 @@ h3 {
   font-size: 1.5rem;
 }
 
-.geknakt h1 {
+.geknakt h1  {
   font-size: 4rem;
   line-height: 1.2;
   letter-spacing: 8%;
 }
 
-.bestel, .geknakt {
+.bestel, .geknakt, .receptdetail {
   padding-top: 100px;
   height: 100vh;
 }
 
-.bestel h1 {
+.bestel h1, .receptdetail h1{
   font-size: 2rem;
   line-height: 1.2;
   }
@@ -97,14 +97,14 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .home h1, .bestel h1, .geknakt h1 {
+  .home h1, .bestel h1, .geknakt h1, .receptdetail h1{
     font-size: 3rem;
     letter-spacing: 0.05em;
   }
   .home h2 {
     font-size: 3rem;
   }
-  .home p {
+  .home p, .receptdetail p {
     font-size: 1rem;
   }
   .btn {
@@ -153,3 +153,28 @@ h3 {
 .detrui {
   margin-bottom: 4.5rem;
 }
+
+.wortelstory h3 {
+  font-family: 'Dosis', sans-serif;
+}
+
+.img-block {
+  width: 100%;
+}
+ .question-wrapper {
+   border-bottom: 1.5px dashed gray;
+ }
+
+ .question, .question:hover {
+  color: black;
+  text-decoration: none;
+ }
+
+ .scroll-down {
+  width: 25px;
+  height: 25px;
+ }
+
+ .card {
+   border: none;
+ }
