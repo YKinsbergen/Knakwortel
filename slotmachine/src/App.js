@@ -8,9 +8,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={ () => <Redirect to="recipes" />} />
-        <Route exact path="/recipes" component={SlotmachineContainer}/>
-        <Route exact path="/recipes/:id" component={RecipeDetailsContainer}/>
+        <Route exact path="/" render={ () => <Redirect to="recepten" />} />
+        <Route exact path="/recepten" component={SlotmachineContainer}/>
+        <Route exact path="/recepten/:id" component={RecipeDetailsContainer}/>
       </div>
     );
   }

@@ -221,7 +221,8 @@ export default function Slotmachine(props) {
               filterWithSauce()
             }
             }}>DOE EENS GEK
-        </button>
+        </button> <br/>
+        <span id="no-filters-popup"></span>
       </div>
 
       <div className="start-wrapper">
@@ -284,6 +285,14 @@ export default function Slotmachine(props) {
             const h4 = document.getElementById("recipe-header4")
             const i4 = document.getElementById("recipe-img4")
 
+            // If no filters
+            if (filters.sauceFilter === false 
+              && filters.vegetableFilter === false 
+              && filters.withSauceFilter === false) {
+                return document.getElementById("no-filters-popup").innerText = 
+                'Kan geen recepten vinden met die parameters'
+              }
+
             // No sauces filter
             if (filters.sauceFilter === false && filters.vegetableFilter === true) {
               // return rouletteName(h1, recipesNoSauce, rNum(recipesNoSauce), 0),
@@ -300,7 +309,8 @@ export default function Slotmachine(props) {
               //   return h1.innerHTML = rRecipeNoSauceName
               // }, 1500),
               // Second header
-              return roulette(h2, allToppings, 4, 150),
+              return document.getElementById("no-filters-popup").innerText = null,
+              roulette(h2, allToppings, 4, 150),
               rouletteUrl(i2, allToppingsUrl, 4, 150),
               roulette(h2, allToppings, 3, 200),
               rouletteUrl(i2, allToppingsUrl, 3, 200),
@@ -379,7 +389,8 @@ export default function Slotmachine(props) {
               //   return h1.innerHTML = rRecipeWithSauceName
               // }, 1500),
               // Second header
-              return roulette(h2, allToppings, 8, 150),
+              return document.getElementById("no-filters-popup").innerText = null,
+              roulette(h2, allToppings, 8, 150),
               rouletteUrl(i2, allToppingsUrl, 8, 150),
               roulette(h2, allToppings, 1, 200),
               rouletteUrl(i2, allToppingsUrl, 1, 200),
@@ -447,7 +458,8 @@ export default function Slotmachine(props) {
               // First header
               // return h1.innerHTML = 'Sauces',
               // Second header
-              return roulette(h2, sauces, 0, 100),
+              return document.getElementById("no-filters-popup").innerText = null,
+              roulette(h2, sauces, 0, 100),
               rouletteUrl(i2, sauceUrls, 0, 100),
               roulette(h2, sauces, 1, 150),
               rouletteUrl(i2, sauceUrls, 1, 150),
@@ -540,7 +552,8 @@ export default function Slotmachine(props) {
               //   return h1.innerHTML = rRecipeName
               // }, 1500),
               // Second header
-              return roulette(h2, allToppings, 8, 150),
+              return document.getElementById("no-filters-popup").innerText = null,
+              roulette(h2, allToppings, 8, 150),
               rouletteUrl(i2, allToppingsUrl, 8, 150),
               roulette(h2, allToppings, 4, 200),
               rouletteUrl(i2, allToppingsUrl, 4, 200),
@@ -604,6 +617,7 @@ export default function Slotmachine(props) {
           SPIN
         </button>
       </div>
+
 
       {/* <div className="column-name">
           <h4 id="recipe-header1" className="animation">Recept</h4>
