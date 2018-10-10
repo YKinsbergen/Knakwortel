@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-// import './MapSearch.css';
+import './MapSearch.css';
 
 class MapSearch extends Component {
   state = {

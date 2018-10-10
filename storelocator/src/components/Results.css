@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
+
 .slick-next:before, .slick-prev:before {
   color: #3a3a3a;
+  font-family: 'Lato', sans-serif;
 }

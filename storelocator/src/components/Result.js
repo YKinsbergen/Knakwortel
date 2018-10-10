@@ -23,7 +23,7 @@ class Result extends Component {
                 }
               </p>
             </div>
-            <a target="_blank" href={ data.mapUrl } className="card-link">Routebeschrijving</a>
+            <a target="_blank" href={ data.mapUrl } id="routebeschrijving" className="card-link">Routebeschrijving</a>
           </div>
         </div>
       </div>

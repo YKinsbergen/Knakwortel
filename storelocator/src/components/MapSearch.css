@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
 
-
-.leaflet-container {
-  height: 500px;
-  margin-bottom: 5rem;
+#submit-button {
+  background-color: #F6813A;
+  border-color: #F6813A;
+  border-width: 1px;
+  color: white;
+  /* border: 10px; */
   font-family: 'Lato', sans-serif;
-  border: 2px solid #bcc3c5;
+  font-size: 25px;
 }
 
 @media (min-width: 768px) {
