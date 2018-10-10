@@ -13,7 +13,7 @@ block content
               p=contactformulier.body + "   "
                 a(href="#")
                   img(src='/lib/Shape.svg')
-              form(class="needs-validation" novalidate method="post" action="/trui-bestellen")
+              form(class="needs-validation" novalidate method="post" action="/contactformulier-succes")
                 .row
                   .col-lg-4.py-2
                     label(for="company") Bedrijfsnaam (optioneel)
@@ -31,10 +31,10 @@ block content
 
                 .row
                   .col-lg-8.py-4
-                    label(for="straat") Bericht
-                    input(type="text" class="form-control" id="straat" name="street" placeholder="" value="" required)
+                    label(for="bericht") Bericht
+                    input(type="text" class="form-control" id="bericht" name="message" placeholder="" value="" required)
                     div(class="invalid-feedback")
-                      Valid Straat is een verplicht veld.
+                      Valid Bericht is een verplicht veld.
                   //- .col-lg-4.py-2
                   //-   label(for="huisnummer") Huisnummer
                   //-   input(type="number" class="form-control" id="huisnummer" name="houseNumber" placeholder="" value="" required)

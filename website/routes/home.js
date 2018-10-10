@@ -105,4 +105,18 @@ router.get('/contactformulier', async (ctx, next) => {
   await next()
 })
 
+// UITPROBEERSEL MET KLIKKEN
+
+router.post('/contactformulier-succes', parseBody(), async (ctx, next) => {
+  const { company, name, email, message} = ctx.request.body
+  console.log(ctx.request.body)
+
+  ctx.render('contactformulier-succes', { 
+    company, name, email, message })
+
+  await next()
+})
+
+// UITPROBEERSEL MET KLIKKEN
+
 module.exports = router
