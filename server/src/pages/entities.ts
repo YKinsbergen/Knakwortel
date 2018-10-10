@@ -60,7 +60,7 @@ export class PageContent extends BaseEntity {
     @Column('text', {nullable: false})
     body: string
 
-    @Column('text', {nullable: false})
+    @Column('text', {nullable: false, default: 'NL'})
     locale: string
 
     @Column('integer', {nullable: true})

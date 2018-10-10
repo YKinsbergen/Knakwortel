@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode, Authorized} from "routing-controllers";
+import { JsonController, Post, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode,BodyParam, Authorized} from "routing-controllers";
 import {Page, PageContent} from './entities'
 import Image from '../images/entity'
 
@@ -14,6 +14,21 @@ export class PagesController {
 
         if (page) page.pageContents = pageContents
         return page
+    }
+
+    @Authorized()
+    @Post('/contents')
+    async addContentBlock(
+        @BodyParam('headline') headline: string,
+        @BodyParam('body') body: string,
+        @QueryParam('tag') tag: string
+    ) {
+        console.log('***********', headline)
+        const page = await Page.findOne(1)
+        const order = 1
+        const block = await PageContent.create({headline, body, tag, page, order})
+
+        return block.save()
     }
 
     @Get('/contents')
@@ -34,7 +49,7 @@ export class PagesController {
         }
     
     
-        if (!orderBy) orderBy = 'order'
+        if (!orderBy) orderBy = 'tag'
         if (!direction) direction = 'ASC'
         const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle', 'image'], order: { [orderBy]: direction }, skip, take})
         

@@ -13,12 +13,13 @@ export default function BlockDetails(props) {
 
         <div class="row">
 
+          {props.block.tag !== 'faq' &&
           <div class="col-md-6">
             {props.block.image && <img class="detail-img img-fluid" src={props.block.image.url} alt=""/>}
             
             <input type="file" onChange={props.fileSelectHandler}/>
           </div>
-
+          }
           
           <div class="col-md-6">
             {!props.editMode && 

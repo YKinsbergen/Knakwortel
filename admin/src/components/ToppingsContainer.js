@@ -37,10 +37,21 @@ class ToppingsContainer extends React.PureComponent {
     
     const uploadedFileCloudinaryUrl = this.state.uploadedFileCloudinaryUrl
     
+    
     this.props.addTopping(name, toppingType,uploadedFileCloudinaryUrl)
     this.setState({
       addMode: false
     })
+  }
+
+  deleteToppingFn = (topping) => {
+    const {toppings} = this.props.recipes
+    console.log(topping)
+    if (toppings.length > 12) {
+      if (toppings.filter(topp => topp.toppingType.id === topping.toppingType.id).length > 3) {
+        this.props.deleteTopping(topping.id)
+      }
+    }
   }
 
   // Image upload handlers
@@ -94,7 +105,7 @@ class ToppingsContainer extends React.PureComponent {
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
               submitBtnDisabled={this.state.uploadedFileCloudinaryUrl.length === 0}
-              deleteTopping={this.props.deleteTopping}
+              deleteToppingFn={this.deleteToppingFn}
             />
   }
 }
