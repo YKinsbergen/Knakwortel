@@ -1,15 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,400i,700');
+
 .App-header h1 {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-family: 'Dosis', sans-serif;
+  font-size: 3em;
+  color: #F6813A;
 }
 
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
+  font-family: 'Lato', sans-serif;
 }
 
 .search-form {
   justify-content: center;
+  font-family: 'Lato', sans-serif;
 }
