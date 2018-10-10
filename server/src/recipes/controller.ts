@@ -1,7 +1,7 @@
 // src/advertisements/controller.ts
 
-import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam, Put } from "routing-controllers";
-import { Recipe, Topping } from "./entity";
+import { JsonController, Get, HttpCode, Post, Delete, NotFoundError, Param, Authorized, BodyParam, Put, BadRequestError } from "routing-controllers";
+import { Recipe, Topping, ToppingType } from "./entity";
 import Image from '../images/entity'
 
 
@@ -11,21 +11,27 @@ import Image from '../images/entity'
 export class RecipeController {
     @Get('/recipes')
     allRecipes = async() => {
-        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingTypes", "toppings.image", "image"]})
+        const recipes = await Recipe.find({relations: ["toppings", "toppings.toppingType", "toppings.image", "image"]})
         return {recipes}
     }
 
     @Get('/recipes/:id')
     async getRecipe(
     @Param('id') id: number) { 
-        const recipe = await Recipe.findOne(id, {relations: ["toppings", "toppings.toppingTypes", "image"]})
+        const recipe = await Recipe.findOne(id, {relations: ["toppings", "toppings.toppingType", "image"]})
         return recipe
     }
 
     @Get('/toppings')
     async getAllToppings() {
-        const toppings = await Topping.find()
+        const toppings = await Topping.find({relations: ['image', 'toppingType']})
         return {toppings}
+    }
+
+    @Get('/toppingtypes')
+    async getToppingTypes() {
+        const toppingTypes = await ToppingType.find()
+        return {toppingTypes}
     }
 
     @Authorized()
@@ -56,6 +62,32 @@ export class RecipeController {
 
         return recipe.save()
     }
+
+    @Authorized()
+    @Post('/toppings')
+    @HttpCode(201)
+    async createTopping(
+      @BodyParam('name') name: string,
+      @BodyParam('toppingType') tType: number,
+      @BodyParam('uploadedFileCloudinaryUrl') imageUrl: string,
+
+    ) {
+        const toppingType = await ToppingType.findOne(tType)
+        if (!toppingType) throw new BadRequestError('type not there')
+        
+        let image: any = null
+
+        if (imageUrl.length > 1) {
+            image = await Image.create({
+                url: imageUrl
+            }).save()
+        }
+
+        const recipe = await Topping.create({name , toppingType, image})
+        
+
+        return recipe.save()
+    }    
 
     @Authorized()
     @Put('/recipes/:id')

@@ -19,9 +19,9 @@ export default function RecipeForm(props) {
             </div>
         </div>
         <div className="form-group row">
-          <label htmlFor="description" className="col-sm-2 col-form-label">Afbeelding:</label>
+          <label htmlFor="image" className="col-sm-2 col-form-label">Afbeelding:</label>
             <div className="col-sm-10">
-            <input type="file" onChange={props.fileSelectHandler}/>
+            <input type="file" id="image" onChange={props.fileSelectHandler}/>
             </div>
         </div>
 

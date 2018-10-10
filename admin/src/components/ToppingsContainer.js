@@ -1,20 +1,20 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, addRecipe} from '../actions/recipes'
-import Recipes from './Recipes'
+import {loadRecipes, loadToppings, loadToppingTypes, addTopping} from '../actions/recipes'
+import Toppings from './Toppings'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
 
-class RecipesContainer extends React.PureComponent {
+class ToppingsContainer extends React.PureComponent {
   state = {
     addMode: false,
-    toppings: {},
     uploadedFileCloudinaryUrl: ''
   }
 
   componentDidMount() {
     this.props.loadRecipes()
     this.props.loadToppings()
+    this.props.loadToppingTypes()
   }
 
   onAdd = () => {
@@ -23,8 +23,6 @@ class RecipesContainer extends React.PureComponent {
     })
   }
 
-
-
   handleChange = event => {
     this.setState({ 
       ...this.state, 
@@ -32,34 +30,17 @@ class RecipesContainer extends React.PureComponent {
     })
   }
 
-  handleToppingsChange = name => event => {
-    this.setState({ 
-      ...this.state, 
-      toppings: {...this.state.toppings, [name]: event.target.checked }
-    })
-  }
-
-  chosenToppingsToArray = () => {
-    const toppings = Object.keys(this.state.toppings)
-    return toppings.filter(topping => this.state.toppings[topping] === true )
-  }
-
   handleSubmit = (event) => {
     event.preventDefault()
     const name = this.state.name
-    const description = this.state.description
-    const toppingIdArr = this.chosenToppingsToArray()
+    const toppingType = this.state.toppingType
+    
     const uploadedFileCloudinaryUrl = this.state.uploadedFileCloudinaryUrl
-    const youtubeUrl = this.state.youtubeUrl || ''
-
-    if (toppingIdArr.length < 3 || name.length < 3 || description.length < 10 ) {
-      //error 
-    } else {
-      this.props.addRecipe(name, description, toppingIdArr, uploadedFileCloudinaryUrl, youtubeUrl)
-      this.setState({
-        addMode: false
-      })
-    }
+    
+    this.props.addTopping(name, toppingType,uploadedFileCloudinaryUrl)
+    this.setState({
+      addMode: false
+    })
   }
 
   // Image upload handlers
@@ -96,20 +77,7 @@ class RecipesContainer extends React.PureComponent {
   }
 
   componentDidUpdate = () => {
-    if (this.props.recipes.toppings && this.props.recipes.toppings.length !== 0 && Object.keys(this.state.toppings).length === 0) {
-      // load all toppings in this.state: object with toppingIds as keys, values false. Checkbox sets to true
-      let toppingsObj = {}
-      this.props.recipes.toppings.forEach(topping => {
-        toppingsObj = {
-          ...toppingsObj,
-          [topping.id]: false
-        }
-      })
-      this.setState({
-        ...this.state,
-        toppings: toppingsObj
-      })
-    }
+
   }
 
 
@@ -117,13 +85,11 @@ class RecipesContainer extends React.PureComponent {
     if (this.props.recipes.list.length === 0) return 'Loading...'
 
     console.log(this.state)
-    return <Recipes 
-              recipes={this.props.recipes.list}
-              toppingCheckboxes={this.state.toppings} 
+    return <Toppings 
               toppings={this.props.recipes.toppings}
+              toppingTypes={this.props.recipes.toppingTypes}
               addMode={this.state.addMode}
               onAdd={this.onAdd}
-              handleToppingsChange={this.handleToppingsChange}
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
@@ -138,7 +104,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
-  addRecipe
+  loadToppingTypes,
+  addTopping
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ToppingsContainer)

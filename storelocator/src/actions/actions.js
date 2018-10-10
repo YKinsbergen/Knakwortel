@@ -1,11 +1,10 @@
 import * as types from './action-types';
 import fetch from 'isomorphic-fetch'
 import * as request from 'superagent'
+import { apiUrl } from '../constants'
 
 export const STORES_BY_POSTCODE_FETCHED = 'STORES_BY_POSTCODE_FETCHED'
 
-import request from 'superagent'
-import { apiUrl } from '../constants'
 
 export const requestStores = (postcode) => {
   return {
@@ -14,7 +13,7 @@ export const requestStores = (postcode) => {
   };
 }
 
-export const receiveStores = (postcode, json) => {
+export const receiveStores = (stores) => {
   return {
     type: types.RECEIVE_STORES,
     stores,

@@ -81,8 +81,6 @@ h3 {
   letter-spacing: 8%;
 }
 
-
-
 .bestel, .geknakt {
   padding-top: 100px;
   height: 100vh;
@@ -133,6 +131,7 @@ h3 {
 .btn {
   border: 3px solid #F6813A;
   border-radius: 0%;
+  background-color: white;
   /* color: #F6813A */
 }
 

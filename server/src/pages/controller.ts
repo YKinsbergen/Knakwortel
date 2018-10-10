@@ -26,7 +26,7 @@ export class PagesController {
         const count = await PageContent.count({relations: ['page', 'page.pageTitle']})
 
         if (!page) page = 1
-        const take = 20
+        const take = 100
         const skip = (page -1) * take
         let range = {
             first: skip+1, 
@@ -89,9 +89,7 @@ export class PagesController {
 
         if (!content) throw new NotFoundError('Cannot find page content')
 
-
         return content.image = image,
             PageContent.merge(content, update).save()
-
     }
 }
