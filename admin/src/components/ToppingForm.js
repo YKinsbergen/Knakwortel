@@ -36,7 +36,7 @@ export default function ToppingForm(props) {
 
       <div className="form-group row">
         <div className="col-sm-10">
-          <button type="submit" className="btn btn-primary">Opslaan</button>
+          <button type="submit" className="btn btn-primary" disabled={props.submitBtnDisabled}>Opslaan</button>
         </div>
         </div>
       </form>

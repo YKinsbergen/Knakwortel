@@ -9,7 +9,7 @@ class RecipesContainer extends React.PureComponent {
   state = {
     addMode: false,
     toppings: {},
-    uploadedFileCloudinaryUrl: ''
+    uploadedFileCloudinaryUrl: null
   }
 
   componentDidMount() {
@@ -22,8 +22,6 @@ class RecipesContainer extends React.PureComponent {
       addMode: true,
     })
   }
-
-
 
   handleChange = event => {
     this.setState({ 
@@ -79,9 +77,12 @@ class RecipesContainer extends React.PureComponent {
   }
 
   fileUploadHandler(file, uploadPreset) {
+    this.setState({
+      uploadedFileCloudinaryUrl: ''
+    })
     let upload = request.post(CDN_UPLOAD_URL)
                       .field('upload_preset', uploadPreset)
-                      .field('file', file);
+                      .field('file', file)
     upload.end((err, response) => {
       if (err) {
         console.error(err);
@@ -127,6 +128,7 @@ class RecipesContainer extends React.PureComponent {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
+              submitBtnDisabled={this.state.uploadedFileCloudinaryUrl !== null && this.state.uploadedFileCloudinaryUrl.length === 0}
             />
   }
 }

@@ -29,7 +29,7 @@ export default function Sidebar(props) {
                 <li class="nav-item">
                   <Link to='/dashboard/shops' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
-                    Shops
+                    Winkels
                   </Link>
                 </li>
                 <li class="nav-item">
@@ -41,7 +41,7 @@ export default function Sidebar(props) {
                 <li class="nav-item">                                      
                   <Link to='/dashboard/recipes' class="nav-link" href="#">
                     <span data-feather="shopping-cart"></span>
-                    Recipes
+                    Recepten
                   </Link>
                 </li>
                 <li class="nav-item">                                      

@@ -93,6 +93,7 @@ class ToppingsContainer extends React.PureComponent {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
+              submitBtnDisabled={this.state.uploadedFileCloudinaryUrl.length === 0}
             />
   }
 }

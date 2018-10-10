@@ -53,7 +53,8 @@ export class RecipeController {
 
         if (imageUrl.length > 1) {
             image = await Image.create({
-                url: imageUrl
+                url: imageUrl,
+                altText: name
             }).save()
         }
 
@@ -79,7 +80,8 @@ export class RecipeController {
 
         if (imageUrl.length > 1) {
             image = await Image.create({
-                url: imageUrl
+                url: imageUrl,
+                altText: name
             }).save()
         }
 
