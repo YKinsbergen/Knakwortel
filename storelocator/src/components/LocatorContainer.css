@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700');
+
+#loading-header {
+  font-family: 'Lato', sans-serif;
+  font-size: 90px;
+  margin: 10% auto;
+  text-align: center;
+}
