@@ -1,0 +1,14 @@
+extends ./common/layout.pug
+
+block content
+  - const controle = page.pageContents.find(contentBlock => contentBlock.tag === 'controle')
+  section(class="text-center d-flex wortelstory")
+    div(class="container my-auto home-text")
+      if (controle)
+        .col-lg-7
+          h2=controle.headline
+          p=controle.body
+        .col-lg-4
+          img(class="img-fluid mt-5" src=controle.image.url)
+          a(href="/dietruiisvanjou")
+            button(class="btn btn-outline") Bestellen

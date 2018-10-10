@@ -86,7 +86,7 @@ h3 {
   height: 100vh;
 }
 
-.bestel h1, .receptdetail h1{
+.bestel h1, .receptdetail h1, .trui-order-success h1{
   font-size: 2rem;
   line-height: 1.2;
   }
