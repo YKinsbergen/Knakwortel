@@ -81,13 +81,15 @@ export class PagesController {
         @Param('id') id: number,
         @Body() update: Partial<Image>
     ) {
-        const image = await Image.create({
-            url: update.url
-        }).save()
 
         const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
 
         if (!content) throw new NotFoundError('Cannot find page content')
+
+        const image = await Image.create({
+            url: update.url,
+            altText: content.headline
+        }).save()
 
         return content.image = image,
             PageContent.merge(content, update).save()

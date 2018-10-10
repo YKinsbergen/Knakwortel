@@ -3,7 +3,9 @@ import {
   TOPPINGS_FETCHED,
   ADD_RECIPE_SUCCESS,
   TOPPING_TYPES_FETCHED,
-  ADD_TOPPING_SUCCESS
+  ADD_TOPPING_SUCCESS,
+  DELETE_RECIPE_SUCCESS,
+
   } from '../actions/recipes'
 
 const initialState = {
@@ -38,6 +40,13 @@ const reducer = (state = initialState, action= {}) => {
         return {
           ...state,
           toppings: [action.payload, ...state.toppings]
+        }
+      case DELETE_RECIPE_SUCCESS:
+        const newRecList = [...state.list]
+        const recExlDel = newRecList.filter(rec => rec.id !== action.payload.id)
+        return {
+          ...state,
+          list: recExlDel
         }
       default:
         return state

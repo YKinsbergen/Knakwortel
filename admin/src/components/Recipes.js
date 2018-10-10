@@ -16,12 +16,13 @@ export default function Recipes(props) {
 
       </div>
       {props.addMode === true && <RecipeForm toppingCheckboxes={props.toppingCheckboxes} toppings={props.toppings} handleToppingsChange={props.handleToppingsChange}
-      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler}/>}
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} submitBtnDisabled={props.submitBtnDisabled}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>id</th>
                   <th>Naam</th>
                   <th>Bereiding</th>
                   <th>Toppings</th>
@@ -30,7 +31,8 @@ export default function Recipes(props) {
               <tbody>
                 {props.recipes.map(recipe => 
                 <tr key={recipe.id}>
-                  <td>link..</td>
+                  <td><button onClick={() => props.deleteRecipe(recipe.id)}>delete</button></td>
+                  <td>{recipe.id}</td>
                   <td>{recipe.name}</td>
                   
                   <td>{recipe.description}</td>

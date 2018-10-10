@@ -16,7 +16,7 @@ export default function Toppings(props) {
 
       </div>
       {props.addMode === true && <ToppingForm
-      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} toppingTypes={props.toppingTypes}/>}
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit} fileSelectHandler={props.fileSelectHandler} toppingTypes={props.toppingTypes}submitBtnDisabled={props.submitBtnDisabled}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
