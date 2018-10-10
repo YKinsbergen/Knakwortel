@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom' 
 import './App.css';
 import SlotmachineContainer from './components/SlotmachineContainer'
-import RecipeDetailsContainer from './components/RecipeDetailsContainer'
 
 class App extends Component {
   render() {
@@ -10,7 +9,6 @@ class App extends Component {
       <div className="App">
         <Route exact path="/" render={ () => <Redirect to="recepten" />} />
         <Route exact path="/recepten" component={SlotmachineContainer}/>
-        <Route exact path="/recepten/:id" component={RecipeDetailsContainer}/>
       </div>
     );
   }
