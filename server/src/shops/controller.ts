@@ -1,4 +1,5 @@
 import { JsonController, Get, BadRequestError, Body, Post, Authorized, Delete, Param, NotFoundError} from "routing-controllers";
+import { Like } from 'typeorm'
 import {Shop} from './entity'
 
 @JsonController()
@@ -34,10 +35,54 @@ export class ShopsController {
   async getShopsByPostcode(
     @Param('postcode') postcode: string
   ) {
-    console.log(postcode)
-    const shops = await Shop.find({where: {postcode}})
+    const shops = await Shop.find({
+      where: {postcode: Like(postcode.substr(0, 2)+"%")}
+  })
+    const shopsPlusThree = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) + 3)+"%")}
+    })
+    const shopsMinusThree = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) - 3)+"%")}
+    })
+
     if (!shops) throw new BadRequestError(`Can't find any shops`)
-    return shops
+
+    // If dutch postal code
+    if (postcode.length > 4) {
+      let result: any = []
+      result.push(shops.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+      result.push(shopsPlusThree.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+      result.push(shopsMinusThree.filter(shop => {
+        return shop.postcode.length > 4
+      })
+      )
+  
+      return [].concat.apply([], result);
+    }
+    // If belgic postal code
+    else if (postcode.length < 5) {
+      let result: any = []
+      result.push(shops.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+      result.push(shopsPlusThree.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+      result.push(shopsMinusThree.filter(shop => {
+        return shop.postcode.length < 5
+      })
+      )
+
+      return [].concat.apply([], result);
+    }
   }
 
   @Delete('/shops/:id')
