@@ -19,6 +19,19 @@ router.get('/', async (ctx, next) => {
   await next()
 })
 
+router.get('/recepten/:id', async (ctx, next) => {
+  const recipeId = ctx.params.id
+  const recipeRequest = await axios(`${apiUrl}/recipes/${recipeId}`)
+  
+  const recipe = recipeRequest.data
+  console.log(recipe)
+  ctx.render('receptdetail',
+    { 
+      recipe
+    })
+  await next()
+})
+
 router.get('/trui', async (ctx, next) => {
   const pageId = 2
   const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
