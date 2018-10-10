@@ -1,4 +1,5 @@
 import { JsonController, Get, BadRequestError, Body, Post, Authorized, Delete, Param, NotFoundError} from "routing-controllers";
+import { Like } from 'typeorm'
 import {Shop} from './entity'
 
 @JsonController()
@@ -34,10 +35,18 @@ export class ShopsController {
   async getShopsByPostcode(
     @Param('postcode') postcode: string
   ) {
-    console.log(postcode)
-    const shops = await Shop.find({where: {postcode}})
+    const shops = await Shop.find({
+      where: {postcode: Like(postcode.substr(0, 2)+"%")}
+  })
+    const shops2 = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) + 1)+"%")}
+    })
+    const shops3 = await Shop.find({
+      where: {postcode: Like((Number(postcode.substr(0, 2)) - 1)+"%")}
+    })
+
     if (!shops) throw new BadRequestError(`Can't find any shops`)
-    return shops
+    return shops.concat(shops2).concat(shops3)
   }
 
   @Delete('/shops/:id')
