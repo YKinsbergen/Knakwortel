@@ -83,7 +83,11 @@ h3 {
 
 .bestel, .geknakt, .receptdetail {
   padding-top: 100px;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.controle {
+  padding-top: 100px;
 }
 
 .bestel h1, .receptdetail h1, .trui-order-success h1{

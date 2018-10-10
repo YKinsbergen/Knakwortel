@@ -2,13 +2,49 @@ extends ./common/layout.pug
 
 block content
   - const controle = page.pageContents.find(contentBlock => contentBlock.tag === 'controle')
-  section(class="text-center d-flex wortelstory")
-    div(class="container my-auto home-text")
-      if (controle)
-        .col-lg-7
-          h2=controle.headline
-          p=controle.body
-        .col-lg-4
-          img(class="img-fluid mt-5" src=controle.image.url)
-          a(href="/dietruiisvanjou")
-            button(class="btn btn-outline") Bestellen
+  section(class="d-flex my-auto")
+    div(class="container-fluid my-auto controle")
+      .row
+        if (controle)
+          .col-lg-4
+            img(class="img-fluid mt-5" src=controle.image.url)
+          .col-lg-7
+            h1=controle.headline
+            p=controle.body
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Bedrijfsnaam (optioneel) 
+              p=company
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Naam 
+              p=name
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Email 
+              p=email
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Straat 
+              p=street
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Huisnummer 
+              p=houseNumber
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Toevoeging (optioneel)
+              p=Addition
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Postcode
+              p=zipcode
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Plaats
+              p=city
+            div(class="question-wrapper d-flex justify-content-between align-items-center px-3")
+              p Maat
+              if size === '1'
+                p Small
+              else if size === '2'
+                p Medium
+              else if size === '3'
+                p Large
+            .row
+              .col-lg-4.offset-lg-8
+                a(href="/dietruiisvanjou")
+                  button(class="btn btn-outline controleer") Bestellen
+                  p 
