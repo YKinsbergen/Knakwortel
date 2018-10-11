@@ -4,3 +4,10 @@
   color: #3a3a3a;
   font-family: 'Lato', sans-serif;
 }
+
+/* @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .result-wrapper-parent {
+    margin-right: 1%;
+    display: inline-flex;
+  }
+} */
