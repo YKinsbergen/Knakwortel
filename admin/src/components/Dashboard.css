@@ -109,3 +109,13 @@
   display: inline-block;
   margin: 5px;
 }
+
+.instructiesShopUploadTitle{
+  color: rgb(39, 39, 39);
+  font-size: 20px;
+}
+
+.instructiesShopUploadText{
+  color: rgb(65, 65, 65);
+  font-size: 20px;
+}
