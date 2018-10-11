@@ -189,7 +189,7 @@ block content
           
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
   section.section.my-5(id="faq")
-    .container
+    .container.faq-container
       h1.text-center Veelgestelde vragen
       if (faqArray)
         each item in faqArray
