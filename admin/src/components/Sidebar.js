@@ -56,6 +56,12 @@ export default function Sidebar(props) {
                     Toppings
                   </Link>
                 </li>
+                <li class="nav-item">                                      
+                  <Link to='/dashboard/admins' class="nav-link" href="#">
+                    <span data-feather="shopping-cart"></span>
+                    Admins
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>

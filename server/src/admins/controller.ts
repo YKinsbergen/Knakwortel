@@ -1,4 +1,4 @@
-import { JsonController, Post, BodyParam, Param, Get, Body, Put, NotFoundError, BadRequestError, Authorized } from 'routing-controllers'
+import { JsonController, Post, BodyParam, Param, Get, NotFoundError, BadRequestError, Authorized, Delete } from 'routing-controllers'
 import Admin from './entity';
 
 @JsonController()
@@ -24,14 +24,14 @@ export default class AdminController {
   }
 
   @Authorized()
-  @Put('/admins/:id')
-  async updateAdmin(
-     @Body() update: Partial<Admin>,
-     @Param('id') id: number //?? Hoe voegen we het id toe in het endpoint?
+  @Delete('/admins/:id')
+  async deleteAdmin(
+     @Param('id') id: number
   ) {
       const admin = await Admin.findOne(id)
       if (!admin) throw new NotFoundError ('Admin does not exist') 
-      return Admin.merge(admin, update).save()
+      admin.remove()
+      return admin
   }
 
   @Authorized()
