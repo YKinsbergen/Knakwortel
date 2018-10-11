@@ -37,7 +37,7 @@ class MapSearch extends Component {
               <input type="text" 
               id="search-box"
               className="search-box form-control mr-2 mb-4"
-              placeholder="Postcode" 
+              placeholder="Stad of postcode" 
               value={this.state.postcode} 
               name="postcode" 
               onChange={this.onChange} 

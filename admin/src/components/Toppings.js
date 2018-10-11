@@ -13,6 +13,9 @@ export default function Toppings(props) {
       <div class="pt-3 pb-2 mb-3">
         <h2>Toppings</h2>
         <button onClick={props.onAdd}>Nieuwe topping</button>
+        <p className="text-muted"><small>
+            (minimaal 12 in totaal, en minimaal 3 per Type)
+          </small></p>
 
       </div>
       {props.addMode === true && <ToppingForm
@@ -22,6 +25,7 @@ export default function Toppings(props) {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>id</th>
                   <th>Naam</th>
                   <th>Type</th>
                   <th>Afbeelding</th>
@@ -30,7 +34,8 @@ export default function Toppings(props) {
               <tbody>
                 {props.toppings.map(topping => 
                 <tr key={topping.id}>
-                  <td>link..</td>
+                  <td><button onClick={() => props.deleteToppingFn(topping)}>delete</button></td>
+                  <td>{topping.id}</td>
                   <td>{topping.name}</td>
                   
                   <td>{topping.toppingType.name}</td>

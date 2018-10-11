@@ -35,7 +35,7 @@ export class Page extends BaseEntity {
     @Column('timestamptz', {nullable:true})
     unpublished_at: Timestamp
 
-    @OneToOne(_ => PageTitle)
+    @OneToOne(_ => PageTitle, {eager: true})
     @JoinColumn()
     pageTitle: PageTitle
 
@@ -60,7 +60,7 @@ export class PageContent extends BaseEntity {
     @Column('text', {nullable: false})
     body: string
 
-    @Column('text', {nullable: false})
+    @Column('text', {nullable: false, default: 'NL'})
     locale: string
 
     @Column('integer', {nullable: true})
@@ -72,7 +72,7 @@ export class PageContent extends BaseEntity {
     @ManyToOne(_ => Image, image => image.pageContents)
     image: Image
 
-    @ManyToOne(_ => Page, page => page.pageContents)
+    @ManyToOne(_ => Page, page => page.pageContents, {eager: true})
     page: Page
 
 }

@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode, Authorized} from "routing-controllers";
+import { JsonController, Post, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode,BodyParam, Authorized} from "routing-controllers";
 import {Page, PageContent} from './entities'
 import Image from '../images/entity'
 
@@ -9,11 +9,26 @@ export class PagesController {
     async onePage (
         @Param('id') id: number
     ) {
-        const page = await Page.findOne(id, {relations: ['pageTitle']})
+        const page = await Page.findOne(id)
         const pageContents = await PageContent.find({where: {page}, order: {order: 'ASC'}, relations: ['image']})
 
         if (page) page.pageContents = pageContents
         return page
+    }
+
+    @Authorized()
+    @Post('/contents')
+    async addContentBlock(
+        @BodyParam('headline') headline: string,
+        @BodyParam('body') body: string,
+        @BodyParam('tag') tag: string
+    ) {
+        console.log('***********', tag)
+        const page = await Page.findOne(1)
+        const order = 1
+        const block = await PageContent.create({headline, body, tag, page, order})
+
+        return block.save()
     }
 
     @Get('/contents')
@@ -23,7 +38,7 @@ export class PagesController {
         @QueryParam('direction') direction: string
     ) {
 
-        const count = await PageContent.count({relations: ['page', 'page.pageTitle']})
+        const count = await PageContent.count()
 
         if (!page) page = 1
         const take = 100
@@ -34,9 +49,9 @@ export class PagesController {
         }
     
     
-        if (!orderBy) orderBy = 'order'
+        if (!orderBy) orderBy = 'tag'
         if (!direction) direction = 'ASC'
-        const pageContents = await PageContent.find({relations: ['page', 'page.pageTitle', 'image'], order: { [orderBy]: direction }, skip, take})
+        const pageContents = await PageContent.find({relations: ['image'], order: { [orderBy]: direction }, skip, take})
         
         const totalPages = count / take
         let next
@@ -55,7 +70,7 @@ export class PagesController {
     async onePageContent(
         @Param('id') id: number
     ) {
-        const pageContent = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
+        const pageContent = await PageContent.findOne(id, {relations: ['image']})
         if (!pageContent) throw new BadRequestError('That pageContent does not exist')
         return pageContent
     }
@@ -67,7 +82,7 @@ export class PagesController {
         @Param('id') id: number,
         @Body() update: Partial<PageContent>,
     ) {
-        const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
+        const content = await PageContent.findOne(id, {relations: ['image']})
 
         if (!content) throw new NotFoundError('Cannot find page content')
         
@@ -82,7 +97,7 @@ export class PagesController {
         @Body() update: Partial<Image>
     ) {
 
-        const content = await PageContent.findOne(id, {relations: ['page', 'page.pageTitle', 'image']})
+        const content = await PageContent.findOne(id, {relations: ['image']})
 
         if (!content) throw new NotFoundError('Cannot find page content')
 

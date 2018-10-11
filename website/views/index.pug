@@ -3,16 +3,17 @@ extends ./common/layout.pug
 block content
   - const start = page.pageContents.find(contentBlock => contentBlock.tag === 'start')
   section(class="home text-center d-flex wortelstory")
-      div(class="container my-auto home-text")
+      div(class="container home-text")
         if (start)
-          img(class="img-fluid mt-5" src=start.image.url)
-          h1.mt-4 Knakwortel
+          img(class="img-fluid" src=start.image.url)
+          h1(class="scroll-home") Knakwortel
           h2=start.headline
           p=start.body
-          img(src="/lib/scroll-down.svg")
+          a(href="/#story")
+            img(class="scroll-home" src="/lib/scroll-down.svg")
   
-  section.wortelstory.my-5(id="story")
-    .container(class="text-center")
+  section.wortelstory(id="story")
+    .container(class="story-container text-center")
       h2 de knakwortel
     
     - const begin = page.pageContents.find(contentBlock => contentBlock.tag === 'begin')
@@ -62,22 +63,26 @@ block content
             img(class="img-fluid story-img" src=fabriek.image.url alt=fabriek.image.altText)
     
     - const ah = page.pageContents.find(contentBlock => contentBlock.tag === 'ah')
-    .container-fluid
+    .container-fluid(id="verkrijgbaar")
       .row
         if (ah)
           .col-md-4.offset-md-1.align-self-center
             h3=ah.headline
-            p=ah.body
+            - const newBody = ah.body.replace(/\n/g, `<br/>`)
+              p !{newBody}
+            a(href="/winkelzoeker")
+              button(class="btn btn-outline") Verkooplocaties
           .col-md-6.offset-md-1
             img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText)    
 
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
-    .container-fluid
+    .container-fluid(id="trui")
       .row
         if (trui)
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
             h3=trui.headline
-            p=trui.body
+            - const newBody = trui.body.replace(/\n/g, `<br/>`)
+              p !{newBody}
             a(href="/trui")
               button(class="btn btn-outline") Bestellen
           .col-md-6.order-md-1
@@ -87,10 +92,19 @@ block content
     div
       if (schap)
         img(class="img-fluid img-block" src=schap.image.url alt=schap.image.altText)
+
+    - const receptenmachine = page.pageContents.find(contentBlock => contentBlock.tag === 'receptenmachine')
+    section(id="recepten")
+      .container(class="story-container text-center")
+        div(class="container my-auto")
+          if (receptenmachine)
+            h1=receptenmachine.headline
+            p=receptenmachine.body
+            iframe(src=receptenmachine.iframeUrl frameborder="0" width="100%" height="680" scrolling="no")
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.text-center.my-5(id="instagram")
-    .container
+    .container(class="instagram-container")
       h2 #KNAKWORTEL #ofjewortellust
       div(id="carouselExampleIndicators" data-ride="carousel" data-interval="false" class="carousel slide")
         ol(class="carousel-indicators")
@@ -142,6 +156,26 @@ block content
           a(class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next")
             span(class="carousel-control-next-icon" aria-hidden="true")
             span(class="sr-only") Next
+  
+  //- EVENEMENTEN CONTENT BLOCK
+  - const evenement = page.pageContents.find(contentBlock => contentBlock.tag === 'evenement')
+  section(id="evenement")
+    .container-fluid
+      .row
+        if (evenement)
+          .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
+            h2=evenement.headline
+            p=evenement.body
+            img(class="karretje-evenement" src="/lib/KAR_kar-neus rechts.svg")
+            p <strong>Ook kun je onze mooie Knakkar huren!</strong>
+            a(href="/#")
+              button(class="btn btn-outline offerte") Offerte aanvragen
+          .col-md-6.order-md-1
+            img(class="img-fluid ev" src=evenement.image.url)
+          
+            
+        
+  
 
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
   section.section.my-5(id="faq")

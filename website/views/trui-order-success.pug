@@ -3,9 +3,5 @@ extends ./common/layout.pug
 block content
   section(class="bestel d-flex my-auto")
       div(class="container-fluid my-auto")
-        .row
-          .col-lg-4
-            img(class="img-fluid" src="/lib/karretje.svg")
-          .col-lg-7
-            h1=Bedankt voor je bestelling!
-            
+        h1(id="trui-bestelling-h") BEDANKT VOOR JE <br/> BESTELLING!
+        img(class="trui-bestelling-kar" src="/lib/karretje.svg")

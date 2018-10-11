@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
-import {loadRecipes, loadToppings, loadToppingTypes, addTopping} from '../actions/recipes'
+import {loadRecipes, loadToppings, loadToppingTypes, addTopping, deleteTopping} from '../actions/recipes'
 import Toppings from './Toppings'
 import {CDN_UPLOAD_URL} from '../cdnConstant'
 import request from 'superagent'
@@ -37,10 +37,21 @@ class ToppingsContainer extends React.PureComponent {
     
     const uploadedFileCloudinaryUrl = this.state.uploadedFileCloudinaryUrl
     
+    
     this.props.addTopping(name, toppingType,uploadedFileCloudinaryUrl)
     this.setState({
       addMode: false
     })
+  }
+
+  deleteToppingFn = (topping) => {
+    const {toppings} = this.props.recipes
+    console.log(topping)
+    if (toppings.length > 12) {
+      if (toppings.filter(topp => topp.toppingType.id === topping.toppingType.id).length > 3) {
+        this.props.deleteTopping(topping.id)
+      }
+    }
   }
 
   // Image upload handlers
@@ -94,6 +105,7 @@ class ToppingsContainer extends React.PureComponent {
               handleSubmit={this.handleSubmit}
               fileSelectHandler={this.fileSelectHandler}
               submitBtnDisabled={this.state.uploadedFileCloudinaryUrl.length === 0}
+              deleteToppingFn={this.deleteToppingFn}
             />
   }
 }
@@ -106,7 +118,8 @@ const mapDispatchToProps = {
   loadRecipes,
   loadToppings,
   loadToppingTypes,
-  addTopping
+  addTopping,
+  deleteTopping
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToppingsContainer)

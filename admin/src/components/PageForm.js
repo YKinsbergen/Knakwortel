@@ -8,14 +8,14 @@ export default function PageForm(props) {
         <div className="form-group row">
           <label htmlFor="headline" className="col-sm-2 col-form-label">Titel:</label>
             <div className="col-sm-10">
-              <input id="headline" type="text" name="headline" placeholder={props.values.headline} value={props.values.headline} onChange={props.handleChange} className="form-control" />
+              <input id="headline" type="text" name="headline" placeholder={props.values && props.values.headline} value={props.values && props.values.headline} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
 
         <div className="form-group row">
           <label htmlFor="body" className="col-sm-2 col-form-label">Tekst:</label>
             <div className="col-sm-10">
-              <textarea id="body" type="text" name="body" value={props.values.body} onChange={props.handleChange} className="form-control" />
+              <textarea id="body" type="text" name="body" value={props.values && props.values.body} onChange={props.handleChange} className="form-control" />
             </div>
         </div>
       

@@ -94,4 +94,46 @@ async function instagramPhotos() {
   }
 }
 
+router.get('/winkelzoeker', async (ctx, next) => {
+  const pageId = 40
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  // console.log(page)
+  ctx.render('winkelzoeker', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
+
+router.get('/contactformulier', async (ctx, next) => {
+  const pageId = 50
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  // console.log(page)
+  ctx.render('contactformulier', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
+
+// UITPROBEERSEL MET KLIKKEN
+
+router.post('/contactformulier-succes', parseBody(), async (ctx, next) => {
+  const { company, name, email, message} = ctx.request.body
+  console.log(ctx.request.body)
+
+  ctx.render('contactformulier-succes', { 
+    company, name, email, message })
+
+  await next()
+})
+
+// UITPROBEERSEL MET KLIKKEN
+
 module.exports = router

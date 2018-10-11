@@ -2,17 +2,21 @@
 import React from 'react'
 import './Dashboard.css'
 import { Link } from 'react-router-dom'
+import PageForm from './PageForm'
 
 
 
-export default function Dashboard(props) {
-  props.blocks.pageContents = props.blocks.pageContents.filter(content => content.tag !== 'faq')
+export default function Faq(props) {
+  props.blocks.pageContents = props.blocks.pageContents.filter(content => content.tag === 'faq')
   return (
     <div>
       <div class="pt-3 pb-2 mb-3">
-        <h2>Content</h2>
-          <p className="text-muted"><small>Klik op het ID om het content-block aan te passen.</small></p>
+        <h2>FAQ</h2>
+        <button onClick={props.onAdd}>Nieuwe FAQ</button>
+          <p className="text-muted"><small>Klik op het ID om de FAQ aan te passen.</small></p>
       </div>
+      {props.addMode === true && <PageForm
+      handleChange={props.handleChange} handleSubmit={props.handleSubmit}/>}
           <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
@@ -21,8 +25,7 @@ export default function Dashboard(props) {
                   <th>Categorie</th>
                   <th>Titel</th>
                   <th>Tekst</th>
-                  <th>Tags</th>
-                  <th>Afbeelding</th>
+                  {/* <th>Tags</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -43,8 +46,7 @@ export default function Dashboard(props) {
                   {block.body.length <= 50 &&
                   <td>{block.body}</td>}
 
-                  <td>{block.tag}</td>
-                  <td>{block.image && <img className=" thumbnails img-thumbnail img-fluid" src={block.image.url} alt={block.image.altText}/>}</td>
+                  {/* <td>{block.tag}</td> */}
                 </tr>  
                 )}
 
