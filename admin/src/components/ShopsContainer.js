@@ -51,7 +51,7 @@ class ShopsContainer extends React.PureComponent {
   }
 
   handleShopDelete = (event) => {
-    let answer = window.confirm("Are you sure you want to delete this shop?")
+    let answer = window.confirm("Are you sure you want to delete this store?")
     if (answer) {
       return this.props.deleteShop(Number(event))
     } 
