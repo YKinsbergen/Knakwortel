@@ -29,7 +29,7 @@ class ShopsContainer extends React.PureComponent {
         const lineArray = []
         // Reading line by line
         allLines.forEach( (line) => {
-          const lineValues = line.match(/([^,]+),([^,]+),([^,]+),([^,]+),(.*),([^,]+),([^,]+)/)
+          const lineValues = line.match(/([^,]+);([^,]+);([^,]+);([^,]+);(.*);([^,]+);([^,]+)/)
           const lineObj = {
             storeName: lineValues[1],
             address: lineValues[2],
