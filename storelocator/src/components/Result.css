@@ -24,6 +24,36 @@
   font-family: 'Lato', sans-serif;
 }
 
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .result {
+    font-size: 0.5rem;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .result-details {
+    margin: 0;
+    margin-right: 0;
+    width: 15%;
+    height: auto;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .result-wrapper {
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+    height: 50%;
+  }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .div {
+    width: 0;
+    margin-right: 0;
+    display: inline-flex;
+  }
+}
+
 .card-title {
   /* min-height: 170px; */
   /* margin-bottom: 1rem; */

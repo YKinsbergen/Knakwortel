@@ -16,13 +16,16 @@ class Results extends Component {
         {
           breakpoint: 992,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
+            slidesToShow: 4,
+            slidesToScroll: 4
           }
         },
         {
           breakpoint: 768,
-          settings: "unslick"
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
         }
       ]
     };
@@ -30,7 +33,7 @@ class Results extends Component {
     return (
       <Slider {...settings}>
         {this.props.resultInfos.map((resultInfo, idx) =>
-          <div key={`result-${idx}`}><Result resultInfo={resultInfo} /></div>
+          <div className="result-wrapper-parent" key={`result-${idx}`}><Result resultInfo={resultInfo} /></div>
         )}
       </Slider>
     );
