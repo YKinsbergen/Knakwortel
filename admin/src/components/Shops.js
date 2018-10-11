@@ -24,6 +24,7 @@ export default function Shops(props) {
                   <th>Postcode</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -40,7 +41,7 @@ export default function Shops(props) {
                   <td><button onClick={() => {
                     props.handleShopDelete(shop.id)
                   }}
-                  class="btn btn-outline">Delete</button></td>
+                  class="btn btn-outline">delete</button></td>
                   <tb></tb>
                 </tr>  
                 )}

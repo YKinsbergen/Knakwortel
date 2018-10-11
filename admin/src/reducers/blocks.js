@@ -1,4 +1,4 @@
-import { BLOCKS_FETCHED, BLOCK_ADD_SUCCESS  } from '../actions/blocks'
+import { BLOCKS_FETCHED, BLOCK_ADD_SUCCESS, BLOCK_DELETE_SUCCESS} from '../actions/blocks'
 
 
 const reducer = (state = null, action= {}) => {
@@ -13,6 +13,17 @@ const reducer = (state = null, action= {}) => {
             ...state.pageContents
           ]
         }
+      case BLOCK_DELETE_SUCCESS:
+        return state, 
+        {
+          count: state.count, 
+          next: state.next,
+          previous: state.previous,
+          range: state.range,
+          pageContents: state.pageContents.filter(content => {
+          return content.id !== action.payload.id
+        })
+      }
       default:
         return state
     }

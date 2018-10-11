@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Redirect, Route} from 'react-router-dom'
 import Faq from './Faq'
 import './Dashboard.css'
-import {loadBlocks, addBlock} from '../actions/blocks'
+import {loadBlocks, addBlock, deleteBlock} from '../actions/blocks'
 
 
 class FaqContainer extends PureComponent {
@@ -38,6 +38,16 @@ class FaqContainer extends PureComponent {
     })
   }
 
+  handleBlockDelete = (event) => {
+    let answer = window.confirm("Are you sure you want to delete this store?")
+    if (answer) {
+      return this.props.deleteBlock(Number(event))
+    } 
+    else {
+      return ;
+    }
+  }
+
   componentWillMount() {
       this.props.loadBlocks()
   }
@@ -60,6 +70,7 @@ class FaqContainer extends PureComponent {
         onAdd={this.onAdd}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleBlockDelete={this.handleBlockDelete}
         />
       </div>
     )
@@ -71,4 +82,4 @@ const mapStateToProps = state => ({
   blocks: state.blocks
 })
 
-export default connect(mapStateToProps, {loadBlocks, addBlock})(FaqContainer)
+export default connect(mapStateToProps, {loadBlocks, addBlock, deleteBlock})(FaqContainer)
