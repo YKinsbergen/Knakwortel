@@ -55,7 +55,6 @@ router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
   const { company, name, email, street, houseNumber, addition, zipcode, city, size } = ctx.request.body
   // console.log(ctx.request.body)
   
-
     const postRequest = await axios.post(`${apiUrl}/orders`, ctx.request.body)
       .then(async (response) => {
         // console.log('api response: **********', response)
@@ -71,13 +70,6 @@ router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
       .catch(function (error) {
         console.log(error);
       })
-
-    
-  // ctx.render('trui-order', { company, name, email, street, houseNumber, addition, zipcode, city, size,
-  //   title: page.pageTitle.content,
-  //   page: page
-  // })
-
   await next()
 });
 

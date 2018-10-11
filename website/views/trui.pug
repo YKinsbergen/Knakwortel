@@ -10,9 +10,9 @@ block content
               img(class="img-fluid" src=bestel.image.url)
             .col-lg-7
               h1=bestel.headline
-              p=bestel.body + "   "
-                a(href="#")
-                  img(src='/lib/Shape.svg')
+              a(href="#")
+                p=bestel.body
+                
               form(class="needs-validation" method="post" action="/trui-bestellen")
                 .row
                   .col-lg-4.py-2
