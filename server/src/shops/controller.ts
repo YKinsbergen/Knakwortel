@@ -148,7 +148,7 @@ export class ShopsController {
       })
       )
 
-      return console.log(((Number(postcode.substr(0, 2)) + 3)+"%"))
+      return [].concat.apply([], result);
     }
   }
 
