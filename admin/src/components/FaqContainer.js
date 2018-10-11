@@ -39,7 +39,7 @@ class FaqContainer extends PureComponent {
   }
 
   handleBlockDelete = (event) => {
-    let answer = window.confirm("Are you sure you want to delete this store?")
+    let answer = window.confirm("Are you sure you want to delete this FAQ?")
     if (answer) {
       return this.props.deleteBlock(Number(event))
     } 

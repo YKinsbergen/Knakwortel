@@ -5,6 +5,7 @@ import {logout} from './admins'
 
 export const ORDERS_FETCHED = 'ORDERS_FETCHED'
 export const SET_SENDDATE_SUCCESS = 'SET_SENDDATE_SUCCESS'
+export const ORDER_DELETE_SUCCESS = 'ORDER_DELETE_SUCCESS'
 
 const ordersFetched = orders => ({
   type: ORDERS_FETCHED,
@@ -13,6 +14,11 @@ const ordersFetched = orders => ({
 
 const setSendDateSuccess = (order) => ({
   type: SET_SENDDATE_SUCCESS,
+  payload: order
+})
+
+const orderDeleteSuccess = (order) => ({
+  type: ORDER_DELETE_SUCCESS,
   payload: order
 })
 
@@ -36,5 +42,12 @@ export const setSendDate = (sendDate, orderId) => (dispatch, getState) => {
     .send({sendDate})
     .then(response => dispatch(setSendDateSuccess(response.body)))
     .catch(console.error)
+}
+
+export const deleteOrder = (id) => (dispatch) => {
+  request
+  .delete(`${apiUrl}/orders/${id}`)
+  .then(response => dispatch(orderDeleteSuccess(response.body)))
+  .catch(err => console.error(err))
 }
 
