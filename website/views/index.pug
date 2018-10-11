@@ -33,7 +33,7 @@ block content
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
             h3=product.headline
             p=product.body
-            div(class="d-flex justify-content-between mt-5")
+            div(class="icon-wrapper d-flex justify-content-between")
               div(class="icon-div") 
                 img(src="/lib/klaar-in-3-min-icon.svg")
                 p <small>Klaar in 3 minuten</small>
@@ -181,15 +181,12 @@ block content
             p=evenement.body
             img(class="karretje-evenement" src="/lib/KAR_kar-neus rechts.svg")
             p <strong>Ook kun je onze mooie Knakkar huren!</strong>
-            a(href="/#")
+            a(href="/contactformulier")
               button(class="btn btn-outline offerte") Offerte aanvragen
           .col-md-6.order-md-1
             img(class="img-fluid ev" src=evenement.image.url)
           
-            
-        
-  
-
+          
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
   section.section.my-5(id="faq")
     .container

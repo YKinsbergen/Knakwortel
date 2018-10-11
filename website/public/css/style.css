@@ -39,15 +39,16 @@ h3 {
 .footer {
   /* position: fixed; */
   bottom: 0;
-  height: 160px;
-  width: 100vw;
-  background-color: #F6813A;
-	background-repeat: repeat;
+  height: 200px;
+  width: 100%;
+  background-image: url("/lib/footerbg.png");
+  background-repeat: repeat
+  
 }
 
-/* .container, .container-fluid {
-  border: 1px solid black;
-} */
+.footer-container {
+  width: 50%;
+}
 
 .home {
   min-height: 100vh;
@@ -151,7 +152,8 @@ h3 {
 .img-block {
   width: 100%;
 }
- .question-wrapper {
+
+.question-wrapper {
    border-bottom: 1.5px dashed gray;
  }
 
@@ -173,8 +175,12 @@ h3 {
    border: none;
  }
 
- .story-container, .instagram-container, .home-text {
+ .story-container, .instagram-container {
   padding-top: 70px;
+ }
+ 
+ .home-text {
+  padding-top: 100px;
  }
 
  .karretje-evenement {
@@ -253,15 +259,34 @@ h3 {
     font-size: 3rem;
     letter-spacing: 0.05em;
   }
+  .scroll-home {
+    margin-top: 50px;
+  }
+
+  .home-text {
+    padding-top: 150px;
+  }
+
   .home h2 {
     font-size: 3rem;
   }
   .home p, .receptdetail p {
     font-size: 1rem;
   }
+
   .btn {
     background-color: white;
   }
+
+  .wortelstory h3 {
+    margin-top: 20px;
+  }
+
+  .icon-div img {
+    height: 55px;
+    width: 55px;
+  }
+
   .offerte {
     margin-bottom: 10px;
   }
@@ -282,5 +307,15 @@ h3 {
   }
   .receptenmachine {
     font-size: 2rem;
+  }
+  .sm-icon {
+    height: 40px;
+    width: 40px;
+  }
+  .footer-container {
+    width: 90%;
+  }
+  .footer {
+    height: 100px;
   }
 }
