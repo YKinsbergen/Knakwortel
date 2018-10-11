@@ -3,6 +3,8 @@ const parseBody = require('koa-body')
 const axios = require('axios')
 const constants = require('../constants')
 const apiUrl = constants.apiUrl
+const emailUtil = require('../email-util');
+const { sendEmail } = emailUtil;
 
 router.get('/', async (ctx, next) => {
   const pageId = 1
@@ -121,8 +123,17 @@ router.post('/contactformulier-succes', parseBody(), async (ctx, next) => {
   const { company, name, email, message} = ctx.request.body
   console.log(ctx.request.body)
 
-  ctx.render('contactformulier-succes', { 
-    company, name, email, message })
+    await sendEmail(message, email)
+      .then(response => {
+        ctx.render('contactformulier-succes', {
+          company, name, email, message 
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+
 
   await next()
 })
