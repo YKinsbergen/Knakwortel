@@ -18,6 +18,7 @@ font-family: 'Dosis', sans-serif;
 h3 {
   font-weight: 700;
 }
+
 .navbar {
   background: white;
   box-shadow:  0 1px 3px 0 rgba(104, 104, 104, 0.5);
@@ -80,7 +81,7 @@ h3 {
   letter-spacing: 8%;
 }
 
-.bestel, .geknakt {
+.bestel, .geknakt, .contact {
   padding-top: 100px;
   min-height: 100vh;
 }
@@ -94,7 +95,7 @@ h3 {
   /* height: 120vh; */
 }
 
-.bestel h1, .receptdetail h1, .trui-order-success h1{
+.bestel h1, .receptdetail h1, .trui-order-success h1 .contact h1{
   font-size: 2rem;
   line-height: 1.2;
   }
@@ -204,24 +205,13 @@ h3 {
  }
 
  .img-receptdetail {
-   max-width: 532px;
+   max-width: 100%;
    width: 65%;
    height: auto;
    display: block;
    margin-left: auto;
    margin-right: auto;
  }
-
- @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .img-receptdetail {
-    max-width: 532px;
-    width: 65%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 
  .receptdetail {
   padding-top: 100px;
@@ -246,7 +236,7 @@ h3 {
 }
 
 .icon-div {
-  height: 100px;
+  height: 150px;
   width: 100px;
 }
 
@@ -266,10 +256,16 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .home h1, .bestel h1, .geknakt h1, .receptdetail h1{
+  .home h1, .bestel h1, .geknakt h1, .receptdetail h1 {
     font-size: 3rem;
     letter-spacing: 0.05em;
   }
+
+  .contact h1 {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+
   .scroll-home {
     margin-top: 50px;
   }
@@ -328,5 +324,8 @@ h3 {
   }
   .footer {
     height: 100px;
+  }
+  .controleer {
+    margin-bottom: 40px;
   }
 }
