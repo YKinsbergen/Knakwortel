@@ -156,9 +156,9 @@ export class ShopsController {
   async deleteShop(
     @Param('id') id: number
   ) {
-    const shop = await Shop.findOne(id)
-    if (!shop) throw new NotFoundError('Shop doesnt exist')
-    return Shop.delete(shop)
+    const shopToDelete = await Shop.findOne(id)
+    if (!shopToDelete) throw new NotFoundError('Shop doesnt exist')
+    shopToDelete.remove()
+    return shopToDelete
   }
-
 }
