@@ -5,6 +5,7 @@ import {logout} from './admins'
 
 export const SHOPS_FETCHED = 'SHOPS_FETCHED'
 export const NEW_SHOPS_FETCHED = 'NEW_SHOPS_FETCHED'
+export const SHOP_DELETED = 'SHOP_DELETED'
 
 function shopsFetched(shops) {
   return {
@@ -14,10 +15,16 @@ function shopsFetched(shops) {
 }
 
 function newShopsFetched(shops) {
-  
   return {
     type: NEW_SHOPS_FETCHED,
     payload: shops
+  }
+}
+
+function shopDeleted(shop) {
+  return {
+    type: SHOP_DELETED,
+    payload: shop
   }
 }
 
@@ -39,4 +46,11 @@ export const getShops = () => (dispatch) => {
   request(`${apiUrl}/shops`)
     .then(response => dispatch(shopsFetched(response.body)))
     .catch(err => console.error(err))
+}
+
+export const deleteShop = (id) => (dispatch) => {
+  request
+  .delete(`${apiUrl}/shops/${id}`)
+  .then(response => dispatch(shopDeleted(response.body)))
+  .catch(err => console.error(err))
 }
