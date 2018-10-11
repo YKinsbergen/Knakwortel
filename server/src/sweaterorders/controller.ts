@@ -9,10 +9,8 @@ export default class OrderController {
   async createOrder(
     @Body() order: Partial<Order>,
   ) {
-        
-
-        await Order.create(order).save()
-        return order
+        const newOrder = await Order.create(order)
+        return newOrder.save()
   }
 
   @Put('/orders/:id([0-9]+)')
