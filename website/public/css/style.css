@@ -176,7 +176,7 @@ h3 {
    border: none;
  }
 
- .story-container, .instagram-container {
+ .story-container, .instagram-container , .evenement-container {
   padding-top: 70px;
  }
  
@@ -255,6 +255,20 @@ h3 {
   display: inline-block;
 }
 
+.instaDiv {
+  object-fit: cover;
+  width: 250px;
+  height: 200px;
+}
+
+
+
+
+
+
+
+
+/* MOBIELE WEERGAVE */
 @media (max-width: 768px) {
   .home h1, .bestel h1, .geknakt h1, .receptdetail h1 {
     font-size: 3rem;
