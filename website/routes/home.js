@@ -17,7 +17,7 @@ router.get('/', async (ctx, next) => {
       instaFeed: instaMediaArray
     })
   await next()
-})
+});
 
 router.get('/recepten/:id', async (ctx, next) => {
   const recipeId = ctx.params.id
@@ -30,7 +30,7 @@ router.get('/recepten/:id', async (ctx, next) => {
       recipe
     })
   await next()
-})
+});
 
 router.get('/trui', async (ctx, next) => {
   const pageId = 2
@@ -44,7 +44,12 @@ router.get('/trui', async (ctx, next) => {
       page: page
     })
   await next()
-})
+});
+
+router.get('/dietruiisvanjou', async (ctx, next) => {
+  ctx.render('trui-order-success', { title: 'Die trui is van jou!'})
+  await next()
+});
 
 router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
   const { company, name, email, street, houseNumber, addition, zipcode, city, size } = ctx.request.body
@@ -55,13 +60,19 @@ router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
     )
     .catch(function (error) {
       console.log("hi");
-    });
+});
 
-  ctx.render('trui-order-success', { company, name, email, street, houseNumber, addition, zipcode, city, size })
+  const pageId = 3
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  const page = pageRequest.data
+    
+  ctx.render('trui-order', { company, name, email, street, houseNumber, addition, zipcode, city, size,
+    title: page.pageTitle.content,
+    page: page
+  })
 
   await next()
-})
-
+});
 
 async function instagramPhotos() {
   try {
@@ -90,5 +101,33 @@ router.get('/winkelzoeker', async (ctx, next) => {
     })
   await next()
 })
+
+router.get('/contactformulier', async (ctx, next) => {
+  const pageId = 50
+  const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+  
+  const page = pageRequest.data
+  // console.log(page)
+  ctx.render('contactformulier', 
+    { 
+      title: page.pageTitle.content,
+      page: page
+    })
+  await next()
+})
+
+// UITPROBEERSEL MET KLIKKEN
+
+router.post('/contactformulier-succes', parseBody(), async (ctx, next) => {
+  const { company, name, email, message} = ctx.request.body
+  console.log(ctx.request.body)
+
+  ctx.render('contactformulier-succes', { 
+    company, name, email, message })
+
+  await next()
+})
+
+// UITPROBEERSEL MET KLIKKEN
 
 module.exports = router
