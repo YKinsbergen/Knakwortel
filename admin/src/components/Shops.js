@@ -24,20 +24,25 @@ export default function Shops(props) {
                   <th>Postcode</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {props.shops.map(shop => 
                 <tr key={shop.id}>
-                  <td>link..</td>
+                  <td>{shop.id}</td>
                   <td>{shop.storeName}</td>
-                  
                   <td>{shop.address}</td>
 
                   <td>{shop.postcode}</td>
 
                   <td>{shop.latitude}</td>
                   <td>{shop.longitude}</td>
+                  <td><button onClick={() => {
+                    props.handleShopDelete(shop.id)
+                  }}
+                  class="btn btn-outline">delete</button></td>
+                  <tb></tb>
                 </tr>  
                 )}
 

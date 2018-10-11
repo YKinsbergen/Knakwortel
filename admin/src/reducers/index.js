@@ -7,6 +7,7 @@ import images from './images'
 import shops from './shops'
 import orders from './orders'
 import recipes from './recipes'
+import admins from './admins'
 
 
 export default combineReducers({
@@ -17,5 +18,6 @@ export default combineReducers({
   images,
   shops,
   orders,
-  recipes
+  recipes,
+  admins
 })

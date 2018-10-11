@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 import Shops from './Shops'
-import {addShops, getShops} from '../actions/shops'
+import {addShops, getShops, deleteShop} from '../actions/shops'
 
 class ShopsContainer extends React.PureComponent {
   state = {
@@ -15,7 +15,6 @@ class ShopsContainer extends React.PureComponent {
     })
     // console.log(result)
     this.props.addShops(result) // works but turned off for now
-
   }
 
   handleFiles = (input) => {
@@ -51,6 +50,16 @@ class ShopsContainer extends React.PureComponent {
     reader.readAsText(file)
   }
 
+  handleShopDelete = (event) => {
+    let answer = window.confirm("Are you sure you want to delete this store?")
+    if (answer) {
+      return this.props.deleteShop(Number(event))
+    } 
+    else {
+      return ;
+    }
+  }
+
   componentDidMount() {
     this.props.getShops()
   }
@@ -62,7 +71,7 @@ class ShopsContainer extends React.PureComponent {
   render() {
     if (!this.props.shops) return 'loading'
     return (
-      <Shops shops={this.props.shops} addShopsOnChange={this.handleFiles}/>
+      <Shops shops={this.props.shops} addShopsOnChange={this.handleFiles} handleShopDelete={this.handleShopDelete}/>
 
       // <input type="file" name="shopsCsv" id="shopsCsv" onChange={this.handleFiles}/>
     )
@@ -75,7 +84,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   addShops,
-  getShops
+  getShops,
+  deleteShop
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopsContainer)

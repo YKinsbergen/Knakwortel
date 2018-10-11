@@ -1,4 +1,4 @@
-import { ORDERS_FETCHED, SET_SENDDATE_SUCCESS  } from '../actions/orders'
+import { ORDERS_FETCHED, SET_SENDDATE_SUCCESS, ORDER_DELETE_SUCCESS  } from '../actions/orders'
 
 const reducer = (state = null, action= {}) => {
     switch(action.type) {
@@ -11,6 +11,10 @@ const reducer = (state = null, action= {}) => {
       newOrdersState[orderToChangeIndex] = action.payload
         return newOrdersState
 
+      case ORDER_DELETE_SUCCESS:
+        return state.filter(order => {
+          return order.id !== action.payload.id
+        })
       default:
         return state
     }

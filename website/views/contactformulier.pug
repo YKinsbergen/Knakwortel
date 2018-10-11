@@ -2,48 +2,39 @@ extends ./common/layout.pug
 
 block content
   - const contactformulier= page.pageContents.find(contentBlock => contentBlock.tag === 'contactformulier')
-  section(class="bestel d-flex my-auto")
-      div(class="container-fluid my-auto")
-        .row
-          if (contactformulier)
-            .col-lg-4
-              img(class="img-fluid" src=contactformulier.image.url)
-            .col-lg-7
-              h1=contactformulier.headline
-              p=contactformulier.body + "   "
-                a(href="#")
-                  img(src='/lib/Shape.svg')
-              form(class="needs-validation" novalidate method="post" action="/contactformulier-succes")
-                .row
-                  .col-lg-4.py-2
-                    label(for="company") Bedrijfsnaam (optioneel)
-                    input(type="text" class="form-control" id="company" name="company" placeholder="" value="")
-                  .col-lg-4.py-2
-                    label(for="naam") Naam
-                    input(type="text" class="form-control" id="naam" name="name" placeholder="" value="" required)
-                    div(class="invalid-feedback")
-                      Valid Naam is een verplicht veld.
-                  .col-lg-4.py-2
-                    label(for="email") Email
-                    input(type="email" class="form-control" id="email" name="email" placeholder="" value="" required)
-                    div(class="invalid-feedback")
-                      Valid Email is een verplicht veld.
+  section(class="contact d-flex my-auto")
+    div(class="container-fluid my-auto")
+      .row
+        if (contactformulier)
+          .col-lg-4
+            img(class="img-fluid" src=contactformulier.image.url)
+          .col-lg-7
+            h1=contactformulier.headline
+            p=contactformulier.body
+            form(class="needs-validation" novalidate method="post" action="/contactformulier-succes")
+              .row
+                .col-lg-4.py-2
+                  label(for="company") Bedrijfsnaam (optioneel)
+                  input(type="text" class="form-control" id="company" name="company" placeholder="" value="")
+                .col-lg-4.py-2
+                  label(for="naam") Naam
+                  input(type="text" class="form-control" id="naam" name="name" placeholder="" value="" required)
+                  div(class="invalid-feedback")
+                    Valid Naam is een verplicht veld.
+                .col-lg-4.py-2
+                  label(for="email") Email
+                  input(type="email" class="form-control" id="email" name="email" placeholder="" value="" required)
+                  div(class="invalid-feedback")
+                    Valid Email is een verplicht veld.
 
-                .row
-                  .col-lg-8.py-4
-                    label(for="bericht") Bericht
-                    input(type="text" class="form-control" id="bericht" name="message" placeholder="" value="" required)
-                    div(class="invalid-feedback")
-                      Valid Bericht is een verplicht veld.
-                  //- .col-lg-4.py-2
-                  //-   label(for="huisnummer") Huisnummer
-                  //-   input(type="number" class="form-control" id="huisnummer" name="houseNumber" placeholder="" value="" required)
-                  //-   div(class="invalid-feedback")
-                  //-     Valid Huisnummer is een verplicht veld.
-                  //- .col-lg-4.py-2
-                  //-   label(for="toevoeging") Toevoeging (optioneel)
-                  //-   input(type="number" class="form-control" id="toevoeging"  name="addition" placeholder="" value="")
+              .row
+                .col-lg-8.py-4
+                  label(for="bericht") Bericht
+                  textarea(type="text" class="form-control" id="bericht" name="message" placeholder="" value="" required)
+                  div(class="invalid-feedback")
+                    Valid Bericht is een verplicht veld.
 
-                .row
-                  .col-lg-4
-                    button(class="btn btn-outline controleer" type="submit") Controleer bericht
+
+              .row
+                .col-lg-4
+                  button(class="btn btn-outline controleer" type="submit") Verzend bericht

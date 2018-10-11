@@ -25,22 +25,22 @@ export default function Toppings(props) {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>id</th>
                   <th>Naam</th>
                   <th>Type</th>
                   <th>Afbeelding</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {props.toppings.map(topping => 
                 <tr key={topping.id}>
-                  <td><button onClick={() => props.deleteToppingFn(topping)}>delete</button></td>
                   <td>{topping.id}</td>
                   <td>{topping.name}</td>
                   
                   <td>{topping.toppingType.name}</td>
 
                   <td>{topping.image && <img className=" thumbnails img-thumbnail img-fluid" src={topping.image.url} alt={topping.image.altText}/>}</td>
+                  <td><button class="btn btn-outline" onClick={() => props.deleteToppingFn(topping)}>delete</button></td>
                 </tr>  
                 )}
 

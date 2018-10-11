@@ -33,6 +33,16 @@ block content
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
             h3=product.headline
             p=product.body
+            div(class="icon-wrapper d-flex justify-content-between")
+              div(class="icon-div text-center") 
+                img(src="/lib/klaar-in-3-min-icon.svg")
+                p <small>Klaar in 3 minuten</small>
+              div(class="icon-div text-center") 
+                img(src="/lib/klaar-in-3-min-icon.svg")
+                p <small>100% Plantaardig</small>
+              div(class="icon-div text-center") 
+                img(src="/lib/barbecue-icon.svg")
+                p <small>Ook voor op de barbecue</small>
           .col-md-6.order-md-1
             img(class="img-fluid story-img" src=product.image.url alt=product.image.altText)
 
@@ -72,9 +82,12 @@ block content
               p !{newBody}
             a(href="/winkelzoeker")
               button(class="btn btn-outline") Verkooplocaties
+            div.mt-3
+              p <a class="link" href="https://www.ah.nl/producten/product/wi443461/knakwortel" target="_blank">Bestel online bij Albert Heijn</a>
+              p <a class="link" href="https://www.hanos.nl/nl/" target="_blank">Bestel online bij Hanos</a>
           .col-md-6.offset-md-1
-            img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText)    
-
+            img(class="img-fluid story-img" src=ah.image.url alt=ah.image.altText) 
+            
     - const trui = page.pageContents.find(contentBlock => contentBlock.tag === 'trui')
     .container-fluid(id="trui")
       .row
@@ -96,16 +109,16 @@ block content
     - const receptenmachine = page.pageContents.find(contentBlock => contentBlock.tag === 'receptenmachine')
     section(id="recepten")
       .container(class="story-container text-center")
-        div(class="container my-auto")
-          if (receptenmachine)
-            h1=receptenmachine.headline
-            p=receptenmachine.body
-            iframe(src=receptenmachine.iframeUrl frameborder="0" width="100%" height="680" scrolling="no")
+        if (receptenmachine)
+          h1.receptenmachine=receptenmachine.headline
+          p=receptenmachine.body
+          iframe(src=receptenmachine.iframeUrl frameborder="0" width="100%" height="500" scrolling="no")
   
   //- INSTAGRAM FEED CONTENT BLOK
   section.text-center.my-5(id="instagram")
     .container(class="instagram-container")
-      h2 #KNAKWORTEL #ofjewortellust
+      h2 Kijk, dit doen we nog meer 
+      h3 Laat ons weten wat jij doet met Knakwortel via <a class="link" href="https://www.instagram.com/explore/tags/knakwortel/" target="_blank">#knakwortel</a>, <a class="link" href="https://www.instagram.com/explore/tags/ofjewortellust/" target="_blank">#ofjewortellust</a> of <a class="link" href="https://instagram.com/knakwortel/" target="_blank">@knakwortel</a>
       div(id="carouselExampleIndicators" data-ride="carousel" data-interval="false" class="carousel slide")
         ol(class="carousel-indicators")
           li(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
@@ -118,37 +131,37 @@ block content
               div(class="row justify-content-center text-center text-lg-left py-3")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[0].node.display_url) alt="First slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[0].node.display_url) alt="First slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[1].node.display_url) alt="Second slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[1].node.display_url) alt="Second slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class=" img-fluid img-thumbnail" src=(shortInstaFeed[2].node.display_url) alt="Third slide")
+                    img(class=" img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[2].node.display_url) alt="Third slide")
            
             div(class="carousel-item")
               div(class="row justify-content-center text-center text-lg-left py-3")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[3].node.display_url) alt="First slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[3].node.display_url) alt="First slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[4].node.display_url) alt="Second slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[4].node.display_url) alt="Second slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class=" img-fluid img-thumbnail" src=(shortInstaFeed[5].node.display_url) alt="Third slide")
+                    img(class=" img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[5].node.display_url) alt="Third slide")
 
             div(class="carousel-item")
               div(class="row justify-content-center text-center text-lg-left py-3")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[6].node.display_url) alt="First slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[6].node.display_url) alt="First slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class="img-fluid img-thumbnail" src=(shortInstaFeed[7].node.display_url) alt="Second slide")
+                    img(class="img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[7].node.display_url) alt="Second slide")
                 div(class="col-lg-3 col-md-4 col-xs-6")
                   a(href="#" class="d-block mb-4 h-100")
-                    img(class=" img-fluid img-thumbnail" src=(shortInstaFeed[8].node.display_url) alt="Third slide")
+                    img(class=" img-fluid img-thumbnail instaDiv" src=(shortInstaFeed[8].node.display_url) alt="Third slide")
                     
           a(class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev")
             span(class="carousel-control-prev-icon" aria-hidden="true")
@@ -160,7 +173,7 @@ block content
   //- EVENEMENTEN CONTENT BLOCK
   - const evenement = page.pageContents.find(contentBlock => contentBlock.tag === 'evenement')
   section(id="evenement")
-    .container-fluid
+    .container-fluid.evenement-container
       .row
         if (evenement)
           .col-md-4.offset-md-1.order-md-2.text-right.align-self-center
@@ -168,18 +181,15 @@ block content
             p=evenement.body
             img(class="karretje-evenement" src="/lib/KAR_kar-neus rechts.svg")
             p <strong>Ook kun je onze mooie Knakkar huren!</strong>
-            a(href="/#")
+            a(href="/contactformulier")
               button(class="btn btn-outline offerte") Offerte aanvragen
           .col-md-6.order-md-1
             img(class="img-fluid ev" src=evenement.image.url)
           
-            
-        
-  
-
+          
   - const faqArray = page.pageContents.filter(contentBlock => contentBlock.tag === 'faq')
   section.section.my-5(id="faq")
-    .container
+    .container.faq-container
       h1.text-center Veelgestelde vragen
       if (faqArray)
         each item in faqArray

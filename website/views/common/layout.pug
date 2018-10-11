@@ -4,9 +4,9 @@ html
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width,initial-scale=1")
     title Knakwortel - #{title}
+    link(rel="icon" href="/favicon.ico" type="image/x-icon")
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
     link(rel="stylesheet" href="/css/style.css")
-    link(rel="icon" href="images/favicon.ico")
 
   body
     nav(class="navbar navbar-expand-md navbar-light fixed-top p-0")
@@ -20,34 +20,34 @@ html
             li.nav-item.dropdown
               a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Knakwortel
               .dropdown-menu(aria-labelledby="navbarDropdown")
-                a.dropdown-item(href="/#story") Waarom
-                a.dropdown-item(href="/#verkrijgbaar") Verkrijgbaar
-                a.dropdown-item(href="/#trui") Trui
+                a.dropdown-item(href="/#story") Over knakwortel
+                a.dropdown-item(href="/#verkrijgbaar") Waar te koop
+                a.dropdown-item(href="/#trui") Trui bestellen
             li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Inspiratie
+              a.nav-link.dropdown-toggle(href="https://example.com" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Recepten
               .dropdown-menu(aria-labelledby="navbarDropdown")
-                a.dropdown-item(href="/#recepten") Recepten
+                a.dropdown-item(href="/#recepten") Inspiratie
                 a.dropdown-item(href="/#instagram") Instafeed
             li.nav-item
-              a.nav-link(href='/#faq') Vragen
+              a.nav-link(href='/#faq') FAQ
             li.nav-item
-              a.nav-link(href='/#evenement') Knakwortel voor je evenement
+              a.nav-link(href='/#evenement') Evenement
 
 
     block content
 
-    //- footer.footer
-    //-   .footer-container
-    //-     a(href="/dietruiisvanjou")
-    //-       img src="/lib/facebook.svg"
-    //-     a(href="/dietruiisvanjou")
-    //-       img src="/lib/instagram.svg"
-    //-     a(href="/dietruiisvanjou")
-    //-       img src="/lib/twitter.svg"
-    //-     a(href="/dietruiisvanjou")
-    //-       img src="/lib/linkedin.svg"
-    //-     a(href="/dietruiisvanjou")
-    //-       img src="/lib/mail.svg"
+    footer.footer(class="d-flex justify-content-around align-items-center")
+      div(class="footer-container d-flex justify-content-around align-items-center")
+        a(href="https://www.facebook.com/knakwortel" target="_blank")
+          img(class="sm-icon" src="/lib/facebook.svg")
+        a(href="https://www.instagram.com/knakwortel/" target="_blank")
+          img(class="sm-icon" src="/lib/instagram.svg")
+        a(href="https://twitter.com/knakwortel" target="_blank")
+          img(class="sm-icon" src="/lib/twitter.svg")
+        a(href="https://www.linkedin.com/company/knakwortel/?originalSubdomain=nl" target="_blank")
+          img(class="sm-icon" src="/lib/linkedin.svg")
+        a(href="/contactformulier" target="_blank")
+          img(class="sm-icon" src="/lib/mail.svg")
 
     script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous")

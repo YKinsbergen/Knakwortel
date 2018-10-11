@@ -25,6 +25,7 @@ export default function Faq(props) {
                   <th>Categorie</th>
                   <th>Titel</th>
                   <th>Tekst</th>
+                  <th></th>
                   {/* <th>Tags</th> */}
                 </tr>
               </thead>
@@ -47,6 +48,9 @@ export default function Faq(props) {
                   <td>{block.body}</td>}
 
                   {/* <td>{block.tag}</td> */}
+                  <button onClick={() => {
+                    return props.handleBlockDelete(block.id)
+                  }} class="btn btn-outline" >delete</button>
                 </tr>  
                 )}
 

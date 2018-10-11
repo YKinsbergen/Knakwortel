@@ -1,15 +1,14 @@
 import React, {PureComponent} from 'react'
 import {connect} from 'react-redux'
 import {Redirect, Route} from 'react-router-dom'
-import Faq from './Faq'
+import Admins from './Admins'
 import './Dashboard.css'
-import {loadBlocks, addBlock, deleteBlock} from '../actions/blocks'
+import {getAdmins, signup, deleteAdmin} from '../actions/admins'
 
 
-class FaqContainer extends PureComponent {
+class AdminContainer extends PureComponent {
   state = {
-    addMode: false,
-    tag: 'faq'
+    addMode: false
   }
 
   onAdd = () => {
@@ -27,35 +26,29 @@ class FaqContainer extends PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const tag = this.state.tag
-    const headline = this.state.headline
-    const body = this.state.body
-    
-       
-    this.props.addBlock({tag, headline, body})
+    const email = this.state.email
+    const password = this.state.password
+
+    this.props.signup(email, password)
     this.setState({
       addMode: false
     })
   }
 
-  handleBlockDelete = (event) => {
-    let answer = window.confirm("Are you sure you want to delete this FAQ?")
-    if (answer) {
-      return this.props.deleteBlock(Number(event))
-    } 
-    else {
-      return ;
+  deleteAdminFn = (admin) => {
+    if (this.props.admins.length > 1) {
+      this.props.deleteAdmin(admin.id)
     }
   }
 
   componentWillMount() {
-      this.props.loadBlocks()
+      this.props.getAdmins()
   }
   
 
   render() {
-    if (!this.props.blocks) return <h2>Loading...</h2>
-    const {authenticated, blocks} = this.props
+    if (!this.props.admins) return <h2>Loading...</h2>
+    const {authenticated, admins} = this.props
 
     // if (!authenticated) return (
 		// 	<Redirect to="/login" />
@@ -64,13 +57,13 @@ class FaqContainer extends PureComponent {
 
     return (
      <div>
-       <Faq 
-        blocks={blocks} 
+       <Admins 
+        admins={admins} 
         addMode={this.state.addMode}
         onAdd={this.onAdd}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        handleBlockDelete={this.handleBlockDelete}
+        deleteAdminFn={this.deleteAdminFn}
         />
       </div>
     )
@@ -79,7 +72,7 @@ class FaqContainer extends PureComponent {
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
-  blocks: state.blocks
+  admins: state.admins
 })
 
-export default connect(mapStateToProps, {loadBlocks, addBlock, deleteBlock})(FaqContainer)
+export default connect(mapStateToProps, {getAdmins, signup, deleteAdmin})(AdminContainer)

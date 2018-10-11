@@ -1,6 +1,7 @@
 import {
   SHOPS_FETCHED,
-  NEW_SHOPS_FETCHED
+  NEW_SHOPS_FETCHED,
+  SHOP_DELETED
 } from '../actions/shops'
 
 export default (state = null, action = {}) => {
@@ -12,6 +13,10 @@ export default (state = null, action = {}) => {
         ...action.payload,
         ...state
       ]
+    case SHOP_DELETED:
+      return state.filter(shop => {
+        return shop.id !== action.payload.id
+      })
     default: 
       return state
   }

@@ -33,6 +33,7 @@ export default function Order(props) {
                 <th>Maat</th>
                 <th>Betaling</th>
                 <th>Verzenddatum</th>
+                <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,6 +65,9 @@ export default function Order(props) {
 
                   <td>{order.sendDate !== null ? order.sendDate : <form><input type="date" id={order.id} onChange={props.handleChange}></input></form>}</td>
 
+                  <td><button onClick={() => {
+                    return props.handleDeleteOrder(order.id)
+                  }}class="btn btn-outline">delete</button></td>
                 </tr>
 
                 )}
