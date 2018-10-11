@@ -1,5 +1,5 @@
 // src/advertisements/controller.ts
-import { JsonController, Post, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode,BodyParam, Authorized} from "routing-controllers";
+import { JsonController, Post, Get, Body, Param, BadRequestError, QueryParam, Put, NotFoundError, HttpCode,BodyParam, Authorized, Delete} from "routing-controllers";
 import {Page, PageContent} from './entities'
 import Image from '../images/entity'
 
@@ -109,4 +109,17 @@ export class PagesController {
         return content.image = image,
             PageContent.merge(content, update).save()
     }
+
+    // @Authorized()
+    @Delete('/contents/:id')
+    async deleteContent(
+        @Param('id') id: number,
+    ) {
+        const contentToDelete = await PageContent.findOne(id)
+        if (!contentToDelete) throw new NotFoundError('Cannot find content block')
+        contentToDelete.remove()
+        return contentToDelete
+    }
+
+
 }

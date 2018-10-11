@@ -54,7 +54,8 @@ export default class OrderController {
    ) {
         const orderToDelete = await Order.findOne(id)
         if (!orderToDelete) throw new NotFoundError ('Cannot find order')
-        return Order.delete(orderToDelete)
+        orderToDelete.remove()
+        return orderToDelete
       
    }
 

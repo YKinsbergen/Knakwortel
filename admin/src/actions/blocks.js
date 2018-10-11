@@ -8,6 +8,7 @@ export const BLOCK_FETCHED = 'BLOCK_FETCHED'
 export const BLOCK_UPDATE_SUCCESS = 'BLOCK_UPDATE_SUCCESS'
 export const BLOCK_IMAGE_UPDATE_SUCCESS = 'BLOCK_IMAGE_UPDATE_SUCCESS'
 export const BLOCK_ADD_SUCCESS = 'BLOCK_ADD_SUCCESS'
+export const BLOCK_DELETE_SUCCESS = 'BLOCK_DELETE_SUCCESS'
 
 
 const blocksFetched = blocks => ({
@@ -36,6 +37,13 @@ const blockAddSuccess = block => {
 const blockImageUpdateSuccess = (block) => {
   return {
     type: BLOCK_IMAGE_UPDATE_SUCCESS,
+    payload: block
+  }
+}
+
+const blockDeletedSuccess = (block) => {
+  return {
+    type: BLOCK_DELETE_SUCCESS,
     payload: block
   }
 }
@@ -108,4 +116,11 @@ export const updateBlockImage = (blockId, url) => (dispatch, getState) => {
         console.error(err)
       }
     })
+  }
+
+  export const deleteBlock = (id) => (dispatch) => {
+    request
+    .delete(`${apiUrl}/contents/${id}`)
+    .then(response => dispatch(blockDeletedSuccess(response.body)))
+    .catch(err => console.error(err))
   }

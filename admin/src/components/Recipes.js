@@ -29,7 +29,6 @@ export default function Recipes(props) {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>id</th>
                   <th>Naam</th>
                   <th>Bereiding</th>
                   <th>Toppings</th>
@@ -38,7 +37,6 @@ export default function Recipes(props) {
               <tbody>
                 {props.recipes.map(recipe => 
                 <tr key={recipe.id}>
-                  <td><button onClick={() => props.deleteRecipe(recipe.id)}>delete</button></td>
                   <td>{recipe.id}</td>
                   <td>{recipe.name}</td>
                   
@@ -46,7 +44,8 @@ export default function Recipes(props) {
 
                   <td>{recipe.toppings.map(topp => 
                     `${topp.name}, `
-                  )}</td>
+                    )}</td>
+                  <td><button class="btn btn-outline" onClick={() => props.deleteRecipe(recipe.id)}>delete</button></td>
                 </tr>  
                 )}
 

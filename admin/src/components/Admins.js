@@ -24,16 +24,16 @@ export default function Admins(props) {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>id</th>
                   <th>Email</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {props.admins.map(admin => 
                 <tr key={admin.id}>
-                  <td><button onClick={() => props.deleteAdminFn(admin)}>delete</button></td>
                   <td>{admin.id}</td>
                   <td>{admin.email}</td>
+                  <td><button class="btn btn-outline" onClick={() => props.deleteAdminFn(admin)}>delete</button></td>
                 </tr>  
                 )}
 
