@@ -37,7 +37,7 @@ router.get('/trui', async (ctx, next) => {
   const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
   
   const page = pageRequest.data
-  console.log(page)
+  // console.log(page)
   ctx.render('trui', 
     { 
       title: page.pageTitle.content,
@@ -53,23 +53,24 @@ router.get('/dietruiisvanjou', async (ctx, next) => {
 
 router.post('/trui-bestellen', parseBody(), async (ctx, next) => {
   const { company, name, email, street, houseNumber, addition, zipcode, city, size } = ctx.request.body
-  console.log(ctx.request.body)
+  // console.log(ctx.request.body)
   
 
-    axios.post(`${apiUrl}/orders`, ctx.request.body
-    )
-    .then(response => {
-      const pageId = 3
-      const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
-      const page = pageRequest.data
-        
-      ctx.render('trui-order', { company, name, email, street, houseNumber, addition, zipcode, city, size,
-        title: page.pageTitle.content,
-        page: page
-      })})
-    .catch(function (error) {
-      console.log();
-});
+    const postRequest = await axios.post(`${apiUrl}/orders`, ctx.request.body)
+      .then(async (response) => {
+        // console.log('api response: **********', response)
+        const pageId = 3
+        const pageRequest = await axios(`${apiUrl}/pages/${pageId}`)
+        const page = pageRequest.data
+          
+        ctx.render('trui-order', { company, name, email, street, houseNumber, addition, zipcode, city, size,
+          title: page.pageTitle.content,
+          page: page
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
 
     
   // ctx.render('trui-order', { company, name, email, street, houseNumber, addition, zipcode, city, size,
