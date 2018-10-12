@@ -152,6 +152,7 @@ export class ShopsController {
     }
   }
 
+  @Authorized()
   @Delete('/shops/:id')
   async deleteShop(
     @Param('id') id: number

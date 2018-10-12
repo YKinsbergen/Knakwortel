@@ -42,12 +42,14 @@ export default class OrderController {
     return Order.findOne(id)
   }
 
+  @Authorized()
   @Get('/orders')
   allOrders = async() => {
     const orders = await Order.find()
     return orders
   }
 
+  @Authorized()
   @Delete('/orders/:id')
    async deleteOrder(
         @Param('id') id: number,
