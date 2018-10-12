@@ -122,7 +122,7 @@ export class RecipeController {
         return recipeToDelete
     }
 
-    // @Authorized()
+    @Authorized()
     @Delete('/toppings/:id')
     async deleteTopping(
         @Param('id') id: number,

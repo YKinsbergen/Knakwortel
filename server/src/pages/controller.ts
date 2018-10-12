@@ -110,7 +110,7 @@ export class PagesController {
             PageContent.merge(content, update).save()
     }
 
-    // @Authorized()
+    @Authorized()
     @Delete('/contents/:id')
     async deleteContent(
         @Param('id') id: number,
